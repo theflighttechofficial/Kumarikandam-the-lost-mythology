@@ -117,6 +117,91 @@
   animation: slow-spin 240s linear infinite;
 }
 
+/* ============================================================ */
+/* VINTAGE ANCHOR CURSOR                                         */
+/* ============================================================ */
+html {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'><g fill='none' stroke='%23CDBB96' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'><g fill='none' stroke='%231A1511' stroke-width='4.2' stroke-linecap='round' stroke-linejoin='round'><circle cx='15' cy='5.4' r='2.6'/><line x1='15' y1='7.6' x2='15' y2='21'/><path d='M6.5 13.5h17'/><path d='M4 17c0 5.2 4.3 8.6 11 9.6'/><path d='M26 17c0 5.2 -4.3 8.6 -11 9.6'/></g><circle cx='15' cy='5.4' r='2.6' fill='%239A7B45'/><line x1='15' y1='7.6' x2='15' y2='21'/><path d='M6.5 13.5h17'/><path d='M4 17c0 5.2 4.3 8.6 11 9.6'/><path d='M26 17c0 5.2 -4.3 8.6 -11 9.6'/></g></svg>") 15 5, auto;
+}
+
+a,
+button,
+[role='button'],
+input,
+select,
+textarea,
+label,
+summary,
+.cursor-pointer {
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 30 30'><g fill='none' stroke='%231A1511' stroke-width='4.4' stroke-linecap='round' stroke-linejoin='round'><circle cx='15' cy='5.4' r='3'/><line x1='15' y1='8' x2='15' y2='21'/><path d='M6.5 13.5h17'/><path d='M4 17c0 5.2 4.3 8.6 11 9.6'/><path d='M26 17c0 5.2 -4.3 8.6 -11 9.6'/></g><g fill='none' stroke='%23E6D7B9' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'><circle cx='15' cy='5.4' r='3' fill='%239A7B45'/><line x1='15' y1='8' x2='15' y2='21'/><path d='M6.5 13.5h17'/><path d='M4 17c0 5.2 4.3 8.6 11 9.6'/><path d='M26 17c0 5.2 -4.3 8.6 -11 9.6'/></g></svg>") 17 5, pointer;
+}
+
+/* ============================================================ */
+/* REDESIGN: TACTILE INTERACTION LAYER                           */
+/* ============================================================ */
+
+/* Buttons & CTAs get a physical "press" feel instead of flat color swaps */
+button,
+a[href] {
+  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+button:not(:disabled):hover,
+a[href]:hover {
+  filter: brightness(1.06);
+}
+
+button:not(:disabled):active,
+a[href]:active {
+  transform: scale(0.97);
+}
+
+/* Consistent, visible keyboard focus ring across the antique palette */
+button:focus-visible,
+a[href]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #9A7B45;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Cards with a border + rounded corner lift gently on hover for depth */
+.paper-card,
+[class*="rounded"][class*="border-[#463429]"] {
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.paper-card:hover,
+[class*="rounded"][class*="border-[#463429]"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.55);
+}
+
+/* Sticky navbar gets a slow brass shimmer sweep across its top graduation bar */
+.border-nautical-bar {
+  background-size: 20px 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.border-nautical-bar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(230, 215, 185, 0.35), transparent);
+  width: 40%;
+  animation: shimmer-sweep 6s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(320%); }
+  100% { transform: translateX(320%); }
+}
+
 /* Custom scrollbar styled for antique explorer chart desk */
 ::-webkit-scrollbar {
   width: 8px;
