@@ -1,0 +1,8 @@
+{
+  "name": "Remix Remix Lemuria: Myth or Lost Continent",
+  "description": "An interactive research platform and study toolkit exploring the 19th-century Lemuria hypothesis, modern plate tectonics, biogeography, and research productivity tools.\nmake the ui so interactive with ancient map theme eg like unxharted \n",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

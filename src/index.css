@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Cinzel', Georgia, serif;
+    --font-decorative: 'Cinzel', Georgia, serif;
+    --font-carto: 'Marcellus', 'Cinzel', serif;
+    --font-serif: 'Cormorant Garamond', 'Libre Baskerville', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Strict Antique Explorer Palette */
+    --color-deep-ink: #1E1914;
+    --color-dark-brown: #2B211A;
+    --color-walnut: #463429;
+    --color-old-paper: #E6D7B9;
+    --color-parchment: #CDBB96;
+    --color-faded-ink: #756451;
+    --color-antique-brass: #9A7B45;
+    --color-terracotta: #8B5E4A;
+    --color-muted-sea-green: #53665C;
+    --color-cream: #FAF6EE;
+  }
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-decorative {
+  font-family: var(--font-decorative);
+}
+
+.font-carto {
+  font-family: var(--font-carto);
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Subtle Victorian Nautical Atlas Cartographic Grid (fine ink lines, no glowing neon) */
+.bg-carto-grid {
+  background-image: 
+    radial-gradient(circle at center, rgba(154, 123, 69, 0.05) 0, transparent 70%),
+    linear-gradient(to right, rgba(117, 100, 81, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(117, 100, 81, 0.07) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Antique Chart Table / Deep Aged Walnut Surface */
+.bg-ocean-depths {
+  background: 
+    radial-gradient(circle at 50% 25%, #2B211A 0%, #1E1914 65%, #15110E 100%);
+}
+
+/* Weathered Parchment Card & Paper Texture */
+.bg-parchment-sheet {
+  background-color: #241D17;
+  background-image: 
+    radial-gradient(ellipse at 50% 50%, rgba(230, 215, 185, 0.03) 0%, transparent 80%),
+    linear-gradient(to bottom, rgba(43, 33, 26, 0.95), rgba(30, 25, 20, 0.98));
+}
+
+/* Physical Antique Paper Frame */
+.paper-card {
+  background: #231B15;
+  border: 1px solid #463429;
+  box-shadow: 0 4px 20px -2px rgba(10, 8, 6, 0.5), inset 0 1px 0 rgba(230, 215, 185, 0.06);
+}
+
+/* Antique Maritime Chart Border - Alternating graduation ticks (Faded Brass & Walnut) */
+.border-nautical-bar {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #9A7B45 0px,
+    #9A7B45 10px,
+    #2B211A 10px,
+    #2B211A 20px
+  );
+}
+
+/* Antiquarian Wax Seal Stamp (Deep Terracotta / Burgundy Wax, physical texture) */
+.wax-seal {
+  background: radial-gradient(circle at 35% 35%, #8B5E4A, #663C2C 65%, #422116 100%);
+  box-shadow: inset 0 1px 2px rgba(230, 215, 185, 0.25), inset 0 -2px 3px rgba(0,0,0,0.5), 0 3px 10px rgba(0,0,0,0.6);
+}
+
+/* Antique Brass Rivet / Corner Pin */
+.brass-stud {
+  background: radial-gradient(circle at 30% 30%, #CDBB96, #9A7B45 60%, #463429 100%);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Hand-drawn style dashed nautical route */
+.route-dashed {
+  stroke-dasharray: 5 6;
+  animation: dash 50s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/* Compass rose subtle, gentle rotation */
+@keyframes slow-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slow-spin {
+  animation: slow-spin 240s linear infinite;
+}
+
+/* Custom scrollbar styled for antique explorer chart desk */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1E1914;
+  border-left: 1px solid #2B211A;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #463429;
+  border: 1px solid #756451;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #756451;
+}
+
