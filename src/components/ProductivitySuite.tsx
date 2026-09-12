@@ -321,7 +321,7 @@ export function ProductivitySuite({
                 filteredNotes.map((note) => (
                   <div
                     key={note.id}
-                    className="p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-all space-y-2 group relative"
+                    className="hover-lift p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-all space-y-2 group relative"
                   >
                     <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
                     <div className="flex items-center justify-between">

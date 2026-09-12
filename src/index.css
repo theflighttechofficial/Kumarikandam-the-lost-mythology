@@ -168,14 +168,15 @@ textarea:focus-visible,
   border-radius: 2px;
 }
 
-/* Cards with a border + rounded corner lift gently on hover for depth */
+/* Cards opt into a gentle hover lift explicitly via .hover-lift (scoped,
+   not applied to structural wrappers/toolbars/form fields) */
 .paper-card,
-[class*="rounded"][class*="border-[#463429]"] {
+.hover-lift {
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .paper-card:hover,
-[class*="rounded"][class*="border-[#463429]"]:hover {
+.hover-lift:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.55);
 }

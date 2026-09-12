@@ -156,7 +156,7 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
     category: 'science',
     title: 'Ernst Haeckel Suggests Lemuria as Human Ancestral Cradle',
     summary: 'Prominent German evolutionary biologist Ernst Haeckel adopts Lemuria in his evolutionary trees, suggesting it might be the missing evolutionary cradle of early hominids.',
-    details: 'Haeckel argued in his "Natürliche Schöpfungsgeschichte" (1868) that Lemuria could explain the transition from primitive primates to human ancestors. Haeckel’s scientific reputation granted the hypothesis enormous international credibility and influenced Indian intellectuals.',
+    details: 'Haeckel argued in the original 1868 German edition of "Natürliche Schöpfungsgeschichte" (translated into English in 1876 as "The History of Creation") that Lemuria could explain the transition from primitive primates to human ancestors. Haeckel’s scientific reputation granted the hypothesis enormous international credibility and influenced Indian intellectuals.',
     keyFigures: ['Ernst Haeckel', 'Thomas Henry Huxley'],
   },
   {
@@ -306,7 +306,7 @@ export const MAP_FEATURES: MapFeature[] = [
     id: 'mf-kapatapuram',
     name: 'Kapatapuram (Second Sangam Site)',
     region: 'Ancient Eastern Coastal Shelf',
-    coordinates: { x: 64, y: 42 },
+    coordinates: { x: 64, y: 44 },
     type: 'kumari_kandam',
     title: 'The City of the Golden Gate & Second Academy',
     description: 'The second Pandyan capital established after Thenmadurai sank. Renowned for pearl fisheries and the creation of Tholkappiyam, Tamil’s oldest surviving monumental grammar by Tholkappiyar.',

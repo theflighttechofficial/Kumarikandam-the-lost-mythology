@@ -119,7 +119,7 @@ export function KumariKandamSection({ onOpenRealModal }: KumariKandamSectionProp
                   <div
                     key={academy.id}
                     onClick={() => setSelectedAcademy(academy)}
-                    className={`p-5 rounded border cursor-pointer transition-all relative ${
+                    className={`hover-lift p-5 rounded border cursor-pointer transition-all relative ${
                       isSelected
                         ? 'bg-[#2B211A] border-[#9A7B45] shadow-lg ring-1 ring-[#9A7B45]/40'
                         : 'bg-[#241B15] border-[#463429] hover:border-[#756451]'
@@ -276,7 +276,7 @@ export function KumariKandamSection({ onOpenRealModal }: KumariKandamSectionProp
               {LITERARY_REFERENCES.map((ref) => (
                 <div
                   key={ref.work}
-                  className="p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-colors space-y-3 relative"
+                  className="hover-lift p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-colors space-y-3 relative"
                 >
                   <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
                   <div className="flex items-start justify-between">
@@ -327,7 +327,7 @@ export function KumariKandamSection({ onOpenRealModal }: KumariKandamSectionProp
               {KUMARI_NADU_GROUPS.map((group, idx) => (
                 <div
                   key={group.name}
-                  className="p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-colors space-y-2 relative"
+                  className="hover-lift p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-colors space-y-2 relative"
                 >
                   <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
                   <div className="flex items-center justify-between">

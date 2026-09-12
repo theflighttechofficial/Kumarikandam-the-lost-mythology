@@ -98,7 +98,7 @@ export function TimelineSection() {
                 <div
                   onClick={() => toggleExpand(event.id)}
                   id={`timeline-card-${event.id}`}
-                  className={`p-5 sm:p-6 rounded border transition-all cursor-pointer relative ${
+                  className={`hover-lift p-5 sm:p-6 rounded border transition-all cursor-pointer relative ${
                     isExpanded
                       ? 'bg-[#241B15] border-[#9A7B45] shadow-lg ring-1 ring-[#9A7B45]/30'
                       : 'bg-[#241B15] border-[#463429] hover:border-[#756451]'

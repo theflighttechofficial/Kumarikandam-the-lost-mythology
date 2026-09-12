@@ -109,7 +109,7 @@ export function SourcesSection({ sources, onToggleRead }: SourcesSectionProps) {
               <div
                 key={source.id}
                 id={`source-card-${source.id}`}
-                className={`p-6 rounded border flex flex-col justify-between transition-all relative ${
+                className={`hover-lift p-6 rounded border flex flex-col justify-between transition-all relative ${
                   source.isRead
                     ? 'bg-[#241B15] border-[#9A7B45] shadow-lg ring-1 ring-[#9A7B45]/20'
                     : 'bg-[#241B15] border-[#463429] hover:border-[#756451]'

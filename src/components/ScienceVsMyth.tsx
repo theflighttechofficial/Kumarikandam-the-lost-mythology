@@ -153,7 +153,7 @@ export function ScienceVsMyth() {
               {COMPARISON_POINTS.map((item) => (
                 <div
                   key={item.id}
-                  className="p-4 rounded bg-[#1E1914] border border-[#463429] space-y-2 hover:border-[#756451] transition-colors"
+                  className="hover-lift p-4 rounded bg-[#1E1914] border border-[#463429] space-y-2 hover:border-[#756451] transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-carto font-bold uppercase text-[#9A7B45] tracking-widest">
@@ -200,7 +200,7 @@ export function ScienceVsMyth() {
               {COMPARISON_POINTS.map((item) => (
                 <div
                   key={item.id}
-                  className="p-4 rounded bg-[#1E1914] border border-[#463429] space-y-2 hover:border-[#756451] transition-colors"
+                  className="hover-lift p-4 rounded bg-[#1E1914] border border-[#463429] space-y-2 hover:border-[#756451] transition-colors"
                 >
                   <div className="flex items-center justify-between">
                     <span className="text-[10px] font-carto font-bold uppercase text-[#8B5E4A] tracking-widest">
