@@ -139,7 +139,7 @@ export function ProductivitySuite({
           </div>
 
           {/* Research Progress Metric Box */}
-          <div className="p-4 sm:p-5 rounded bg-[#241B15] border border-[#463429] shadow-xl min-w-[280px] relative">
+          <div className="p-4 sm:p-5 rounded bg-[#241B15] border border-[#463429] shadow-xl w-full sm:w-auto sm:min-w-[300px] relative">
             <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
             <div className="flex items-center justify-between text-xs font-carto font-bold mb-2">
               <span className="text-[#E6D7B9] uppercase tracking-wider flex items-center gap-1.5">
@@ -159,9 +159,9 @@ export function ProductivitySuite({
               />
             </div>
 
-            <div className="flex items-center justify-between text-[11px] text-[#CDBB96]/80 mt-2 font-carto uppercase tracking-wider">
-              <span>{tasks.filter((t) => t.completed).length}/{tasks.length} Directives Complete</span>
-              <span>{notes.length} Journal Entries</span>
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[11px] text-[#CDBB96]/80 mt-2 font-carto uppercase tracking-wider">
+              <span className="whitespace-nowrap">{tasks.filter((t) => t.completed).length}/{tasks.length} Directives Complete</span>
+              <span className="whitespace-nowrap">{notes.length} Journal Entries</span>
             </div>
           </div>
         </div>

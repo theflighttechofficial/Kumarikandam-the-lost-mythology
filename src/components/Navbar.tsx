@@ -16,6 +16,7 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
     { name: 'Kumari Kandam', href: '#kumari-kandam' },
     { name: 'Science vs. Myth', href: '#science-vs-myth' },
     { name: 'Timeline', href: '#timeline' },
+    { name: 'Lost Lands', href: '#related-lands' },
     { name: 'Field Notes', href: '#productivity' },
     { name: 'Archives', href: '#sources' },
   ];
@@ -46,7 +47,7 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden xl:flex items-center gap-3 text-[11px] font-carto uppercase tracking-wide text-[#CDBB96]/80 min-w-0">
+          <nav className="hidden 2xl:flex items-center gap-3 text-[11px] font-carto uppercase tracking-wide text-[#CDBB96]/80 min-w-0">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -96,7 +97,7 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="xl:hidden p-2 text-[#CDBB96] hover:text-[#FAF6EE] rounded hover:bg-[#2B211A]"
+              className="2xl:hidden p-2 text-[#CDBB96] hover:text-[#FAF6EE] rounded hover:bg-[#2B211A]"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -106,7 +107,7 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="xl:hidden py-4 border-t border-[#463429] space-y-2 bg-[#231B15]">
+          <div className="2xl:hidden py-4 border-t border-[#463429] space-y-2 bg-[#231B15]">
             {navLinks.map((link) => (
               <a
                 key={link.name}

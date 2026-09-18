@@ -95,3 +95,14 @@ export interface LiteraryReference {
   quoteOrSummary: string;
   significance: string;
 }
+
+export interface RelatedLostLand {
+  id: string;
+  name: string;
+  origin: string;
+  era: string;
+  status: 'real' | 'myth' | 'contested';
+  description: string;
+  keyFigure: string;
+  verdict: string;
+}

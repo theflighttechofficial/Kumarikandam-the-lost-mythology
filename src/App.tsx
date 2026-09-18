@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { lazy, Suspense, useEffect, useMemo, useState } from 'react';
 import { motion } from 'motion/react';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
@@ -6,14 +6,21 @@ import { InteractiveMap } from './components/InteractiveMap';
 import { KumariKandamSection } from './components/KumariKandamSection';
 import { Navbar } from './components/Navbar';
 import { ProductivitySuite } from './components/ProductivitySuite';
-import { RealModal } from './components/RealModal';
+import { RelatedLostLands } from './components/RelatedLostLands';
 import { ScienceVsMyth } from './components/ScienceVsMyth';
 import { SourcesSection } from './components/SourcesSection';
 import { TimelineSection } from './components/TimelineSection';
-import { VsCodeExportModal } from './components/VsCodeExportModal';
 import { WhatIsLemuria } from './components/WhatIsLemuria';
 import { INITIAL_NOTES, INITIAL_TASKS, RESEARCH_SOURCES } from './data/lemuriaData';
 import { ResearchNote, ResearchSource, ResearchTask } from './types';
+
+// Lazy-loaded: both modals are opt-in UI (opened via button click) and the
+// VS Code exporter embeds large HTML/CSS/JS strings, so keeping them out of
+// the initial bundle noticeably shrinks first-load JS for hosting.
+const RealModal = lazy(() => import('./components/RealModal').then((m) => ({ default: m.RealModal })));
+const VsCodeExportModal = lazy(() =>
+  import('./components/VsCodeExportModal').then((m) => ({ default: m.VsCodeExportModal }))
+);
 
 export default function App() {
   // Standout Feature Modals
@@ -220,6 +227,16 @@ export default function App() {
           <TimelineSection />
         </motion.div>
 
+        {/* 6b. Other Lost Lands: Real vs. Mythical Comparative Content */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <RelatedLostLands />
+        </motion.div>
+
         {/* 7. Research Notes & Productivity Suite (Tasks, Notes, Keywords, Progress Bar) */}
         <motion.div
           initial="hidden"
@@ -259,17 +276,19 @@ export default function App() {
         onOpenVsCodeModal={() => setIsVsCodeModalOpen(true)}
       />
 
-      {/* Standout Feature: "Is Lemuria Real?" Modal */}
-      <RealModal
-        isOpen={isRealModalOpen}
-        onClose={() => setIsRealModalOpen(false)}
-      />
+      {/* Standout Feature: "Is Lemuria Real?" Modal (lazy-mounted on first open) */}
+      {isRealModalOpen && (
+        <Suspense fallback={null}>
+          <RealModal isOpen={isRealModalOpen} onClose={() => setIsRealModalOpen(false)} />
+        </Suspense>
+      )}
 
-      {/* VS Code Vanilla Files Exporter Modal */}
-      <VsCodeExportModal
-        isOpen={isVsCodeModalOpen}
-        onClose={() => setIsVsCodeModalOpen(false)}
-      />
+      {/* VS Code Vanilla Files Exporter Modal (lazy-mounted on first open) */}
+      {isVsCodeModalOpen && (
+        <Suspense fallback={null}>
+          <VsCodeExportModal isOpen={isVsCodeModalOpen} onClose={() => setIsVsCodeModalOpen(false)} />
+        </Suspense>
+      )}
     </div>
   );
 }

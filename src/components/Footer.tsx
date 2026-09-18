@@ -74,6 +74,11 @@ export function Footer({ onOpenRealModal, onOpenVsCodeModal }: FooterProps) {
                 </a>
               </li>
               <li>
+                <a href="#related-lands" className="hover:text-[#FAF6EE] transition-colors">
+                  Other Lost Lands (Atlantis, Zealandia & More)
+                </a>
+              </li>
+              <li>
                 <a href="#productivity" className="hover:text-[#FAF6EE] transition-colors">
                   Field Notes & Expedition Manifest
                 </a>
