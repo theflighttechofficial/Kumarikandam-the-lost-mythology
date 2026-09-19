@@ -1,123 +1,246 @@
-import { Compass, HelpCircle, ShieldAlert } from 'lucide-react';
+import { FormEvent, useState } from 'react';
+import { Code2, Compass, ExternalLink, HelpCircle, Mail, ShieldAlert } from 'lucide-react';
 
 interface FooterProps {
   onOpenRealModal: () => void;
   onOpenVsCodeModal: () => void;
 }
 
+const FOLIO_LINKS = [
+  { label: 'Origins (1864 Hypothesis)', href: '#what-is-lemuria' },
+  { label: 'Expedition Map', href: '#interactive-map' },
+  { label: 'Kumari Kandam Archives', href: '#kumari-kandam' },
+  { label: 'Chronometer Timeline', href: '#timeline' },
+];
+
+const RESEARCH_LINKS = [
+  { label: 'Science vs. Myth & Quiz', href: '#science-vs-myth' },
+  { label: 'Other Lost Lands', href: '#related-lands' },
+  { label: 'Field Notes & Manifest', href: '#productivity' },
+  { label: 'Cartographic Sources', href: '#sources' },
+];
+
 export function Footer({ onOpenRealModal, onOpenVsCodeModal }: FooterProps) {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e: FormEvent) => {
+    e.preventDefault();
+    if (!email.trim()) return;
+    setSubscribed(true);
+    setEmail('');
+  };
+
   return (
-    <footer className="bg-[#140F0C] border-t border-[#463429] py-12 text-[#CDBB96] text-sm relative">
-      <div className="absolute inset-0 bg-carto-grid opacity-10 pointer-events-none" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
-          {/* Brand & Mission */}
-          <div className="md:col-span-2 space-y-3">
-            <div className="flex items-center gap-2 text-[#FAF6EE]">
-              <Compass className="w-5 h-5 text-[#9A7B45]" />
-              <span className="font-heading font-bold text-lg tracking-wider">
-                LEMURIA EXPEDITION ARCHIVE
-              </span>
-            </div>
-            <p className="text-xs sm:text-sm text-[#CDBB96] font-serif leading-relaxed max-w-md">
-              An interactive cartographic and archival expedition investigating Philip Sclater’s 1864 zoological land-bridge hypothesis, the reality of Gondwana and plate tectonics, microcontinent Mauritia, and classical Tamil Kumari Kandam literature.
-            </p>
-            <div className="flex flex-wrap items-center gap-3 pt-2 font-carto">
-              <button
-                id="footer-real-modal-btn"
-                onClick={onOpenRealModal}
-                className="px-3.5 py-1.5 rounded bg-[#241B15] border border-[#9A7B45] text-[#FAF6EE] hover:bg-[#2B211A] text-xs font-bold uppercase tracking-wider transition-colors flex items-center gap-1.5 shadow-sm"
-              >
-                <HelpCircle className="w-3.5 h-3.5 text-[#9A7B45]" />
-                <span>“Is Lemuria Real?” Inquest</span>
-              </button>
+    <footer className="relative bg-[#140F0C] pt-16 pb-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto">
+        {/* ============================================================ */}
+        {/* THE FIELD DISPATCH — parchment closing folio card             */}
+        {/* ============================================================ */}
+        <div className="rounded-lg overflow-hidden border border-[#9A7B45]/50 shadow-[0_20px_60px_-15px_rgba(0,0,0,0.7)] bg-gradient-to-b from-[#F1E6C9] to-[#E6D7B9]">
+          <div className="p-6 sm:p-10 lg:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
+              {/* Wordmark + Mission (left, spans 2) */}
+              <div className="lg:col-span-2 space-y-4">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-9 h-9 rounded-full bg-[#2B211A] border border-[#8B5E4A] flex items-center justify-center shrink-0">
+                    <Compass className="w-4.5 h-4.5 text-[#CDBB96]" />
+                  </div>
+                  <span className="font-heading font-bold text-2xl tracking-[0.15em] text-[#8B5E4A]">
+                    LEMURIA
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-[#463429] font-serif leading-relaxed max-w-sm">
+                  A cartographic research atlas investigating Sclater&rsquo;s 1864 land-bridge hypothesis, plate tectonics, and the Tamil Kumari Kandam tradition. Every claim on this site is cross-checked against a primary source before it&rsquo;s published.
+                </p>
+              </div>
 
-              <button
-                id="footer-vscode-modal-btn"
-                onClick={onOpenVsCodeModal}
-                className="px-3.5 py-1.5 rounded bg-[#1E1914] hover:bg-[#241B15] border border-[#463429] hover:border-[#9A7B45] text-[#CDBB96] hover:text-[#FAF6EE] text-xs font-bold uppercase tracking-wider transition-colors"
-              >
-                VS Code Vanilla Project
-              </button>
+              {/* Newsletter (right, spans 3) */}
+              <div className="lg:col-span-3 lg:pl-6 lg:border-l border-[#9A7B45]/30">
+                <h3 className="font-heading font-bold text-base sm:text-lg text-[#2B211A] mb-1">
+                  The Field Dispatch
+                </h3>
+                <p className="text-xs sm:text-sm text-[#463429]/80 font-serif mb-4 max-w-md">
+                  One note a month: a newly digitized primary source, a re-plotted map coordinate, or a fresh &ldquo;lost land&rdquo; comparison. Demo only — this form doesn&rsquo;t send real emails.
+                </p>
+                {subscribed ? (
+                  <div className="flex items-center gap-2 text-sm text-[#53665C] font-carto font-semibold">
+                    <Mail className="w-4 h-4" />
+                    <span>Noted — thank you for reading.</span>
+                  </div>
+                ) : (
+                  <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 max-w-md">
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="your@email.com"
+                      id="footer-newsletter-email"
+                      className="flex-1 px-3.5 py-2.5 text-sm rounded bg-[#FAF6EE] border border-[#9A7B45]/40 text-[#2B211A] placeholder-[#756451]/60 focus:outline-none focus:border-[#8B5E4A] font-serif"
+                    />
+                    <button
+                      type="submit"
+                      className="px-5 py-2.5 rounded bg-[#8B5E4A] hover:bg-[#75503D] text-[#FAF6EE] text-xs font-bold uppercase tracking-wider font-carto transition-colors shadow-sm whitespace-nowrap"
+                    >
+                      Subscribe
+                    </button>
+                  </form>
+                )}
+              </div>
+            </div>
+
+            {/* Link Columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-8 mt-10 pt-8 border-t border-[#9A7B45]/25">
+              <div className="space-y-2.5">
+                <span className="block text-[11px] font-carto font-bold uppercase tracking-widest text-[#8B5E4A]">
+                  Explore the Atlas
+                </span>
+                <ul className="space-y-2 text-xs sm:text-sm text-[#463429] font-serif">
+                  {FOLIO_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} className="hover:text-[#2B211A] hover:underline transition-colors">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-2.5">
+                <span className="block text-[11px] font-carto font-bold uppercase tracking-widest text-[#8B5E4A]">
+                  Research Desk
+                </span>
+                <ul className="space-y-2 text-xs sm:text-sm text-[#463429] font-serif">
+                  {RESEARCH_LINKS.map((link) => (
+                    <li key={link.href}>
+                      <a href={link.href} className="hover:text-[#2B211A] hover:underline transition-colors">
+                        {link.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="space-y-2.5">
+                <span className="block text-[11px] font-carto font-bold uppercase tracking-widest text-[#8B5E4A]">
+                  The Inquest
+                </span>
+                <ul className="space-y-2 text-xs sm:text-sm text-[#463429] font-serif">
+                  <li>
+                    <button
+                      id="footer-real-modal-btn"
+                      onClick={onOpenRealModal}
+                      className="flex items-center gap-1.5 hover:text-[#2B211A] hover:underline transition-colors text-left"
+                    >
+                      <HelpCircle className="w-3.5 h-3.5 text-[#8B5E4A] shrink-0" />
+                      <span>Is Lemuria Real?</span>
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      id="footer-vscode-modal-btn"
+                      onClick={onOpenVsCodeModal}
+                      className="flex items-center gap-1.5 hover:text-[#2B211A] hover:underline transition-colors text-left"
+                    >
+                      <Code2 className="w-3.5 h-3.5 text-[#8B5E4A] shrink-0" />
+                      <span>View Source (VS Code)</span>
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="space-y-2.5">
+                <span className="flex items-center gap-1.5 text-[11px] font-carto font-bold uppercase tracking-widest text-[#8B5E4A]">
+                  <ShieldAlert className="w-3.5 h-3.5" />
+                  Baseline
+                </span>
+                <p className="text-[11px] sm:text-xs text-[#463429]/85 font-serif leading-relaxed">
+                  Gondwana rifted ~180&ndash;88 Ma; granitic crust cannot vertically subside into the mantle. No sunken continent is required to explain lemur distribution or Kumari Kandam.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Quick Nav Links */}
-          <div className="space-y-2 text-xs font-carto">
-            <span className="uppercase text-[#9A7B45] font-bold tracking-widest block mb-2 text-[11px]">
-              Expedition Folios
-            </span>
-            <ul className="space-y-1.5 text-[#CDBB96]">
-              <li>
-                <a href="#what-is-lemuria" className="hover:text-[#FAF6EE] transition-colors">
-                  What is Lemuria? (1864 Origins)
-                </a>
-              </li>
-              <li>
-                <a href="#interactive-map" className="hover:text-[#FAF6EE] transition-colors">
-                  Portolan Chart & Indian Ocean
-                </a>
-              </li>
-              <li>
-                <a href="#kumari-kandam" className="hover:text-[#FAF6EE] transition-colors">
-                  Kumari Kandam (Sangam Archives)
-                </a>
-              </li>
-              <li>
-                <a href="#science-vs-myth" className="hover:text-[#FAF6EE] transition-colors">
-                  Science vs. Myth Inquest & Quiz
-                </a>
-              </li>
-              <li>
-                <a href="#timeline" className="hover:text-[#FAF6EE] transition-colors">
-                  Chronometer Timeline (1860s–Today)
-                </a>
-              </li>
-              <li>
-                <a href="#related-lands" className="hover:text-[#FAF6EE] transition-colors">
-                  Other Lost Lands (Atlantis, Zealandia & More)
-                </a>
-              </li>
-              <li>
-                <a href="#productivity" className="hover:text-[#FAF6EE] transition-colors">
-                  Field Notes & Expedition Manifest
-                </a>
-              </li>
-              <li>
-                <a href="#sources" className="hover:text-[#FAF6EE] transition-colors">
-                  Cartographic Treatises & Archives
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* ============================================================ */}
+          {/* ILLUSTRATED SKYLINE — Dravidian gopurams meeting the sea      */}
+          {/* ============================================================ */}
+          <div className="relative h-32 sm:h-40 lg:h-48 overflow-hidden">
+            <svg viewBox="0 0 1200 220" preserveAspectRatio="xMidYMax slice" className="w-full h-full">
+              <defs>
+                <linearGradient id="footerSeaGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#CDBB96" />
+                  <stop offset="55%" stopColor="#9FAE9F" />
+                  <stop offset="100%" stopColor="#53665C" />
+                </linearGradient>
+              </defs>
+              <rect width="1200" height="220" fill="url(#footerSeaGrad)" />
 
-          {/* Academic Standard Note */}
-          <div className="space-y-2 text-xs font-serif">
-            <span className="font-carto uppercase text-[#9A7B45] font-bold tracking-widest block mb-2 text-[11px]">
-              Geological Consensus
-            </span>
-            <div className="p-3 rounded bg-[#1A1511] border border-[#463429] text-[#CDBB96] space-y-1.5">
-              <span className="text-[#9A7B45] font-bold flex items-center gap-1 font-carto text-[10px] uppercase tracking-wider">
-                <ShieldAlert className="w-3.5 h-3.5 text-[#53665C]" /> Empirical Scientific Baseline
-              </span>
-              <p className="text-[11px] leading-relaxed">
-                Earth sciences explain biological distribution through the rift of Gondwana (~180–88 Ma) and continental crust buoyancy, precluding vertical subsidence of massive landmasses into oceanic abysses.
-              </p>
-            </div>
+              {/* Distant gopuram (partially submerged, evoking Kumari Kandam) */}
+              <g fill="#3D4F47" opacity="0.55">
+                <rect x="150" y="150" width="46" height="70" />
+                <polygon points="150,150 196,150 190,136 156,136" />
+                <polygon points="156,136 190,136 184,124 162,124" />
+                <polygon points="162,124 184,124 179,113 167,113" />
+                <polygon points="167,113 179,113 173,100 173,100" />
+                <circle cx="173" cy="96" r="4" />
+              </g>
+
+              {/* Central Dravidian gopuram tower (Meenakshi-style stepped tiers) */}
+              <g fill="#2B3A34">
+                <rect x="540" y="120" width="90" height="100" />
+                <polygon points="540,120 630,120 618,100 552,100" />
+                <polygon points="552,100 618,100 608,83 562,83" />
+                <polygon points="562,83 608,83 599,68 571,68" />
+                <polygon points="571,68 599,68 592,55 578,55" />
+                <polygon points="578,55 592,55 585,42 585,42" />
+                <rect x="581" y="30" width="8" height="14" />
+                <circle cx="585" cy="26" r="5" />
+                {/* doorway */}
+                <rect x="574" y="185" width="22" height="35" fill="#141914" />
+              </g>
+
+              {/* Secondary smaller gopuram to the right */}
+              <g fill="#3D4F47" opacity="0.75">
+                <rect x="760" y="145" width="60" height="75" />
+                <polygon points="760,145 820,145 810,128 770,128" />
+                <polygon points="770,128 810,128 802,113 778,113" />
+                <polygon points="778,113 802,113 795,100 785,100" />
+                <circle cx="790" cy="94" r="4" />
+              </g>
+
+              {/* Simple lateen-sail boat, evoking a coastal trading vessel */}
+              <g fill="#2B3A34" opacity="0.7">
+                <path d="M 960 195 L 1030 195 L 1015 205 L 975 205 Z" />
+                <line x1="995" y1="195" x2="995" y2="150" stroke="#2B3A34" strokeWidth="2" />
+                <path d="M 995 152 L 1030 190 L 995 190 Z" />
+              </g>
+
+              {/* Foreground wave line */}
+              <path
+                d="M 0 210 Q 60 200 120 210 T 240 210 T 360 210 T 480 210 T 600 210 T 720 210 T 840 210 T 960 210 T 1080 210 T 1200 210 V 220 H 0 Z"
+                fill="#1E1914"
+                opacity="0.9"
+              />
+            </svg>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-6 border-t border-[#463429] flex flex-col sm:flex-row items-center justify-between text-xs text-[#9A7B45] gap-4 font-carto">
+        {/* ============================================================ */}
+        {/* BOTTOM BAR                                                    */}
+        {/* ============================================================ */}
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#9A7B45] gap-3 font-carto">
           <div className="uppercase tracking-wider text-[10px]">
-            Lemuria Cartographic Expedition Archive • Portolan Nautical Folio
+            &copy; 2026 Lemuria Cartographic Expedition Archive &middot; Educational Use Only
           </div>
-          <div className="text-[10px] text-[#CDBB96]/70 uppercase tracking-wider">
-            19th-Century Biogeography vs. Modern Plate Tectonics
-          </div>
+          <a
+            href="https://opensource.org/licenses/MIT"
+            className="flex items-center gap-1 text-[10px] text-[#CDBB96]/70 hover:text-[#E6D7B9] uppercase tracking-wider transition-colors"
+          >
+            MIT Licensed <ExternalLink className="w-3 h-3" />
+          </a>
         </div>
       </div>
     </footer>
   );
 }
-
