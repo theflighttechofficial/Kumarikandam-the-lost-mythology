@@ -9,16 +9,19 @@ import {
   Sparkles,
   Waves,
 } from 'lucide-react';
-import { KUMARI_NADU_GROUPS, LITERARY_REFERENCES, SANGAM_ACADEMIES } from '../data/lemuriaData';
+import { KUMARI_NADU_GROUPS, LITERARY_REFERENCES, SANGAM_ACADEMIES, ancientLandmarks, kumariTerritories } from '../data/lemuriaData';
 import { SangamAcademy } from '../types';
+
 
 interface KumariKandamSectionProps {
   onOpenRealModal: () => void;
+  onOpenNadusModal?: () => void;
 }
 
-export function KumariKandamSection({ onOpenRealModal }: KumariKandamSectionProps) {
+export function KumariKandamSection({ onOpenRealModal, onOpenNadusModal }: KumariKandamSectionProps) {
   const [activeTab, setActiveTab] = useState<'academies' | 'literature' | 'geography' | 'science'>('academies');
   const [selectedAcademy, setSelectedAcademy] = useState<SangamAcademy>(SANGAM_ACADEMIES[0]);
+
 
   return (
     <section id="kumari-kandam" className="py-20 bg-[#1A1511] border-b border-[#463429] relative overflow-hidden">
@@ -314,14 +317,27 @@ export function KumariKandamSection({ onOpenRealModal }: KumariKandamSectionProp
         {/* TAB 3: The 49 Nadus & Geography */}
         {activeTab === 'geography' && (
           <div className="space-y-6">
-            <div className="p-5 rounded bg-[#241B15] border border-[#463429] shadow-lg">
-              <h3 className="text-lg font-bold font-heading text-[#E6D7B9] mb-1">
-                The 49 Submerged Provinces (ஏழு ஏழு நாற்பத்தொன்பது நாடுகள்)
-              </h3>
-              <p className="text-xs font-serif text-[#CDBB96] leading-relaxed">
-                Commentators on the <em>Silappatikaram</em> (specifically Adiyarkkunallar in the 12th century) recorded that Kumari Kandam was structured into <strong>seven clusters of seven territories</strong> (49 Nadus), bounded by the ancient <strong>Pahruli River</strong> (பஃறுளி ஆறு) and the <strong>Kumari Mountain</strong> (குமரிக்கோடு).
-              </p>
+            <div className="p-5 rounded bg-[#241B15] border border-[#463429] shadow-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <h3 className="text-lg font-bold font-heading text-[#E6D7B9] mb-1">
+                  The 49 Submerged Provinces (ஏழு ஏழு நாற்பத்தொன்பது நாடுகள்)
+                </h3>
+                <p className="text-xs font-serif text-[#CDBB96] leading-relaxed">
+                  Commentators on the <em>Silappatikaram</em> (specifically Adiyarkkunallar in the 12th century) recorded that Kumari Kandam was structured into <strong>seven clusters of seven territories</strong> (49 Nadus), bounded by the ancient <strong>Pahruli River</strong> (பஃறுளி ஆறு) and the <strong>Kumari Mountain</strong> (குமரிக்கோடு).
+                </p>
+              </div>
+
+              {onOpenNadusModal && (
+                <button
+                  onClick={onOpenNadusModal}
+                  className="px-4 py-2.5 rounded bg-[#9A7B45] hover:bg-[#B59253] text-[#14100D] text-xs font-carto font-bold transition-all flex items-center gap-2 shrink-0 shadow-md uppercase tracking-wider"
+                >
+                  <Compass className="w-4 h-4" />
+                  <span>Launch 49 Nadus Explorer</span>
+                </button>
+              )}
             </div>
+
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {KUMARI_NADU_GROUPS.map((group, idx) => (
@@ -371,8 +387,30 @@ export function KumariKandamSection({ onOpenRealModal }: KumariKandamSectionProp
                 </p>
               </div>
             </div>
+
+            {/* Key Geographic & Cultural Landmarks Grid */}
+            <div className="pt-6 border-t border-[#463429]">
+              <h3 className="text-lg font-bold font-heading text-[#E6D7B9] mb-4 flex items-center gap-2">
+                <Compass className="w-5 h-5 text-[#9A7B45]" />
+                Key Geographic & Cultural Landmarks
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {ancientLandmarks.map((landmark) => (
+                  <div key={landmark.name} className="p-4 rounded bg-[#1E1914] border border-[#463429] space-y-2">
+                    <div className="flex justify-between items-center">
+                      <h4 className="text-sm font-bold text-[#F3E5AB] font-heading">{landmark.name}</h4>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#9A7B45]/20 text-[#D4AF37] border border-[#9A7B45]/30">
+                        {landmark.type}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[#CDBB96] font-serif leading-relaxed">{landmark.details}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
+
 
         {/* TAB 4: Marine Archaeology & Ice Age Science */}
         {activeTab === 'science' && (

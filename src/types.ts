@@ -106,3 +106,73 @@ export interface RelatedLostLand {
   keyFigure: string;
   verdict: string;
 }
+
+export interface IndividualNadu {
+  id: string;
+  name: string;
+  tamilName: string;
+  groupName: string;
+  meaning: string;
+  geographyType: 'Coconut Grove' | 'Madurai Core' | 'Fore-Arid' | 'Back-Arid' | 'Mountainous' | 'Coastal Estuary' | 'Riverine Plain';
+  description: string;
+  ancientCapitalOrLandmark?: string;
+  submergedLocationNotes: string;
+}
+
+export interface HistFigure {
+  id: string;
+  name: string;
+  tamilName?: string;
+  academicAffiliation?: string;
+  role: string;
+  era: string;
+  keyContribution: string;
+  perspective: 'Tamil Nationalist Revivalist' | 'Ancient Classical Scholar' | 'Western Scientist' | 'Modern Academic Historian';
+  summary: string;
+  notableQuote: string;
+}
+
+
+export interface QuizQuestion {
+  id: number;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+  category: 'Sangam History' | 'Geography & Literature' | 'Plate Tectonics' | 'Historiography';
+}
+
+export interface SearchItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  category: 'Sangam Academy' | '49 Nadus' | 'Literary Source' | 'Geology & Science' | 'Timeline' | 'Lost Land' | 'Key Figure';
+  content: string;
+  actionId?: string;
+  sectionTarget: string;
+}
+
+export interface MarineArchaeologySite {
+  id: string;
+  siteName: string;
+  location: string;
+  depth: string;
+  findings: string;
+  significanceToSubmergence: string;
+  institutionOrResearchers: string;
+}
+
+export interface KumariTerritory {
+  id: string;
+  name: string;
+  translation: string;
+  description: string;
+}
+
+export interface AncientLandmark {
+  name: string;
+  type: string;
+  details: string;
+}
+
+

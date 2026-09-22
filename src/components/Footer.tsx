@@ -1,9 +1,8 @@
 import { FormEvent, useState } from 'react';
-import { Code2, Compass, ExternalLink, HelpCircle, Mail, ShieldAlert } from 'lucide-react';
+import { Compass, ExternalLink, HelpCircle, Mail, ShieldAlert } from 'lucide-react';
 
 interface FooterProps {
   onOpenRealModal: () => void;
-  onOpenVsCodeModal: () => void;
 }
 
 const FOLIO_LINKS = [
@@ -20,7 +19,8 @@ const RESEARCH_LINKS = [
   { label: 'Cartographic Sources', href: '#sources' },
 ];
 
-export function Footer({ onOpenRealModal, onOpenVsCodeModal }: FooterProps) {
+export function Footer({ onOpenRealModal }: FooterProps) {
+
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
@@ -137,18 +137,9 @@ export function Footer({ onOpenRealModal, onOpenVsCodeModal }: FooterProps) {
                       <span>Is Lemuria Real?</span>
                     </button>
                   </li>
-                  <li>
-                    <button
-                      id="footer-vscode-modal-btn"
-                      onClick={onOpenVsCodeModal}
-                      className="flex items-center gap-1.5 hover:text-[#2B211A] hover:underline transition-colors text-left"
-                    >
-                      <Code2 className="w-3.5 h-3.5 text-[#8B5E4A] shrink-0" />
-                      <span>View Source (VS Code)</span>
-                    </button>
-                  </li>
                 </ul>
               </div>
+
 
               <div className="space-y-2.5">
                 <span className="flex items-center gap-1.5 text-[11px] font-carto font-bold uppercase tracking-widest text-[#8B5E4A]">

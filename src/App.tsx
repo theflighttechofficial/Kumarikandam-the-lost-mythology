@@ -14,18 +14,21 @@ import { WhatIsLemuria } from './components/WhatIsLemuria';
 import { INITIAL_NOTES, INITIAL_TASKS, RESEARCH_SOURCES } from './data/lemuriaData';
 import { ResearchNote, ResearchSource, ResearchTask } from './types';
 
-// Lazy-loaded: both modals are opt-in UI (opened via button click) and the
-// VS Code exporter embeds large HTML/CSS/JS strings, so keeping them out of
-// the initial bundle noticeably shrinks first-load JS for hosting.
+import { NadusExplorerModal } from './components/NadusExplorerModal';
+import { KumariQuizModal } from './components/KumariQuizModal';
+import { GlobalSearchModal } from './components/GlobalSearchModal';
+
+// Lazy-loaded modal
 const RealModal = lazy(() => import('./components/RealModal').then((m) => ({ default: m.RealModal })));
-const VsCodeExportModal = lazy(() =>
-  import('./components/VsCodeExportModal').then((m) => ({ default: m.VsCodeExportModal }))
-);
 
 export default function App() {
   // Standout Feature Modals
   const [isRealModalOpen, setIsRealModalOpen] = useState(false);
-  const [isVsCodeModalOpen, setIsVsCodeModalOpen] = useState(false);
+  const [isNadusModalOpen, setIsNadusModalOpen] = useState(false);
+  const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+
+
 
   // Persistent Research Notes State
   const [notes, setNotes] = useState<ResearchNote[]>(() => {
@@ -168,9 +171,11 @@ export default function App() {
       {/* Navigation Bar with Research Progress & Real Modal trigger */}
       <Navbar
         onOpenRealModal={() => setIsRealModalOpen(true)}
-        onOpenVsCodeModal={() => setIsVsCodeModalOpen(true)}
+        onOpenSearchModal={() => setIsSearchModalOpen(true)}
+        onOpenQuizModal={() => setIsQuizModalOpen(true)}
         progressPercentage={progressPercentage}
       />
+
 
       {/* Main Content Sections with Physical Folio Reveal Transitions */}
       <main className="overflow-x-hidden">
@@ -204,7 +209,10 @@ export default function App() {
           viewport={{ once: true, margin: '-60px' }}
           variants={folioTransitionVariants}
         >
-          <KumariKandamSection onOpenRealModal={() => setIsRealModalOpen(true)} />
+          <KumariKandamSection
+            onOpenRealModal={() => setIsRealModalOpen(true)}
+            onOpenNadusModal={() => setIsNadusModalOpen(true)}
+          />
         </motion.div>
 
         {/* 5. Science vs. Myth (Comparative Matrix & Knowledge Quiz) */}
@@ -273,7 +281,28 @@ export default function App() {
       {/* Academic Footer */}
       <Footer
         onOpenRealModal={() => setIsRealModalOpen(true)}
-        onOpenVsCodeModal={() => setIsVsCodeModalOpen(true)}
+      />
+
+      {/* Interactive 49 Nadus Explorer Modal */}
+      <NadusExplorerModal
+        isOpen={isNadusModalOpen}
+        onClose={() => setIsNadusModalOpen(false)}
+      />
+
+      {/* Interactive Knowledge Quiz Modal */}
+      <KumariQuizModal
+        isOpen={isQuizModalOpen}
+        onClose={() => setIsQuizModalOpen(false)}
+      />
+
+      {/* Global Search Modal (Ctrl+K) */}
+      <GlobalSearchModal
+        isOpen={isSearchModalOpen}
+        onClose={() => setIsSearchModalOpen(false)}
+        onNavigateSection={(targetSection) => {
+          const el = document.getElementById(targetSection);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
       />
 
       {/* Standout Feature: "Is Lemuria Real?" Modal (lazy-mounted on first open) */}
@@ -282,14 +311,8 @@ export default function App() {
           <RealModal isOpen={isRealModalOpen} onClose={() => setIsRealModalOpen(false)} />
         </Suspense>
       )}
-
-      {/* VS Code Vanilla Files Exporter Modal (lazy-mounted on first open) */}
-      {isVsCodeModalOpen && (
-        <Suspense fallback={null}>
-          <VsCodeExportModal isOpen={isVsCodeModalOpen} onClose={() => setIsVsCodeModalOpen(false)} />
-        </Suspense>
-      )}
     </div>
   );
 }
+
 

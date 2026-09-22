@@ -3,11 +3,17 @@ import { CheckSquare, Code2, Compass, HelpCircle, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenRealModal: () => void;
-  onOpenVsCodeModal: () => void;
+  onOpenSearchModal: () => void;
+  onOpenQuizModal: () => void;
   progressPercentage: number;
 }
 
-export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage }: NavbarProps) {
+export function Navbar({
+  onOpenRealModal,
+  onOpenSearchModal,
+  onOpenQuizModal,
+  progressPercentage,
+}: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
@@ -61,6 +67,25 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-2 sm:gap-3 xl:gap-2 2xl:gap-3 shrink-0">
+            {/* Global Search Button */}
+            <button
+              onClick={onOpenSearchModal}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
+              title="Search portal (Ctrl+K)"
+            >
+              <span className="text-[#D4AF37]">🔍</span>
+              <span className="hidden md:inline font-mono text-[11px] text-[#A89F91]">Ctrl+K</span>
+            </button>
+
+            {/* Quiz Button */}
+            <button
+              onClick={onOpenQuizModal}
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#D4AF37] border border-[#7A6038]/60 transition-colors"
+              title="Take Kumari Kandam Knowledge Quiz"
+            >
+              <span>🏆 Quiz</span>
+            </button>
+
             {/* Field Log Progress Gauge */}
             <a
               href="#productivity"
@@ -81,17 +106,6 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
             >
               <HelpCircle className="w-3.5 h-3.5 shrink-0" />
               <span className="hidden min-[400px]:inline">Is It Real?</span>
-            </button>
-
-            {/* VS Code Plain Files Modal */}
-            <button
-              id="nav-vscode-files-btn"
-              onClick={onOpenVsCodeModal}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded bg-[#2B211A] hover:bg-[#463429] text-[#CDBB96] border border-[#463429] hover:border-[#756451] transition-colors whitespace-nowrap"
-              title="View & copy pure HTML/CSS/JS files for VS Code"
-            >
-              <Code2 className="w-3.5 h-3.5 text-[#9A7B45] shrink-0" />
-              <span className="font-carto">VS Code</span>
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -118,22 +132,11 @@ export function Navbar({ onOpenRealModal, onOpenVsCodeModal, progressPercentage 
                 {link.name}
               </a>
             ))}
-            <div className="pt-2 border-t border-[#463429] flex gap-2">
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenVsCodeModal();
-                }}
-                className="w-full flex items-center justify-center gap-1.5 py-2 text-xs font-medium rounded bg-[#2B211A] text-[#CDBB96] border border-[#463429]"
-              >
-                <Code2 className="w-3.5 h-3.5 text-[#9A7B45]" />
-                <span>View VS Code Project Files</span>
-              </button>
-            </div>
           </div>
         )}
       </div>
     </header>
   );
 }
+
 

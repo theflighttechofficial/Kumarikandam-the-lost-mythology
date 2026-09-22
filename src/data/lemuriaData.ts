@@ -1,15 +1,24 @@
 import {
+  AncientLandmark,
   ComparisonPoint,
+  HistFigure,
+  IndividualNadu,
   KumariNaduGroup,
+  KumariTerritory,
   LiteraryReference,
   MapFeature,
+  MarineArchaeologySite,
+  QuizQuestion,
   RelatedLostLand,
   ResearchNote,
   ResearchSource,
   ResearchTask,
   SangamAcademy,
+  SearchItem,
   TimelineEvent,
 } from '../types';
+
+
 
 export const SANGAM_ACADEMIES: SangamAcademy[] = [
   {
@@ -55,25 +64,32 @@ export const SANGAM_ACADEMIES: SangamAcademy[] = [
 
 export const LITERARY_REFERENCES: LiteraryReference[] = [
   {
-    work: 'Silappatikaram (The Tale of an Anklet)',
-    tamilWork: 'சிலப்பதிகாரம் (Madurai Kandam, Kadaladukathai)',
-    period: 'c. 5th–6th Century CE by Ilango Adigal',
-    quoteOrSummary: '“Vadukku Kodu Mel Kural... Pahruli aatrudan panmalai adukkatthu kumarik kodum kodunkadal kolla...” (When the raging sea seized the Pahruli river and the multi-peaked Kumari mountains along with forty-nine territories...)',
-    significance: 'The earliest surviving, explicit literary account describing the submersion of the Pahruli River, the Kumari mountain range, and the 49 Nadus by oceanic fury.',
+    work: 'Silappatikaram (11th/12th Century Commentary)',
+    tamilWork: 'சிலப்பதிகாரம் (அடியார்க்குநல்லார் உரை)',
+    period: 'c. 5th-6th Century CE epic / 12th Century Commentary by Adiyarkkunallar',
+    quoteOrSummary: 'Mentions the "cruel sea" taking the Pandiyan land. It is the 12th-century commentator, Adiyarkkunallar, who provides the specific measurements (700 kavatam, an ancient unit of distance) and names the 49 distinct territories.',
+    significance: 'The foundational textual reference for the 700-kavatam extent and the 49 Nadus of Kumari Kandam.',
   },
   {
-    work: 'Kalittogai (Mullaikkali 104)',
-    tamilWork: 'கலித்தொகை (பாலைக்கலி & முல்லைக்கலி)',
+    work: 'Kalittokai (Poem 104)',
+    tamilWork: 'கலித்தொகை (முல்லைக்கலி 104)',
     period: 'Classical Sangam Corpus (c. 1st–3rd Century CE)',
-    quoteOrSummary: 'Describes the Pandyan monarch who, when the ocean swallowed his southern territory, went north and conquered territories of the Cheras and Cholas to compensate for his drowned land.',
+    quoteOrSummary: 'A Sangam-era anthology that explicitly mentions the sea swallowing the lands of the Pandiyan kings, forcing them to conquer new territories of the Cheras and Cholas to the north to replace what was lost.',
     significance: 'Confirms that the memory of lost southern territories swallowed by the sea was an established heroic trope in early Sangam poetry.',
   },
   {
     work: 'Manimekalai',
     tamilWork: 'மணிமேகலை (Seethalai Sathanar)',
     period: 'c. 6th Century CE Buddhist Epic',
-    quoteOrSummary: 'Records the sudden destruction and engulfment of the famous Chola port city of Poompuhar (Kaveripattinam) by a devastating tidal surge when the festival of Indra was neglected.',
-    significance: 'Demonstrates tangible historical memories of catastrophic coastal inundations (likely tsunamis or cyclone surges) along the Coromandel coast.',
+    quoteOrSummary: 'Mentions multiple tsunamis striking the ancient port city of Poompuhar (Kaveripattinam), resulting in its submergence—a literary event supported by modern underwater archaeology off the Tamil Nadu coast.',
+    significance: 'Demonstrates tangible historical memories of catastrophic coastal inundations along the Coromandel coast.',
+  },
+  {
+    work: 'Kanda Puranam (15th Century)',
+    tamilWork: 'கந்த புராணம் (கச்சியப்ப சிவாச்சாரியார்)',
+    period: 'c. 15th Century CE Tamil Purana',
+    quoteOrSummary: 'The first text to actually use the specific phrase "Kumari Kandam" (derived from the Sanskrit Kumārika Khaṇḍa), describing it as one of the nine continents of the earth.',
+    significance: 'Historical milestone text that introduced the exact name "Kumari Kandam" into Tamil literature.',
   },
   {
     work: 'Irayanar Akapporul Urai',
@@ -83,20 +99,52 @@ export const LITERARY_REFERENCES: LiteraryReference[] = [
     significance: 'The primary structural source for the legend of the sunken capitals of Thenmadurai and Kapatapuram.',
   },
   {
-    work: 'Adiyarkkunallar\'s Commentary on Silappatikaram',
-    tamilWork: 'அடியார்க்குநல்லார் உரை',
-    period: 'c. 12th–13th Century CE Commentary',
-    quoteOrSummary: 'Elaborates on the terse root verses of Silappatikaram, itemizing the submerged land as comprising seven coconut-groves, seven Madurai-clusters, seven eastern coastal tracts, and other divisions totaling 49 Nadus swallowed between the Pahruli and Kumari rivers.',
-    significance: 'The single most-cited source for the specific "49 Nadus" geography later mapped by 20th-century Tamil revivalists as Kumari Kandam.',
-  },
-  {
     work: 'Purananuru (Verse 6, Verse 9)',
     tamilWork: 'புறநானூறு',
     period: 'Classical Sangam Corpus (c. 1st–3rd Century CE)',
     quoteOrSummary: 'Anthology of heroic and panegyric poetry containing scattered references to Pandyan kings ruling over coastal territories later associated with the submergence narrative.',
-    significance: 'Used cautiously by historians as corroborating evidence that Sangam-era political geography extended along a coastline now partly eroded or submerged, without itself describing a lost continent.',
+    significance: 'Used cautiously by historians as corroborating evidence that Sangam-era political geography extended along a coastline now partly eroded or submerged.',
   },
 ];
+
+export const kumariTerritories: KumariTerritory[] = [
+  { id: "tengu", name: "Elu Tenga Nadu", translation: "Seven Coconut Lands", description: "Coastal regions dominated by dense coconut groves." },
+  { id: "madurai", name: "Elu Madurai Nadu", translation: "Seven Madurai Lands", description: "The central administrative and cultural heartland." },
+  { id: "munpalai", name: "Elu Munpalai Nadu", translation: "Seven Old Sandy Lands", description: "Arid or desert-like ancient terrain." },
+  { id: "pinpalai", name: "Elu Pinpalai Nadu", translation: "Seven New Sandy Lands", description: "Newly formed coastal dunes and sandy expansions." },
+  { id: "kunra", name: "Elu Kunra Nadu", translation: "Seven Hilly Lands", description: "Mountainous regions connecting to the Kumari Kodu peaks." },
+  { id: "kunakarai", name: "Elu Kunakarai Nadu", translation: "Seven Eastern Coastal Lands", description: "The eastern seaboard territories." },
+  { id: "kurumpanai", name: "Elu Kurumpanai Nadu", translation: "Seven Dwarf-Palm Lands", description: "Regions characterized by short palm vegetation." }
+];
+
+export const ancientLandmarks: AncientLandmark[] = [
+  {
+    name: "River Pahruli",
+    type: "River",
+    details: "The northernmost boundary of the sunken land. Legend states it was excavated by the Pandiyan King Nediyon to irrigate the mountain valleys."
+  },
+  {
+    name: "River Kumari",
+    type: "River",
+    details: "The southern boundary river of Kumari Kandam."
+  },
+  {
+    name: "Kumari Kodu / Peru Malai",
+    type: "Mountain",
+    details: "A massive multi-peaked mountain range (sometimes associated with Mount Meru) from which the Kumari and Pahruli rivers originated."
+  },
+  {
+    name: "Thenmadurai (South Madurai)",
+    type: "City",
+    details: "The legendary capital where the First Tamil Sangam (literary academy) was held. Submerged by the first great deluge."
+  },
+  {
+    name: "Kapaadapuram",
+    type: "City",
+    details: "The capital established after the loss of Thenmadurai. Hosted the Second Tamil Sangam. Submerged by a subsequent deluge, leading the Pandiyan kings to move to modern Madurai."
+  }
+];
+
 
 export const KUMARI_NADU_GROUPS: KumariNaduGroup[] = [
   {
@@ -268,62 +316,63 @@ export const TIMELINE_EVENTS: TimelineEvent[] = [
 
 export const COMPARISON_POINTS: ComparisonPoint[] = [
   {
-    id: 'c-origin',
-    aspect: 'Origin & Motivation',
+    id: 'c-lemurs',
+    aspect: 'Origin of Lemurs',
     scientificView: {
-      title: '19th-Century Biogeography (1864)',
-      description: 'A genuine scientific working hypothesis formulated by zoologist Philip Sclater to account for the anomalous distribution of lemur fossils and primates across Madagascar and India.',
-      evidence: 'Published in peer-reviewed scientific literature (Quarterly Journal of Science, 1864).',
+      title: 'Oceanic Rafting (Scientific Reality)',
+      description: 'The Lemuria land bridge never existed. Lemur ancestors rafted across the ocean on vegetation mats millions of years after Madagascar separated from Africa.',
+      evidence: 'Molecular clock DNA studies and plate tectonics modeling.',
     },
     mythologicalView: {
-      title: 'Kumari Kandam & Theosophical Myth',
-      description: 'In Tamil tradition: The primordial home of the First and Second Tamil Sangams swallowed by Kadal Kol. In Theosophy: Home of psychic Third Root Races.',
-      evidence: 'Silappatikaram, Irayanar Akapporul, and The Secret Doctrine by H.P. Blavatsky (1888).',
+      title: 'Sunken Land Bridge (1864 Hypothesis)',
+      description: 'Lemurs walked across a massive, now-sunken land bridge spanning the Indian Ocean.',
+      evidence: 'Philip Sclater\'s 1864 zoological hypothesis (pre-plate tectonics).',
     },
   },
   {
-    id: 'c-mechanism',
-    aspect: 'Geological Mechanism',
+    id: 'c-continent',
+    aspect: 'Sunken Continent',
     scientificView: {
-      title: 'Plate Tectonics & Continental Drift',
-      description: 'Continents drift across Earth\'s mantle. Granitic crust is buoyant (~2.7 g/cm³) and cannot sink vertically into basaltic oceanic floor (~3.0 g/cm³).',
-      evidence: 'Marine magnetic striping, GPS geodesy, seismic tomography, seafloor spreading at the Mid-Indian Ridge.',
+      title: 'Continental Drift (Plate Tectonics)',
+      description: 'Continents do not sink intact; they drift. India, Madagascar, and Antarctica were joined as the supercontinent Gondwana, which broke apart tectonically over millions of years.',
+      evidence: 'Seafloor spreading, paleomagnetism, and mantle convection physics.',
     },
     mythologicalView: {
-      title: 'Cataclysmic Deluges (Kadal Kol)',
-      description: 'Catastrophic ocean deluges and volcanic sinkings engulfing vast continental kingdoms overnight into the southern sea.',
-      evidence: 'Sangam flood poems, Puranic legends, and popular historical narratives.',
+      title: 'Submerged Giant Continent (Myth / Literary Tradition)',
+      description: 'An intact, massive continent (Kumari Kandam) sank violently into the ocean, taking 49 territories with it.',
+      evidence: 'Classical commentaries and 20th-century revivalist cartography.',
     },
   },
   {
-    id: 'c-marine-geo',
-    aspect: 'Marine Geomorphology vs Myth',
+    id: 'c-kadal-kol',
+    aspect: 'The Kadal Kol (Ocean Devourment)',
     scientificView: {
-      title: 'Post-Glacial Sea Level Rise (Real)',
-      description: 'At the Last Glacial Maximum (~20,000 BP), sea level was 120m lower. India and Sri Lanka were connected across the Palk Strait, and coastal shelves were dry habitable plains that flooded as glaciers melted.',
-      evidence: 'Submerged coastal terraces in Palk Bay, Gulf of Mannar bathymetry, and marine archaeology at Poompuhar / Dwarka.',
+      title: 'Post-Glacial Sea Level Rise (Geological Fact)',
+      description: 'Between 19,000 and 7,000 years ago, melting glaciers raised sea levels by ~130 meters. This gradual inundation, punctuated by tsunamis, drowned real coastal settlements (e.g., Poompuhar).',
+      evidence: 'Gulf of Mannar paleochannels and marine archaeological excavations at Poompuhar and Kaveripattinam.',
     },
     mythologicalView: {
-      title: 'Continent-Spanning Empire (Myth)',
-      description: 'Claims that Kumari Kandam stretched continuously thousands of miles from Cape Comorin all the way to Madagascar and Australia.',
-      evidence: '20th-century speculative maps (Devaneya Pavanar), rejected by modern ocean bathymetry (abyssal plains 4,000m deep).',
+      title: 'Cataclysmic Deluges (Literary Tradition)',
+      description: 'Sudden cataclysmic floods wiped out entire kingdoms like Thenmadurai and Kapaadapuram.',
+      evidence: 'Silappatikaram, Kalittokai, and Nakkirar\'s commentary on Irayanar Akapporul.',
     },
   },
   {
-    id: 'c-legacy',
-    aspect: 'Cultural & Academic Legacy',
+    id: 'c-microcontinents',
+    aspect: 'Microcontinents',
     scientificView: {
-      title: 'History of Earth Sciences',
-      description: 'A critical stepping stone in the evolution of earth sciences that pushed scientists from rigid static-earth models to Wegener’s Continental Drift.',
-      evidence: 'Studied in university courses on the philosophy and history of scientific revolutions.',
+      title: 'Mauritia Fragment (Geological Discovery 2013)',
+      description: 'In 2013, scientists confirmed a sunken continental fragment beneath Mauritius. While not a massive continent, it proves submerged continental crust exists in the Indian Ocean.',
+      evidence: 'Precambrian zircon crystals dated 1.9–3.0 billion years old found in Mauritian basalt.',
     },
     mythologicalView: {
-      title: 'Emblem of Tamil Linguistic Antiquity',
-      description: 'An empowering historical narrative of cultural pride, anti-colonial identity, and linguistic preservation for millions of Tamil speakers worldwide.',
-      evidence: 'Tamil school textbooks, classical poetry, literary monuments, and regional historiography.',
+      title: 'No Landmasses Exist (Former Assumption)',
+      description: 'Former assumption that the ocean floor contains zero continental crust fragments.',
+      evidence: 'Traditional ocean floor assumptions prior to 2013 bathymetric discoveries.',
     },
   },
 ];
+
 
 export const MAP_FEATURES: MapFeature[] = [
   {
@@ -741,15 +790,288 @@ export const REAL_LEMURIA_DEEP_DIVE = {
       title: "Plate Tectonics & Post-Glacial Sea Level Rise",
       lead: "Continental-scale sinking is physically impossible, but Ice Age shelf flooding is real.",
       body: "Modern geophysics proves that granitic continental crust (~2.7 g/cm³) is too buoyant to sink vertically into dense oceanic basalt (~3.0 g/cm³). Madagascar and India rifted apart horizontally from Gondwana ~88 million years ago. However, during the Last Glacial Maximum (20,000 BP), sea levels were 120m lower, exposing vast coastal plains between India and Sri Lanka. When melting glaciers caused rapid sea level rise, these inhabited plains were submerged, inspiring authentic oral flood memories.",
-      verdict: "A continent-sized Lemuria is disproven by plate tectonics; local coastal inundations (submerged Gulf of Mannar shelf) are scientifically verified.",
-    },
-    {
-      badge: "Interesting Part",
-      icon: "Sparkles",
-      title: "Cultural Empowerment & The Tamil Renaissance",
-      lead: "How an outdated geological theory became a celebrated symbol of classical linguistic antiquity.",
-      body: "For 20th-century Tamil intellectuals (Maraimalai Adigal, Devaneya Pavanar), Kumari Kandam was not mere pseudoscience—it was an anti-colonial reclaiming of history that placed Tamil as one of the world's most ancient primary languages. Simultaneously in the West, Lemuria took root in Theosophy (Blavatsky), Mount Shasta folklore, and modern Marvel comic lore.",
       verdict: "One of the most culturally vital and poetic syntheses of Western science and ancient Eastern literary memory.",
     },
   ],
 };
+
+export const INDIVIDUAL_NADUS: IndividualNadu[] = [
+  // 1. Ezhu Thengu Nadu (Seven Coconut Provinces)
+  { id: 'nadu-1', name: 'Thengu Nadu Prime', tamilName: 'தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Primary Coconut Grove Province', geographyType: 'Coconut Grove', description: 'Renowned in legend for dense palm forests along coastal deltas.', submergedLocationNotes: 'Believed by modern cartographers to lie south-southwest of Kanyakumari on the submerged continental shelf.' },
+  { id: 'nadu-2', name: 'Nal-Thengu Nadu', tamilName: 'நல் தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Bountiful Coconut Province', geographyType: 'Coconut Grove', description: 'Agricultural center producing rich coconut oil and copra trade goods.', submergedLocationNotes: 'Submerged under shallow waters of the Gulf of Mannar shelf.' },
+  { id: 'nadu-3', name: 'Neer-Thengu Nadu', tamilName: 'நீர்த் தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Maritime Coconut Lagoon Province', geographyType: 'Coastal Estuary', description: 'Network of brackish coastal lagoons and island groves.', submergedLocationNotes: 'Inundated during post-glacial sea level rise.' },
+  { id: 'nadu-4', name: 'Muthu-Thengu Nadu', tamilName: 'முத்துத் தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Pearl Coconut Province', geographyType: 'Coastal Estuary', description: 'Famed for combined pearl diving reefs and palm groves.', submergedLocationNotes: 'Offshore south of Tuticorin seabed.' },
+  { id: 'nadu-5', name: 'Vada-Thengu Nadu', tamilName: 'வட தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Northern Coconut Province', geographyType: 'Coconut Grove', description: 'Northernmost boundary of the palm-rich coastal belt.', submergedLocationNotes: 'Near modern Cape Comorin shelf waters.' },
+  { id: 'nadu-6', name: 'Ten-Thengu Nadu', tamilName: 'தென் தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Southern Coconut Province', geographyType: 'Coconut Grove', description: 'Southern delta lands bordering the ancient Pahruli river.', submergedLocationNotes: 'Engulfed by early sea level rise.' },
+  { id: 'nadu-7', name: 'Mel-Thengu Nadu', tamilName: 'மேல் தெங்கு நாடு', groupName: 'Ezhu Thengu Nadu', meaning: 'Western Coconut Province', geographyType: 'Coconut Grove', description: 'Western maritime province facing the open Indian Ocean.', submergedLocationNotes: 'Deep ocean shelf off Lakshadweep ridge line.' },
+
+  // 2. Ezhu Madurai Nadu (Seven Madurai Core Provinces)
+  { id: 'nadu-8', name: 'Thenmadurai Nadu', tamilName: 'தென்மதுரை நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'South Madurai Capital Province', geographyType: 'Madurai Core', description: 'Seat of the First Sangam (Mudal Sangam) under 89 Pandyan Kings.', ancientCapitalOrLandmark: 'Thenmadurai City Palace & Academy Assembly Hall', submergedLocationNotes: 'Submerged 400km south of Cape Comorin according to revivalist cartography.' },
+  { id: 'nadu-9', name: 'Kapatapuram Nadu', tamilName: 'கவாடபுரம் நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'Golden Gate Fortress Province', geographyType: 'Madurai Core', description: 'Seat of the Second Sangam (Idai Sangam), mentioned in Valmiki Ramayana.', ancientCapitalOrLandmark: 'Golden Gate Citadel of Kapatapuram', submergedLocationNotes: 'Swallowed during the second major deluge (Kadal Kol).' },
+  { id: 'nadu-10', name: 'Koodal Nadu', tamilName: 'கூடல் நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'Assembly Confluence Province', geographyType: 'Madurai Core', description: 'Gathering place for ancient Tamil bards, poets, and grammarians.', submergedLocationNotes: 'Located along the lost Pahruli river basin.' },
+  { id: 'nadu-11', name: 'Mani-Madurai Nadu', tamilName: 'மணி மதுரை நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'Jewel of Madurai Province', geographyType: 'Madurai Core', description: 'Famed for royal treasury workshops and gem cutting.', submergedLocationNotes: 'Drowned in catastrophic sea surge.' },
+  { id: 'nadu-12', name: 'Vani-Madurai Nadu', tamilName: 'வாணி மதுரை நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'Trade City Madurai Province', geographyType: 'Madurai Core', description: 'Commercial marketplace trading spices, silks, and pearls.', submergedLocationNotes: 'Central equatorial shelf region.' },
+  { id: 'nadu-13', name: 'Per-Madurai Nadu', tamilName: 'பெரு மதுரை நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'Great Madurai Province', geographyType: 'Madurai Core', description: 'Vast agricultural hinterland feeding the capital.', submergedLocationNotes: 'Submerged land south of the Wadge Bank.' },
+  { id: 'nadu-14', name: 'Alai-Madurai Nadu', tamilName: 'அலை மதுரை நாடு', groupName: 'Ezhu Madurai Nadu', meaning: 'Wave-Bordered Madurai Province', geographyType: 'Madurai Core', description: 'Port district with royal Pandyan naval fleet berths.', submergedLocationNotes: 'Deep ocean floor margin.' },
+
+  // 3. Ezhu Munpalai Nadu (Seven Fore-Arid Provinces)
+  { id: 'nadu-15', name: 'Munpalai Nadu Prime', tamilName: 'முன்பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Primary Fore-Arid Province', geographyType: 'Fore-Arid', description: 'Dry pastoral terrain utilized for cattle raising and seasonal travel.', submergedLocationNotes: 'Interior plateau of the lost landmass.' },
+  { id: 'nadu-16', name: 'Vera-Palai Nadu', tamilName: 'வீர பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Warrior Scrubland Province', geographyType: 'Fore-Arid', description: 'Training ground for Pandyan archers and infantry units.', submergedLocationNotes: 'Sunken ridge formation.' },
+  { id: 'nadu-17', name: 'Kalu-Palai Nadu', tamilName: 'கழு பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Stony Desert Province', geographyType: 'Fore-Arid', description: 'Rocky terrain with ancient megalithic tombs and stone circles.', submergedLocationNotes: 'Submerged bathymetric plateau.' },
+  { id: 'nadu-18', name: 'Kan-Palai Nadu', tamilName: 'கண் பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Lookout Scrubland Province', geographyType: 'Fore-Arid', description: 'Elevated watchtowers monitoring southern oceanic trade routes.', submergedLocationNotes: 'High seabed feature.' },
+  { id: 'nadu-19', name: 'Neer-Palai Nadu', tamilName: 'நீர்ப் பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Oasis Arid Province', geographyType: 'Fore-Arid', description: 'Arid land with deep subterranean wells and springs.', submergedLocationNotes: 'Flooded rift valley basin.' },
+  { id: 'nadu-20', name: 'Vada-Munpalai Nadu', tamilName: 'வட முன்பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Northern Fore-Arid Province', geographyType: 'Fore-Arid', description: 'Transition zone between palm forests and scrublands.', submergedLocationNotes: 'Continental slope area.' },
+  { id: 'nadu-21', name: 'Ten-Munpalai Nadu', tamilName: 'தென் முன்பாலை நாடு', groupName: 'Ezhu Munpalai Nadu', meaning: 'Southern Fore-Arid Province', geographyType: 'Fore-Arid', description: 'Border zone near the volcanic southern peaks.', submergedLocationNotes: 'Southern abyssal plain boundary.' },
+
+  // 4. Ezhu Pinpalai Nadu (Seven Back-Arid Provinces)
+  { id: 'nadu-22', name: 'Pinpalai Nadu Prime', tamilName: 'பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Primary Back-Arid Province', geographyType: 'Back-Arid', description: 'Remote arid hinterland known for solitude and hermitage retreats.', submergedLocationNotes: 'Far interior sunken plain.' },
+  { id: 'nadu-23', name: 'Kadu-Pinpalai Nadu', tamilName: 'காடு பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Forested Arid Province', geographyType: 'Back-Arid', description: 'Thorny acacia forests housing wildlife reserves.', submergedLocationNotes: 'Submerged trough.' },
+  { id: 'nadu-24', name: 'Sura-Pinpalai Nadu', tamilName: 'சுர பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Heat-Wave Arid Province', geographyType: 'Back-Arid', description: 'Sun-drenched plains subject to intense summer heat.', submergedLocationNotes: 'Deep ocean ridge slope.' },
+  { id: 'nadu-25', name: 'Malai-Pinpalai Nadu', tamilName: 'மலை பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Mountain-Shadow Arid Province', geographyType: 'Back-Arid', description: 'Rain-shadow region behind the Kumari mountain range.', submergedLocationNotes: 'Seamount base zone.' },
+  { id: 'nadu-26', name: 'Kallu-Pinpalai Nadu', tamilName: 'கல்லு பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Quartz Pebble Province', geographyType: 'Back-Arid', description: 'Gravel plains rich in gemstone sands.', submergedLocationNotes: 'Silted seabed terrain.' },
+  { id: 'nadu-27', name: 'Vada-Pinpalai Nadu', tamilName: 'வட பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Northern Back-Arid Province', geographyType: 'Back-Arid', description: 'Upper reaches of the dry valley systems.', submergedLocationNotes: 'Submerged continental crust.' },
+  { id: 'nadu-28', name: 'Ten-Pinpalai Nadu', tamilName: 'தென் பின்பாலை நாடு', groupName: 'Ezhu Pinpalai Nadu', meaning: 'Southern Back-Arid Province', geographyType: 'Back-Arid', description: 'Southernmost border of the arid provinces.', submergedLocationNotes: 'Southern Indian Ocean trench edge.' },
+
+  // 5. Ezhu Kundra Nadu (Seven Mountainous Hill Provinces)
+  { id: 'nadu-29', name: 'Kundra Nadu Prime', tamilName: 'குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Primary Mountainous Province', geographyType: 'Mountainous', description: 'Highland territory along the lost Kumari mountain peaks (Kumari Kodum).', ancientCapitalOrLandmark: 'Kumari Peak Observatory', submergedLocationNotes: 'Equivalent to submerged seamounts south of Chagos-Laccadive ridge.' },
+  { id: 'nadu-30', name: 'Vada-Kundra Nadu', tamilName: 'வட குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Northern Hill Province', geographyType: 'Mountainous', description: 'Foothill range with spice plantations and pepper vines.', submergedLocationNotes: 'Submerged hill chain.' },
+  { id: 'nadu-31', name: 'Ten-Kundra Nadu', tamilName: 'தென் குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Southern Peak Province', geographyType: 'Mountainous', description: 'Rugged high altitude crags housing ancient hermitages.', submergedLocationNotes: 'Underwater mountain crest.' },
+  { id: 'nadu-32', name: 'Mani-Kundra Nadu', tamilName: 'மணி குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Gemstone Mountain Province', geographyType: 'Mountainous', description: 'Mines yielding sapphires, rubies, and beryl.', submergedLocationNotes: 'Granitic ocean bank.' },
+  { id: 'nadu-33', name: 'Neer-Kundra Nadu', tamilName: 'நீர்க் குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Waterfall Peak Province', geographyType: 'Mountainous', description: 'Source of legendary rivers Pahruli and Kumari.', submergedLocationNotes: 'Drowned river valley source.' },
+  { id: 'nadu-34', name: 'Kuru-Kundra Nadu', tamilName: 'குறு குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Short Ridge Province', geographyType: 'Mountainous', description: 'Rolling green hills and terraced herbal gardens.', submergedLocationNotes: 'Underwater plateau margin.' },
+  { id: 'nadu-35', name: 'Per-Kundra Nadu', tamilName: 'பெரு குன்ற நாடு', groupName: 'Ezhu Kundra Nadu', meaning: 'Great Ridge Province', geographyType: 'Mountainous', description: 'Massive mountain barrier protecting Thenmadurai from southern gales.', submergedLocationNotes: 'Drowned mountain arc.' },
+
+  // 6. Ezhu Kurumporai Nadu (Seven Coastal Estuary / Hilly Coast Provinces)
+  { id: 'nadu-36', name: 'Kurumporai Nadu Prime', tamilName: 'குறும் பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Primary Coastal Promontory Province', geographyType: 'Coastal Estuary', description: 'Coastal bluffs and rugged shoreline overlooks.', submergedLocationNotes: 'Submerged coastal cliff shelf.' },
+  { id: 'nadu-37', name: 'Alai-Kurumporai Nadu', tamilName: 'அலைக் குறும்பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Surf Promontory Province', geographyType: 'Coastal Estuary', description: 'Famed for lighthouse beacons guiding merchant vessels from Yavanas (Greeks/Romans).', submergedLocationNotes: 'Offshore bathymetric drop-off.' },
+  { id: 'nadu-38', name: 'Muthu-Kurumporai Nadu', tamilName: 'முத்துக் குறும்பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Pearl Bluff Province', geographyType: 'Coastal Estuary', description: 'Rich oyster beds harvested by Pandyan divers.', submergedLocationNotes: 'Submerged Gulf of Mannar shelf reef.' },
+  { id: 'nadu-39', name: 'Vada-Kurumporai Nadu', tamilName: 'வடக்குறும்பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Northern Promontory Province', geographyType: 'Coastal Estuary', description: 'Headland connecting with mainland Tamizhakam.', submergedLocationNotes: 'Shallow shelf south of Kanyakumari.' },
+  { id: 'nadu-40', name: 'Ten-Kurumporai Nadu', tamilName: 'தெற்குறும்பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Southern Promontory Province', geographyType: 'Coastal Estuary', description: 'Southernmost promontory facing the icy Antarctic currents.', submergedLocationNotes: 'Deep ocean margin.' },
+  { id: 'nadu-41', name: 'Neer-Kurumporai Nadu', tamilName: 'நீர்க்குறும்பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Estuary Promontory Province', geographyType: 'Coastal Estuary', description: 'Delta mouth where the Kumari river emptied into the sea.', submergedLocationNotes: 'Submerged canyon mouth.' },
+  { id: 'nadu-42', name: 'Kuru-Kurumporai Nadu', tamilName: 'குறுகுறும்பொறை நாடு', groupName: 'Ezhu Kurumporai Nadu', meaning: 'Lesser Promontory Province', geographyType: 'Coastal Estuary', description: 'Fishing villages and salt pan operations.', submergedLocationNotes: 'Sunken coastal flats.' },
+
+  // 7. Ezhu Kana Nadu (Seven Riverine Forest Provinces)
+  { id: 'nadu-43', name: 'Kana Nadu Prime', tamilName: 'கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Primary Riverine Forest Province', geographyType: 'Riverine Plain', description: 'Dense tropical riverbank forests along the Pahruli River.', ancientCapitalOrLandmark: 'Pahruli River Delta Port', submergedLocationNotes: 'Submerged alluvial plain.' },
+  { id: 'nadu-44', name: 'Pahruli-Kana Nadu', tamilName: 'பஃறுளி கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Pahruli Basin Province', geographyType: 'Riverine Plain', description: 'Famed in Silappatikaram as the fertile cradle of early Tamil agriculture.', submergedLocationNotes: 'Drowned river valley bed.' },
+  { id: 'nadu-45', name: 'Kumari-Kana Nadu', tamilName: 'குமரி கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Kumari River Province', geographyType: 'Riverine Plain', description: 'Riparian forests lining the sacred Kumari River.', submergedLocationNotes: 'Submerged river delta.' },
+  { id: 'nadu-46', name: 'Vada-Kana Nadu', tamilName: 'வட கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Northern Riverine Province', geographyType: 'Riverine Plain', description: 'Upper watershed feeding northern reservoirs.', submergedLocationNotes: 'Sunken inland basin.' },
+  { id: 'nadu-47', name: 'Ten-Kana Nadu', tamilName: 'தென் கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Southern Riverine Province', geographyType: 'Riverine Plain', description: 'Lower floodplain subject to seasonal monsoon inundation.', submergedLocationNotes: 'Submerged shelf plain.' },
+  { id: 'nadu-48', name: 'Mani-Kana Nadu', tamilName: 'மணி கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Emerald Forest Province', geographyType: 'Riverine Plain', description: 'Teak and sandalwood reserves harvested for royal ship construction.', submergedLocationNotes: 'Oceanic silt layer.' },
+  { id: 'nadu-49', name: 'Alai-Kana Nadu', tamilName: 'அலை கானா நாடு', groupName: 'Ezhu Kana Nadu', meaning: 'Tidal Forest Province', geographyType: 'Riverine Plain', description: 'Mangrove swamps buffering the southern coast against ocean storm surges.', submergedLocationNotes: 'Submerged coastal wetland shelf.' },
+];
+
+export const HISTORICAL_FIGURES: HistFigure[] = [
+  {
+    id: 'fig-parithimar',
+    name: 'V.G. Suryanarayana Sastri (Parithimar Kalaignar)',
+    tamilName: 'பரிதிமாற் கலைஞர்',
+    role: 'Tamil Scholar & Translator',
+    era: '1870–1903 CE',
+    keyContribution: 'First coined the explicit Tamil compound term "Kumari Kandam" in 1903 in his work Tamil Mozhiyin Varalaru (History of the Tamil Language).',
+    perspective: 'Tamil Nationalist Revivalist',
+    summary: 'A brilliant professor of Tamil at Madras Christian College who translated the English concept of Lemuria into Tamil as "Kumari Kandam", linking Victorian science with classical Sangam literature.',
+    notableQuote: '“The vast continent south of Kanyakumari, swallowed by the sea, was the original cradle of the Tamil language and literature.”',
+  },
+  {
+    id: 'fig-pavanar',
+    name: 'Devaneya Pavanar (G. Devanesan)',
+    tamilName: 'தேவநேயப் பாவாணர்',
+    role: 'Linguist & Philologist',
+    era: '1902–1981 CE',
+    keyContribution: 'Championed the theory that Kumari Kandam was the cradle of humanity and Tamil was the primal mother language (Muthal Mozhi) of all world tongues.',
+    perspective: 'Tamil Nationalist Revivalist',
+    summary: 'Authored dozens of books arguing that Lemuria/Kumari Kandam hosted the first human civilization, drawing extensive connections between ancient Dravidian etymology and global language roots.',
+    notableQuote: '“Tamil is not merely ancient; it is the primordial tongue of the sunken continent from which all human speech radiated.”',
+  },
+  {
+    id: 'fig-ramaswamy',
+    name: 'Sumathi Ramaswamy',
+    academicAffiliation: 'Duke University Department of History',
+    role: 'Modern Historian & Cultural Anthropologist',
+    era: 'Contemporary (2004 Book)',
+    keyContribution: 'Authored "The Lost Land of Lemuria: Fabulous Geographies, Catastrophic Histories" (Univ of California Press, 2004), the definitive scholarly study of Lemuria/Kumari Kandam historiography.',
+    perspective: 'Modern Academic Historian',
+    summary: 'Analyzed how 19th-century European scientific theories of Lemuria were creatively adapted by Tamil intellectuals to build a powerful anti-colonial narrative of cultural memory and linguistic pride.',
+    notableQuote: '“Lemuria/Kumari Kandam demonstrates how lost spaces can become fertile sites for modern identity formation and literary imagination.”',
+  },
+  {
+    id: 'fig-sclater',
+    name: 'Philip Lutley Sclater',
+    role: 'English Zoologist & Ornithologist',
+    era: '1829–1913 CE',
+    keyContribution: 'Coined the scientific term "Lemuria" in 1864 in The Quarterly Journal of Science to explain lemur fossil distribution across Madagascar, India, and Malaya.',
+    perspective: 'Western Scientist',
+    summary: 'Proposed a sunken land bridge before Alfred Wegener formulated continental drift theory in 1912. Sclater\'s hypothesis was scientifically reasonable for its time.',
+    notableQuote: '“The anomalies of the mammal fauna of Madagascar can be best explained by supposing that a large continent occupied parts of the Atlantic and Indian Oceans...”',
+  },
+  {
+    id: 'fig-haeckel',
+    name: 'Ernst Haeckel',
+    role: 'German Biologist & Naturalist',
+    era: '1834–1919 CE',
+    keyContribution: 'Included Lemuria in his evolutionary maps in "The History of Creation" (1868) as the hypothetical cradle of early hominids.',
+    perspective: 'Western Scientist',
+    summary: 'Popularized Lemuria across Europe, arguing that early humans migrated from Lemuria to Asia and Africa. His diagrams directly influenced early 20th-century Indian scholars.',
+    notableQuote: '“Lemuria was probably the cradle of the human race, which there first developed out of anthropoid apes.”',
+  },
+  {
+    id: 'fig-ilango',
+    name: 'Ilango Adigal',
+    tamilName: 'இளங்கோ அடிகள்',
+    role: 'Chera Prince & Jain Poet',
+    era: 'c. 5th–6th Century CE',
+    keyContribution: 'Composed Silappatikaram, the epic containing the primary textual reference to the submersion of Pahruli river and Kumari mountain ranges by Kadal Kol.',
+    perspective: 'Ancient Classical Scholar',
+    summary: 'Preserved the vivid literary memory of the Pandyan king whose southern lands were seized by the angry ocean (Kadal Kol).',
+    notableQuote: '“When the ocean swallowed the Pahruli river and the multi-peaked Kumari mountains along with 49 nadus...”',
+  },
+  {
+    id: 'fig-nakkirar',
+    name: 'Nakkirar',
+    tamilName: 'நக்கீரர்',
+    role: 'Head Poet of Third Sangam & Commentator',
+    era: 'c. 8th–9th Century CE (Commentary)',
+    keyContribution: 'Authored the commentary on Irayanar Akapporul, laying out the chronological lineage and geographic locations of the Three Sangams.',
+    perspective: 'Ancient Classical Scholar',
+    summary: 'Created the foundational record detailing Thenmadurai (First Sangam, 4440 years) and Kapatapuram (Second Sangam, 3700 years) before their oceanic submersion.',
+    notableQuote: '“Mudal Sangam was held at Thenmadurai, which was subsequently engulfed by the sea.”',
+  },
+];
+
+export const KUMARI_QUIZ_QUESTIONS: QuizQuestion[] = [
+  {
+    id: 1,
+    category: 'Sangam History',
+    question: 'Which classical Tamil epic explicitly mentions the submersion of the Pahruli River and 49 Nadus by oceanic deluge (Kadal Kol)?',
+    options: ['Manimekalai', 'Silappatikaram', 'Tirukkural', 'Jivaka Chintamani'],
+    correctAnswer: 1,
+    explanation: 'Silappatikaram (Madurai Kandam, Kadaladukathai) by Ilango Adigal contains the famous lines describing how the ocean swallowed the Pahruli river and the 49 Nadus of the Pandyas.',
+  },
+  {
+    id: 2,
+    category: 'Geography & Literature',
+    question: 'What was the name of the capital city and seat of the Second Sangam (Idai Sangam), which was also mentioned in Valmiki\'s Ramayana?',
+    options: ['Thenmadurai', 'Kapatapuram', 'Poompuhar', 'Uraiyur'],
+    correctAnswer: 1,
+    explanation: 'Kapatapuram ("Golden Gate City") on the sunken southern coast served as the capital of the Second Sangam before it too was drowned by a sea surge.',
+  },
+  {
+    id: 3,
+    category: 'Historiography',
+    question: 'Who first coined the Tamil compound term "Kumari Kandam" in 1903 to translate the Western concept of Lemuria?',
+    options: ['Devaneya Pavanar', 'V.G. Suryanarayana Sastri (Parithimar Kalaignar)', 'Maraimalai Adigal', 'U.V. Swaminatha Iyer'],
+    correctAnswer: 1,
+    explanation: 'V.G. Suryanarayana Sastri (Parithimar Kalaignar) coined "Kumari Kandam" in 1903 in his treatise Tamil Mozhiyin Varalaru.',
+  },
+  {
+    id: 4,
+    category: 'Plate Tectonics',
+    question: 'Why do modern geophysicists state that a sunken continent in the Indian Ocean is physically impossible?',
+    options: [
+      'Continental crust is too buoyant (low density) to sink vertically into dense oceanic crust',
+      'The ocean floor is completely flat with no ridges',
+      'India and Antarctica were never connected',
+      'Tsunamis cannot erase landmasses'
+    ],
+    correctAnswer: 0,
+    explanation: 'Granitic continental crust (~2.7 g/cm³) is lighter than oceanic basalt (~3.0 g/cm³). Plate tectonics proves continents drift laterally rather than sinking beneath the sea.',
+  },
+  {
+    id: 5,
+    category: 'Sangam History',
+    question: 'How many total Nadus (provinces) divided into 7 regional categories were traditionally swallowed by the sea according to Adiyarkkunallar\'s commentary?',
+    options: ['21 Nadus', '49 Nadus', '108 Nadus', '7 Nadus'],
+    correctAnswer: 1,
+    explanation: 'Adiyarkkunallar itemizes 7 Ezhu Thengu, 7 Ezhu Madurai, 7 Ezhu Munpalai, 7 Ezhu Pinpalai, 7 Ezhu Kundra, 7 Ezhu Kurumporai, and 7 Ezhu Kana Nadus—totaling 49 Nadus.',
+  },
+  {
+    id: 6,
+    category: 'Plate Tectonics',
+    question: 'What real geological event occurred around 14,000 to 7,000 years ago that flooded coastal shelves worldwide by ~120 meters?',
+    options: [
+      'Breakup of Pangaea',
+      'Post-Glacial Sea Level Rise after the Last Glacial Maximum',
+      'Chicxulub Asteroid Impact',
+      'Formation of the Himalayas'
+    ],
+    correctAnswer: 1,
+    explanation: 'As Ice Age glaciers melted between 14,000 and 7,000 BP, global sea levels rose ~120 meters, drowning coastal plains in the Gulf of Mannar, Palk Strait, and Sundaland.',
+  },
+  {
+    id: 7,
+    category: 'Historiography',
+    question: 'In 1864, why did English zoologist Philip Sclater propose the hypothesis of "Lemuria"?',
+    options: [
+      'To locate Atlantis in the Indian Ocean',
+      'To explain why lemur fossils were found in Madagascar and India but not Africa',
+      'To search for ancient Tamil manuscripts',
+      'To map the Chagos archipelago'
+    ],
+    correctAnswer: 1,
+    explanation: 'Sclater needed a land bridge to explain identical lemur fossils across the Indian Ocean prior to the discovery of continental drift.',
+  },
+  {
+    id: 8,
+    category: 'Geography & Literature',
+    question: 'Which ancient commentary by Nakkirar (c. 8th-9th Century CE) provides the chronicle of the Three Sangams and their drowned capitals?',
+    options: ['Irayanar Akapporul Urai', 'Tolkappiyam Urai', 'Purananuru Urai', 'Kural Urai'],
+    correctAnswer: 0,
+    explanation: 'Nakkirar\'s commentary on Irayanar Akapporul is the foundational historical record outlining the durations, monarchs, and submergence of the First and Second Sangams.',
+  },
+  {
+    id: 9,
+    category: 'Sangam History',
+    question: 'Which ancient port city of the Chola kingdom was recorded in Manimekalai as being swallowed by a catastrophic sea surge?',
+    options: ['Korkai', 'Poompuhar (Kaveripattinam)', 'Muziris', 'Arikamedu'],
+    correctAnswer: 1,
+    explanation: 'Manimekalai records that Poompuhar was inundated by a tidal wave when the festival of Lord Indra was accidentally skipped.',
+  },
+  {
+    id: 10,
+    category: 'Historiography',
+    question: 'Which modern scholar wrote the acclaimed 2004 book "The Lost Land of Lemuria: Fabulous Geographies, Catastrophic Histories"?',
+    options: ['Romila Thapar', 'Sumathi Ramaswamy', 'K.A. Nilakanta Sastri', 'R. Nagaswamy'],
+    correctAnswer: 1,
+    explanation: 'Sumathi Ramaswamy (Duke University) authored this landmark cultural study analyzing how Lemuria/Kumari Kandam served as a vehicle for Tamil linguistic imagination.',
+  },
+];
+
+export const MARINE_ARCHAEOLOGY_SITES: MarineArchaeologySite[] = [
+  {
+    id: 'site-poompuhar',
+    siteName: 'Submerged Structures of Poompuhar (Kaveripattinam)',
+    location: 'Offshore Bay of Bengal, Tamil Nadu coast (Depth 5m - 23m)',
+    depth: '5 – 23 meters',
+    findings: 'Underwater surveys by NIO (National Institute of Oceanography) revealed stone masonry brick structures, ring wells, pottery, and submerged harbor walls dating from 3rd century BCE to 4th century CE.',
+    significanceToSubmergence: 'Direct archaeological evidence validating literary accounts in Manimekalai and Silappatikaram of coastal city engulfment by sea surges.',
+    institutionOrResearchers: 'National Institute of Oceanography (NIO) & Marine Archaeology Centre, Goa',
+  },
+  {
+    id: 'site-khambhat',
+    siteName: 'Gulf of Khambhat Marine Anomaly',
+    location: 'Off the coast of Gujarat, Western India',
+    depth: '20 – 40 meters',
+    findings: 'Acoustic bathymetry uncovered riverbed channel features and wooden artifacts carbon-dated to post-glacial sea level rise periods (~7,500 BP).',
+    significanceToSubmergence: 'Proves extensive human occupation of low-lying Indian coastal river valleys prior to post-glacial marine transgressions.',
+    institutionOrResearchers: 'National Institute of Ocean Technology (NIOT)',
+  },
+  {
+    id: 'site-gulf-mannar',
+    siteName: 'Gulf of Mannar Submerged Terrace Shelf',
+    location: 'Between Kanyakumari, Tuticorin, and North-West Sri Lanka',
+    depth: '10 – 120 meters below current sea level',
+    findings: 'Submerged coral terraces, drowned beachrock sandstone formations, and ancient paleochannels corresponding to pre-Holocene shorelines.',
+    significanceToSubmergence: 'Matches the geographical locus of the 49 Nadus legend—confirming that thousands of square kilometers of habitable coastal plain were inundated between 14,000 and 7,000 BP.',
+    institutionOrResearchers: 'Geological Survey of India (GSI) & Oceanographic Studies',
+  },
+  {
+    id: 'site-adam-bridge',
+    siteName: 'Adam\'s Bridge / Ram Setu Bathymetric Ridge',
+    location: 'Palk Strait connecting Dhanushkodi (India) to Mannar Island (Sri Lanka)',
+    depth: '1 – 10 meters (Shallow shoals)',
+    findings: 'Chain of limestone shoals and coral reefs that formed a dry land bridge connection during lowered Ice Age sea levels.',
+    significanceToSubmergence: 'Demonstrates how land links between India and neighboring landmasses were periodically exposed and submerged by ocean level changes.',
+    institutionOrResearchers: 'CSIR Marine Archaeology & Geological Survey of India',
+  },
+];
+
