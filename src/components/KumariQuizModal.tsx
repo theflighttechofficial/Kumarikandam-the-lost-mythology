@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Award, CheckCircle2, XCircle, RotateCcw, Sparkles, HelpCircle, Trophy, BookOpen } from 'lucide-react';
 import { KUMARI_QUIZ_QUESTIONS } from '../data/lemuriaData';
@@ -8,14 +8,26 @@ interface KumariQuizModalProps {
   onClose: () => void;
 }
 
+const QUIZ_CATEGORIES = ['All Categories', ...Array.from(new Set(KUMARI_QUIZ_QUESTIONS.map((q) => q.category)))];
+
 export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All Categories');
+  const [quizStarted, setQuizStarted] = useState<boolean>(false);
   const [currentIdx, setCurrentIdx] = useState<number>(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [isAnswerSubmitted, setIsAnswerSubmitted] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [quizCompleted, setQuizCompleted] = useState<boolean>(false);
 
-  const currentQ = KUMARI_QUIZ_QUESTIONS[currentIdx];
+  const activeQuestions = useMemo(
+    () =>
+      selectedCategory === 'All Categories'
+        ? KUMARI_QUIZ_QUESTIONS
+        : KUMARI_QUIZ_QUESTIONS.filter((q) => q.category === selectedCategory),
+    [selectedCategory]
+  );
+
+  const currentQ = activeQuestions[currentIdx] ?? activeQuestions[0];
 
   const handleSelectOption = (index: number) => {
     if (isAnswerSubmitted) return;
@@ -33,7 +45,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
   const handleNextQuestion = () => {
     setSelectedAnswer(null);
     setIsAnswerSubmitted(false);
-    if (currentIdx + 1 < KUMARI_QUIZ_QUESTIONS.length) {
+    if (currentIdx + 1 < activeQuestions.length) {
       setCurrentIdx((prev) => prev + 1);
     } else {
       setQuizCompleted(true);
@@ -46,6 +58,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
     setIsAnswerSubmitted(false);
     setScore(0);
     setQuizCompleted(false);
+    setQuizStarted(false);
   };
 
   if (!isOpen) return null;
@@ -94,19 +107,55 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
             </button>
           </div>
 
-          {!quizCompleted ? (
+          {!quizStarted ? (
+            <div className="p-6">
+              <h3 className="text-sm font-serif font-bold text-[#F3E5AB] mb-3">Choose a category to focus your quiz:</h3>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {QUIZ_CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
+                      selectedCategory === cat
+                        ? 'bg-[#9A7B45] border-[#9A7B45] text-[#14100D]'
+                        : 'bg-[#1E1914] border-[#3E3025] text-[#CDBB96] hover:border-[#8A6E3B]'
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+              <p className="text-xs text-[#A89F91] mb-6">
+                {activeQuestions.length} question{activeQuestions.length === 1 ? '' : 's'} selected.
+              </p>
+              <button
+                onClick={() => {
+                  setCurrentIdx(0);
+                  setScore(0);
+                  setSelectedAnswer(null);
+                  setIsAnswerSubmitted(false);
+                  setQuizCompleted(false);
+                  setQuizStarted(true);
+                }}
+                disabled={activeQuestions.length === 0}
+                className="px-6 py-2.5 bg-[#9A7B45] hover:bg-[#B59253] disabled:opacity-40 text-[#14100D] rounded-lg text-sm font-bold transition-colors"
+              >
+                Begin Quiz →
+              </button>
+            </div>
+          ) : !quizCompleted ? (
             <div className="p-6">
               {/* Progress Bar */}
               <div className="mb-6">
                 <div className="flex justify-between items-center text-xs text-[#A89F91] mb-2 font-mono">
-                  <span>Question {currentIdx + 1} of {KUMARI_QUIZ_QUESTIONS.length}</span>
+                  <span>Question {currentIdx + 1} of {activeQuestions.length}</span>
                   <span className="text-[#D4AF37] font-semibold">{currentQ.category}</span>
                 </div>
                 <div className="w-full bg-[#2A221A] h-2 rounded-full overflow-hidden border border-[#3E3025]">
                   <motion.div
                     className="bg-gradient-to-r from-[#8A6E3B] to-[#D4AF37] h-full"
                     initial={{ width: 0 }}
-                    animate={{ width: `${((currentIdx + 1) / KUMARI_QUIZ_QUESTIONS.length) * 100}%` }}
+                    animate={{ width: `${((currentIdx + 1) / activeQuestions.length) * 100}%` }}
                     transition={{ duration: 0.3 }}
                   />
                 </div>
@@ -196,7 +245,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                     onClick={handleNextQuestion}
                     className="px-6 py-2.5 bg-[#9A7B45] hover:bg-[#B59253] text-[#14100D] rounded-lg text-sm font-bold transition-colors"
                   >
-                    {currentIdx + 1 < KUMARI_QUIZ_QUESTIONS.length ? 'Next Question →' : 'See Results'}
+                    {currentIdx + 1 < activeQuestions.length ? 'Next Question →' : 'See Results'}
                   </button>
                 )}
               </div>
@@ -216,7 +265,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                 <h3 className="text-2xl font-serif font-bold text-[#E6C687] mb-1">Quiz Complete!</h3>
                 <p className="text-sm text-[#A89F91]">
                   You scored <span className="text-[#D4AF37] font-bold text-lg">{score}</span> out of{' '}
-                  <span className="font-bold">{KUMARI_QUIZ_QUESTIONS.length}</span>
+                  <span className="font-bold">{activeQuestions.length}</span>
                 </p>
               </div>
 

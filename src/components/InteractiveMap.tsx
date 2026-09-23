@@ -758,6 +758,11 @@ export function InteractiveMap() {
                   <div className="text-xs font-mono text-[#9A7B45] mt-0.5">
                     {selectedFeature.region}
                   </div>
+                  {selectedFeature.depth && (
+                    <div className="text-[10px] font-mono text-[#CDBB96]/70 mt-1">
+                      Depth: {selectedFeature.depth}
+                    </div>
+                  )}
                 </div>
 
                 <div className="p-3.5 rounded bg-[#1E1914] border border-[#463429] text-xs font-serif text-[#CDBB96]">

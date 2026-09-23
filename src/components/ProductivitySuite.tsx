@@ -16,6 +16,7 @@ import {
   Trash2,
 } from 'lucide-react';
 import { ResearchNote, ResearchTask } from '../types';
+import { NOTE_TEMPLATES } from '../data/noteTemplates';
 
 interface ProductivitySuiteProps {
   notes: ResearchNote[];
@@ -47,6 +48,7 @@ export function ProductivitySuite({
   const [newNoteTitle, setNewNoteTitle] = useState<string>('');
   const [newNoteTag, setNewNoteTag] = useState<ResearchNote['tag']>('Science');
   const [newNoteContent, setNewNoteContent] = useState<string>('');
+  const [selectedTemplateId, setSelectedTemplateId] = useState<string>('');
 
   // New Task state
   const [isAddingTask, setIsAddingTask] = useState<boolean>(false);
@@ -79,7 +81,18 @@ export function ProductivitySuite({
 
     setNewNoteTitle('');
     setNewNoteContent('');
+    setSelectedTemplateId('');
     setIsAddingNote(false);
+  };
+
+  const handleApplyTemplate = (templateId: string) => {
+    setSelectedTemplateId(templateId);
+    const template = NOTE_TEMPLATES.find((t) => t.id === templateId);
+    if (template) {
+      setNewNoteContent(template.skeleton);
+      setNewNoteTag(template.tag);
+      if (!newNoteTitle.trim()) setNewNoteTitle(template.title);
+    }
   };
 
   const handleCreateTask = (e: FormEvent) => {
@@ -256,6 +269,22 @@ export function ProductivitySuite({
                   >
                     Cancel
                   </button>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] text-[#9A7B45] uppercase font-carto font-bold mb-1">
+                    Start From Template (optional):
+                  </label>
+                  <select
+                    value={selectedTemplateId}
+                    onChange={(e) => handleApplyTemplate(e.target.value)}
+                    className="w-full px-3 py-2 text-xs sm:text-sm rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] focus:outline-none focus:border-[#9A7B45] font-carto"
+                  >
+                    <option value="">-- Blank Note --</option>
+                    {NOTE_TEMPLATES.map((t) => (
+                      <option key={t.id} value={t.id}>{t.title}</option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">

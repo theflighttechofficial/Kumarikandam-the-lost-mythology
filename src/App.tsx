@@ -18,6 +18,47 @@ import { NadusExplorerModal } from './components/NadusExplorerModal';
 import { KumariQuizModal } from './components/KumariQuizModal';
 import { GlobalSearchModal } from './components/GlobalSearchModal';
 
+import { ClaimsExplorer } from './components/ClaimsExplorer';
+import { EvidenceExplorer } from './components/EvidenceExplorer';
+import { SangamSection } from './components/SangamSection';
+import { KadalKolSimulator } from './components/KadalKolSimulator';
+import { TamilLiteratureLibrary } from './components/TamilLiteratureLibrary';
+import { ThinaiExplorer } from './components/ThinaiExplorer';
+import { PeopleDirectory } from './components/PeopleDirectory';
+import { GeologyExplorer } from './components/GeologyExplorer';
+import { GondwanaReconstruction } from './components/GondwanaReconstruction';
+import { LemuriaHistoryTimeline } from './components/LemuriaHistoryTimeline';
+import { BathymetryExplorer } from './components/BathymetryExplorer';
+import { SeaLevelExplorer } from './components/SeaLevelExplorer';
+import { PoompuharModule } from './components/PoompuharModule';
+import { AdamsBridgeModule } from './components/AdamsBridgeModule';
+import { LostLandsExplorer } from './components/LostLandsExplorer';
+import { EvidenceMatrix } from './components/EvidenceMatrix';
+import { SourceLibrary } from './components/SourceLibrary';
+import { SourceRelationGraph } from './components/SourceRelationGraph';
+import { IdeaEvolutionTimeline } from './components/IdeaEvolutionTimeline';
+import { IdentifyEvidenceGame } from './components/IdentifyEvidenceGame';
+import { FactOrClaimGame } from './components/FactOrClaimGame';
+import { ExpeditionLog } from './components/ExpeditionLog';
+
+import { MarineArchaeologyDatabase } from './components/MarineArchaeologyDatabase';
+import { ArchaeologyMethodsExplorer } from './components/ArchaeologyMethodsExplorer';
+import { ProofRequirementsPage } from './components/ProofRequirementsPage';
+import { ExpectedEvidenceSimulator } from './components/ExpectedEvidenceSimulator';
+import { DualTimeline } from './components/DualTimeline';
+import { EtymologyExplorer } from './components/EtymologyExplorer';
+import { GlossaryExplorer } from './components/GlossaryExplorer';
+import { HypothesisBuilder } from './components/HypothesisBuilder';
+import { DesignYourContinent } from './components/DesignYourContinent';
+import { CitationGenerator } from './components/CitationGenerator';
+import { ResearchQuestionGenerator } from './components/ResearchQuestionGenerator';
+import { ArgumentBuilder } from './components/ArgumentBuilder';
+import { SourceCriticismCard } from './components/SourceCriticismCard';
+import { WhoSaidThisGame } from './components/WhoSaidThisGame';
+import { WhenDidThisAppearGame } from './components/WhenDidThisAppearGame';
+import { MediaArchive } from './components/MediaArchive';
+import { MapComparisonSlider } from './components/MapComparisonSlider';
+
 // Lazy-loaded modal
 const RealModal = lazy(() => import('./components/RealModal').then((m) => ({ default: m.RealModal })));
 
@@ -245,6 +286,161 @@ export default function App() {
           <RelatedLostLands />
         </motion.div>
 
+        {/* 6c. Claims Explorer */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <ClaimsExplorer />
+        </motion.div>
+
+        {/* 6d. Evidence Explorer */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <EvidenceExplorer />
+        </motion.div>
+
+        {/* 6e. Sangam & Pandyan Tradition */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <SangamSection />
+        </motion.div>
+
+        {/* 6f. Kadal Kol Simulator */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <KadalKolSimulator />
+        </motion.div>
+
+        {/* 6g. Tamil Literature Library */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <TamilLiteratureLibrary />
+        </motion.div>
+
+        {/* 6h. Thinai Explorer */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <ThinaiExplorer />
+        </motion.div>
+
+        {/* 6i. People Directory */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <PeopleDirectory />
+        </motion.div>
+
+        {/* 6j. Geology Explorer + Mauritia Deep Dive */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <GeologyExplorer />
+        </motion.div>
+
+        {/* 6k. Gondwana Reconstruction Slider */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <GondwanaReconstruction />
+        </motion.div>
+
+        {/* 6l. Lemuria History Timeline */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={folioTransitionVariants}
+        >
+          <LemuriaHistoryTimeline />
+        </motion.div>
+
+        {/* 6m. Bathymetry Explorer */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <BathymetryExplorer />
+        </motion.div>
+
+        {/* 6n. Sea Level Explorer */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <SeaLevelExplorer />
+        </motion.div>
+
+        {/* 6o. Poompuhar Module */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <PoompuharModule />
+        </motion.div>
+
+        {/* 6p. Adam's Bridge Module */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <AdamsBridgeModule />
+        </motion.div>
+
+        {/* 6q. Expanded Lost Lands Explorer */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <LostLandsExplorer />
+        </motion.div>
+
+        {/* 6r. Evidence Matrix */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <EvidenceMatrix />
+        </motion.div>
+
+        {/* 6s. Source Relation Graph */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <SourceRelationGraph />
+        </motion.div>
+
+        {/* 6t. Idea Evolution Timeline */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <IdeaEvolutionTimeline />
+        </motion.div>
+
+        {/* 6u. Identify The Evidence Game */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <IdentifyEvidenceGame />
+        </motion.div>
+
+        {/* 6v. Fact or Claim Game */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <FactOrClaimGame />
+        </motion.div>
+
+        {/* 6w. Expedition Log */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <ExpeditionLog />
+        </motion.div>
+
         {/* 7. Research Notes & Productivity Suite (Tasks, Notes, Keywords, Progress Bar) */}
         <motion.div
           initial="hidden"
@@ -275,6 +471,96 @@ export default function App() {
             sources={sources}
             onToggleRead={handleToggleSourceRead}
           />
+        </motion.div>
+
+        {/* 9. Expanded Source Library */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <SourceLibrary />
+        </motion.div>
+
+        {/* 10a. Marine Archaeology Database */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <MarineArchaeologyDatabase />
+        </motion.div>
+
+        {/* 10b. Archaeology Methods Explorer */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <ArchaeologyMethodsExplorer />
+        </motion.div>
+
+        {/* 10c. Proof Requirements Page */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <ProofRequirementsPage />
+        </motion.div>
+
+        {/* 10d. Expected Evidence Simulator */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <ExpectedEvidenceSimulator />
+        </motion.div>
+
+        {/* 10e. Dual Timeline (Deep Time + Human Time) */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <DualTimeline />
+        </motion.div>
+
+        {/* 10f. Etymology Explorer */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <EtymologyExplorer />
+        </motion.div>
+
+        {/* 10g. Glossary Explorer */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <GlossaryExplorer />
+        </motion.div>
+
+        {/* 10h. Hypothesis Builder */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <HypothesisBuilder />
+        </motion.div>
+
+        {/* 10i. Design Your Own Lost Continent */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <DesignYourContinent />
+        </motion.div>
+
+        {/* 10j. Citation Generator */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <CitationGenerator />
+        </motion.div>
+
+        {/* 10k. Research Question Generator */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <ResearchQuestionGenerator />
+        </motion.div>
+
+        {/* 10l. Argument Builder */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <ArgumentBuilder />
+        </motion.div>
+
+        {/* 10m. Source Criticism Card */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <SourceCriticismCard />
+        </motion.div>
+
+        {/* 10n. Who Said This Game */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <WhoSaidThisGame />
+        </motion.div>
+
+        {/* 10o. When Did This Appear Game */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <WhenDidThisAppearGame />
+        </motion.div>
+
+        {/* 10p. Media Archive */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <MediaArchive />
+        </motion.div>
+
+        {/* 10q. Historical Map Comparison Slider */}
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }} variants={folioTransitionVariants}>
+          <MapComparisonSlider />
         </motion.div>
       </main>
 

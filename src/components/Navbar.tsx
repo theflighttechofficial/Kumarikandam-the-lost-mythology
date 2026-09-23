@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { CheckSquare, Code2, Compass, HelpCircle, Menu, X } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { CheckSquare, ChevronDown, Compass, HelpCircle, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenRealModal: () => void;
@@ -15,17 +15,101 @@ export function Navbar({
   progressPercentage,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [exploreOpen, setExploreOpen] = useState(false);
+  const exploreRef = useRef<HTMLDivElement>(null);
 
-  const navLinks = [
+  // The 5 links that stay visible in the primary bar.
+  const primaryLinks = [
     { name: 'Origins', href: '#what-is-lemuria' },
     { name: 'Expedition Map', href: '#interactive-map' },
     { name: 'Kumari Kandam', href: '#kumari-kandam' },
     { name: 'Science vs. Myth', href: '#science-vs-myth' },
     { name: 'Timeline', href: '#timeline' },
-    { name: 'Lost Lands', href: '#related-lands' },
-    { name: 'Field Notes', href: '#productivity' },
-    { name: 'Archives', href: '#sources' },
   ];
+
+  // Everything else lives behind "Explore More", grouped by theme.
+  const exploreGroups: { group: string; links: { name: string; href: string }[] }[] = [
+    {
+      group: 'Tamil Tradition & Literature',
+      links: [
+        { name: 'Sangam Tradition', href: '#sangam-tradition' },
+        { name: 'Kadal Kol', href: '#kadal-kol' },
+        { name: 'Tamil Literature', href: '#tamil-literature' },
+        { name: 'Thinai', href: '#thinai-explorer' },
+        { name: 'Poompuhar', href: '#poompuhar-module' },
+        { name: "Adam's Bridge", href: '#adams-bridge-module' },
+        { name: 'Etymology', href: '#etymology-explorer' },
+      ],
+    },
+    {
+      group: 'Geology & Geography',
+      links: [
+        { name: 'Geology', href: '#geology-explorer' },
+        { name: 'Gondwana', href: '#gondwana-reconstruction' },
+        { name: 'Bathymetry', href: '#bathymetry-explorer' },
+        { name: 'Sea Level', href: '#sea-level-explorer' },
+        { name: 'Dual Timeline', href: '#dual-timeline' },
+        { name: 'Map Comparison', href: '#map-comparison-slider' },
+      ],
+    },
+    {
+      group: 'Claims & Evidence',
+      links: [
+        { name: 'Lost Lands', href: '#related-lands' },
+        { name: 'Lost Lands DB', href: '#lost-lands-explorer' },
+        { name: 'Claims', href: '#claims-explorer' },
+        { name: 'Evidence', href: '#evidence-explorer' },
+        { name: 'Evidence Matrix', href: '#evidence-matrix' },
+        { name: 'Source Graph', href: '#source-relation-graph' },
+        { name: 'Idea Evolution', href: '#idea-evolution-timeline' },
+        { name: 'Lemuria History', href: '#lemuria-history' },
+        { name: 'People', href: '#people-directory' },
+        { name: 'Proof Requirements', href: '#proof-requirements' },
+        { name: 'Expected Evidence', href: '#expected-evidence-simulator' },
+      ],
+    },
+    {
+      group: 'Archaeology & Sources',
+      links: [
+        { name: 'Marine Archaeology', href: '#marine-archaeology' },
+        { name: 'Methods', href: '#archaeology-methods' },
+        { name: 'Archives', href: '#sources' },
+        { name: 'Source Library', href: '#source-library' },
+        { name: 'Source Criticism', href: '#source-criticism' },
+        { name: 'Media Archive', href: '#media-archive' },
+        { name: 'Expedition Log', href: '#expedition-log' },
+      ],
+    },
+    {
+      group: 'Tools, Games & Field Notes',
+      links: [
+        { name: 'Glossary', href: '#glossary-explorer' },
+        { name: 'Hypothesis Builder', href: '#hypothesis-builder' },
+        { name: 'Design a Continent', href: '#design-your-continent' },
+        { name: 'Citation Generator', href: '#citation-generator' },
+        { name: 'Research Questions', href: '#research-question-generator' },
+        { name: 'Argument Builder', href: '#argument-builder' },
+        { name: 'Evidence Game', href: '#identify-evidence-game' },
+        { name: 'Fact or Claim', href: '#fact-or-claim-game' },
+        { name: 'Who Said This?', href: '#who-said-this-game' },
+        { name: 'When Did This Appear?', href: '#when-did-this-appear-game' },
+        { name: 'Field Notes', href: '#productivity' },
+      ],
+    },
+  ];
+
+  // Flat list retained for the mobile menu (shows everything in one scroll).
+  const navLinks = [...primaryLinks, ...exploreGroups.flatMap((g) => g.links)];
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (exploreRef.current && !exploreRef.current.contains(event.target as Node)) {
+        setExploreOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 bg-[#1E1914]/95 backdrop-blur-md border-b border-[#463429] shadow-xl">
@@ -44,7 +128,7 @@ export function Navbar({
             </div>
             <div>
               <span className="font-heading font-bold text-base sm:text-lg tracking-[0.2em] text-[#E6D7B9]">
-                LEMURIA
+                KUMARI KANDAM
               </span>
               <span className="hidden 2xl:inline-block text-[9px] font-carto text-[#9A7B45] ml-2 px-1.5 py-0.5 rounded bg-[#2B211A] border border-[#463429] uppercase tracking-widest">
                 Cartographic Survey
@@ -53,8 +137,8 @@ export function Navbar({
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden 2xl:flex items-center gap-3 text-[11px] font-carto uppercase tracking-wide text-[#CDBB96]/80 min-w-0">
-            {navLinks.map((link) => (
+          <nav className="hidden lg:flex items-center gap-4 text-[11px] font-carto uppercase tracking-wide text-[#CDBB96]/80 min-w-0">
+            {primaryLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -63,6 +147,42 @@ export function Navbar({
                 {link.name}
               </a>
             ))}
+
+            {/* Explore More dropdown */}
+            <div className="relative shrink-0" ref={exploreRef}>
+              <button
+                onClick={() => setExploreOpen((open) => !open)}
+                className="flex items-center gap-1 hover:text-[#FAF6EE] transition-colors py-1 whitespace-nowrap"
+                aria-expanded={exploreOpen}
+              >
+                Explore More
+                <ChevronDown className={`w-3 h-3 transition-transform ${exploreOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {exploreOpen && (
+                <div className="absolute right-0 top-full mt-2 w-[min(90vw,760px)] max-h-[75vh] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 p-5 rounded-lg bg-[#1E1914] border border-[#463429] shadow-2xl z-50 normal-case">
+                  {exploreGroups.map((group) => (
+                    <div key={group.group}>
+                      <p className="text-[10px] font-carto uppercase tracking-widest text-[#9A7B45] mb-1.5 pb-1 border-b border-[#463429]">
+                        {group.group}
+                      </p>
+                      <div className="flex flex-col">
+                        {group.links.map((link) => (
+                          <a
+                            key={link.name}
+                            href={link.href}
+                            onClick={() => setExploreOpen(false)}
+                            className="px-1 py-1.5 text-[11px] text-[#CDBB96]/80 hover:text-[#FAF6EE] hover:bg-[#2B211A] rounded transition-colors"
+                          >
+                            {link.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Right Action Controls */}
@@ -111,7 +231,7 @@ export function Navbar({
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="2xl:hidden p-2 text-[#CDBB96] hover:text-[#FAF6EE] rounded hover:bg-[#2B211A]"
+              className="lg:hidden p-2 text-[#CDBB96] hover:text-[#FAF6EE] rounded hover:bg-[#2B211A]"
               aria-label="Toggle Navigation Menu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -121,7 +241,7 @@ export function Navbar({
 
         {/* Mobile Dropdown Menu */}
         {mobileMenuOpen && (
-          <div className="2xl:hidden py-4 border-t border-[#463429] space-y-2 bg-[#231B15]">
+          <div className="lg:hidden py-4 border-t border-[#463429] space-y-2 bg-[#231B15]">
             {navLinks.map((link) => (
               <a
                 key={link.name}

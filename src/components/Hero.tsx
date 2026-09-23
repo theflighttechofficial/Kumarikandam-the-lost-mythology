@@ -222,7 +222,7 @@ export function Hero({ onOpenRealModal }: HeroProps) {
         >
           {/* Main Title text with engraved letterpress shadow */}
           <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold font-heading text-[#E6D7B9] tracking-[0.12em] leading-none drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-            LEMURIA
+            KUMARI KANDAM
           </h1>
 
           <div className="text-xl sm:text-3xl font-heading text-[#CDBB96] tracking-[0.2em] uppercase font-semibold pt-1">

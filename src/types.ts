@@ -34,6 +34,12 @@ export interface MapFeature {
   description: string;
   historicalContext: string;
   modernConsensus: string;
+  depth?: string;
+  geology?: string;
+  history?: string;
+  literaryConnection?: string;
+  evidence?: string;
+  sources?: string[];
 }
 
 export interface ResearchSource {
@@ -139,7 +145,20 @@ export interface QuizQuestion {
   options: string[];
   correctAnswer: number;
   explanation: string;
-  category: 'Sangam History' | 'Geography & Literature' | 'Plate Tectonics' | 'Historiography';
+  category:
+    | 'Sangam History'
+    | 'Geography & Literature'
+    | 'Plate Tectonics'
+    | 'Historiography'
+    | 'Beginner'
+    | 'Tamil Literature'
+    | 'Lemuria'
+    | 'Geology'
+    | 'Mauritia'
+    | 'Archaeology'
+    | 'Advanced'
+    | 'Research Methodology'
+    | 'Myth vs Evidence';
 }
 
 export interface SearchItem {
