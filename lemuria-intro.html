@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lemuria &amp; Kumari Kandam — Lost Continent Explorer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Tamil:wght@500;700&display=swap">
+<style>
+:root{
+  --paper:#EFE3C8; --paper2:#E6D6B4; --ink:#2B2118; --sepia:#7A5A36; --faint:#B9A47E;
+  --blood:#8E2F1F; --sea:#2F5D62; --sea-l:#9DB8B3;
+  --display:'Cinzel',Georgia,serif; --body:'EB Garamond',Georgia,serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --tamil:'Noto Serif Tamil','Latha',serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--paper);color:var(--ink);font-family:var(--body)}
+body{overflow:hidden}
+body.is-landing{overflow:auto}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(90,60,25,.28) 100%),
+  repeating-linear-gradient(0deg,rgba(122,90,54,.035) 0 2px,transparent 2px 5px)}
+button{font:inherit;color:inherit;cursor:pointer}
+a{color:inherit}
+button:focus-visible,a:focus-visible{outline:2px solid var(--blood);outline-offset:3px}
+.paused *,.paused *::before,.paused *::after{animation-play-state:paused!important}
+
+/* ── intro ── */
+#intro{position:fixed;inset:0;overflow:hidden;z-index:1}
+#scene{position:absolute;inset:0 0 88px 0;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,64px)}
+.topbar{position:absolute;left:0;right:0;top:0;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:max(16px,env(safe-area-inset-top)) clamp(16px,4vw,56px) 0;z-index:5}
+.mark{font-family:var(--display);font-weight:700;font-size:clamp(13px,1.5vw,17px);letter-spacing:.08em;white-space:nowrap}
+.mark span{color:var(--blood)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border-radius:4px;border:1px solid var(--sepia);background:rgba(239,227,200,.85);font-size:17px}
+.player{position:absolute;left:0;right:0;bottom:0;height:88px;display:flex;align-items:center;gap:12px;
+  padding:0 clamp(16px,4vw,56px) env(safe-area-inset-bottom);border-top:1px solid var(--faint);background:var(--paper);z-index:5}
+.round{flex-shrink:0;width:44px;height:44px;border-radius:50%;border:1px solid var(--sepia);background:transparent;display:grid;place-items:center}
+.tc{flex-shrink:0;font-family:var(--mono);font-size:13px;color:var(--sepia);min-width:104px}
+.chapters{flex:1;display:flex;gap:6px;min-width:0}
+.ch{flex-basis:0;min-height:44px;border:0;background:none;display:flex;flex-direction:column;justify-content:center;gap:8px;text-align:left;min-width:0}
+.ch-label{font-size:15px;color:var(--sepia);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ch.on .ch-label{color:var(--ink);font-weight:600}
+.ch-track{height:3px;background:var(--paper2);overflow:hidden}
+.ch-fill{height:100%;width:0;background:var(--blood)}
+@media (max-width:700px){.ch-label{display:none}.tc{min-width:auto}}
+.caption{position:absolute;left:0;right:0;bottom:clamp(16px,4vh,40px);text-align:center;padding:0 24px;
+  font-size:clamp(18px,2.3vw,26px);font-style:italic;line-height:1.35;animation:fade .7s ease .5s both}
+
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes out{to{opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+@keyframes up{from{transform:translateY(110%)}to{transform:none}}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes draw{from{stroke-dashoffset:var(--len,1200)}to{stroke-dashoffset:0}}
+@keyframes unroll{from{clip-path:inset(0 50% 0 50%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes write{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes tide{from{transform:translateY(0)}to{transform:translateY(-38%)}}
+@keyframes wave{to{transform:translateX(-50%)}}
+@keyframes sink{from{opacity:1}to{opacity:.12}}
+@keyframes drift{from{transform:translate(-30px,60px)}to{transform:none}}
+@keyframes glow{0%,100%{opacity:.45}50%{opacity:1}}
+@keyframes ping{0%{r:4;opacity:1}100%{r:18;opacity:0}}
+
+/* map */
+.map{width:min(100%,760px,calc((100vh - 220px)*1.45));height:auto;display:block}
+.land{fill:var(--paper2);stroke:var(--ink);stroke-width:1.6;stroke-linejoin:round}
+.lbl{font:500 13px var(--mono);fill:var(--sepia)}
+.lbl-big{font:700 15px var(--display);fill:var(--ink);letter-spacing:.08em}
+.frame{width:100%;display:flex;flex-direction:column;align-items:center;gap:14px}
+.year{font-family:var(--display);font-weight:900;font-size:clamp(44px,8vw,110px);line-height:1;color:var(--blood)}
+
+/* scene 1 */
+.kk{display:flex;flex-direction:column;align-items:center;gap:clamp(12px,3vh,26px);text-align:center;width:100%}
+.tamil{font-family:var(--tamil);font-weight:700;font-size:clamp(40px,8vw,112px);line-height:1.25;color:var(--ink);animation:write 1.8s steps(24,end) .4s both}
+.translit{font-family:var(--display);letter-spacing:.2em;font-size:clamp(14px,1.8vw,20px);color:var(--sepia);animation:fade .6s ease 2s both}
+.sea{position:relative;width:min(900px,100%);height:clamp(90px,16vh,150px);overflow:hidden;border-bottom:1px solid var(--faint)}
+.shore{position:absolute;left:0;right:0;bottom:0;height:60%;background:repeating-linear-gradient(90deg,var(--paper2) 0 18px,#DCC99F 18px 20px);
+  clip-path:polygon(0 30%,20% 22%,38% 40%,55% 28%,72% 45%,100% 32%,100% 100%,0 100%)}
+.water{position:absolute;left:0;right:0;bottom:-100%;height:200%;animation:tide 3.6s cubic-bezier(.4,0,.3,1) .8s both}
+.water svg{position:absolute;top:0;left:0;width:200%;height:24px;animation:wave 3s linear infinite}
+.water div{position:absolute;top:18px;left:0;right:0;bottom:0;background:rgba(47,93,98,.55)}
+.sangam{display:flex;gap:clamp(12px,3vw,40px);flex-wrap:wrap;justify-content:center;font-size:clamp(15px,1.6vw,19px)}
+.sangam span{animation:rise .5s ease both}
+.sangam b{font-family:var(--display);color:var(--blood);font-weight:700}
+
+/* scene 2 */
+.tl{width:min(1100px,100%);display:flex;flex-direction:column;gap:clamp(16px,4vh,36px)}
+.tl-now{display:flex;align-items:baseline;gap:clamp(12px,3vw,32px);flex-wrap:wrap;min-height:1.2em}
+.tl-who{font-size:clamp(20px,2.6vw,32px);max-width:640px;line-height:1.25}
+.tl-kind{font-family:var(--mono);font-size:13px;padding:4px 10px;border:1px solid currentColor;border-radius:3px}
+.rail{position:relative;display:flex;justify-content:space-between;padding-top:26px}
+.rail::before{content:"";position:absolute;left:0;right:0;top:8px;height:2px;background:var(--faint)}
+.rail i{position:absolute;left:0;top:8px;height:2px;background:var(--blood);width:0}
+.tick{position:relative;font-family:var(--mono);font-size:clamp(11px,1.3vw,14px);color:var(--faint);text-align:center;flex:1;transition:color .3s}
+.tick::before{content:"";position:absolute;left:50%;top:-24px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--paper);border:2px solid var(--faint);transition:all .3s}
+.tick.on{color:var(--ink)}
+.tick.on::before{background:var(--blood);border-color:var(--blood)}
+
+/* scene 4 */
+.title{display:flex;flex-direction:column;align-items:center;gap:clamp(10px,2.4vh,22px);text-align:center}
+.t-line{overflow:hidden;line-height:1.05}
+.t-line span{display:block;font-family:var(--display);font-weight:900;font-size:clamp(34px,7.4vw,120px);animation:up .9s cubic-bezier(.2,.9,.1,1) both}
+.t-amp{font-family:var(--display);font-size:clamp(20px,3vw,40px);color:var(--blood);animation:fade .6s ease .6s both}
+.rule{width:min(600px,70vw);height:1px;background:var(--sepia);animation:grow .8s ease 1.1s both}
+.sub{font-size:clamp(17px,2vw,24px);font-style:italic;color:var(--sepia);animation:fade .6s ease 1.2s both}
+.chain{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 14px;max-width:960px;font-size:clamp(15px,1.7vw,19px)}
+.chain span,.chain i{animation:fade .4s ease both}
+.chain i{font-style:normal;color:var(--faint)}
+
+/* ── landing ── */
+#landing{display:none;position:relative;z-index:1;animation:fade .8s ease both}
+body.is-landing #landing{display:block}
+body.is-landing #intro{display:none}
+.nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:max(14px,env(safe-area-inset-top)) clamp(16px,4vw,56px) 14px;background:rgba(239,227,200,.94);border-bottom:1px solid var(--faint)}
+.nav nav{display:flex;gap:26px}
+.nav nav a{text-decoration:none;font-size:17px;color:var(--sepia)}
+.nav nav a:hover{color:var(--ink)}
+@media (max-width:980px){.nav nav{display:none}}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(24px,4vw,64px);align-items:center;
+  max-width:1440px;margin:0 auto;padding:clamp(32px,7vh,80px) clamp(16px,4vw,56px)}
+@media (max-width:900px){.hero{grid-template-columns:1fr}}
+.eyebrow-ta{font-family:var(--tamil);font-size:clamp(18px,2vw,24px);color:var(--blood)}
+.hero h1{margin-top:10px;font-family:var(--display);font-weight:900;font-size:clamp(36px,5.2vw,78px);line-height:1.05}
+.lede{margin-top:22px;max-width:560px;font-size:clamp(18px,1.5vw,21px);line-height:1.55;color:#4A3B2A}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border-radius:4px;font-size:18px;text-decoration:none;border:1px solid var(--ink)}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{background:var(--blood);border-color:var(--blood)}
+.note{margin-top:18px;font-size:16px;color:var(--sepia)}
+.chart{border:1px solid var(--sepia);background:var(--paper2);padding:clamp(12px,2vw,22px);box-shadow:6px 6px 0 rgba(122,90,54,.18)}
+.chart-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.chart-head b{font-family:var(--display);font-size:clamp(16px,1.6vw,20px)}
+.chart-head span{font-family:var(--mono);font-size:12px;color:var(--sepia)}
+.chart .map{width:100%}
+.layers{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.layer{min-height:40px;padding:0 14px;border:1px solid var(--sepia);border-radius:3px;background:transparent;font-size:16px}
+.layer[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.readout{margin-top:10px;font-family:var(--mono);font-size:13px;color:var(--sepia);min-height:2.6em;line-height:1.5}
+.g-myth,.g-tect,.g-maur{transition:opacity .5s}
+.hide{opacity:0;pointer-events:none}
+.matrix{max-width:1440px;margin:0 auto;padding:clamp(24px,5vh,56px) clamp(16px,4vw,56px)}
+.matrix h2,.mods h2{font-family:var(--display);font-size:clamp(22px,2.4vw,32px);margin-bottom:18px}
+.mtable{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1fr) minmax(0,1fr);border-top:2px solid var(--ink)}
+.mtable div{padding:14px 12px;border-bottom:1px solid var(--faint);font-size:clamp(15px,1.3vw,18px);line-height:1.45}
+.mtable .h{font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:.06em;color:var(--sepia)}
+.mtable .k{font-weight:600}
+@media (max-width:700px){.mtable{grid-template-columns:1fr}.mtable .h{display:none}.mtable .k{border-bottom:0;padding-bottom:0;color:var(--blood)}}
+.mods{max-width:1440px;margin:0 auto;padding:0 clamp(16px,4vw,56px) clamp(32px,6vh,64px)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1px;background:var(--faint);border:1px solid var(--faint)}
+.mgrid a{display:block;padding:18px 20px;background:var(--paper);text-decoration:none;font-size:18px}
+.mgrid a:hover{background:var(--paper2)}
+.mgrid small{display:block;margin-top:4px;font-size:15px;color:var(--sepia)}
+.foot{max-width:1440px;margin:0 auto;padding:22px clamp(16px,4vw,56px) max(32px,env(safe-area-inset-bottom));border-top:1px solid var(--faint);font-size:15px;color:var(--sepia);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001s!important;animation-delay:0s!important;animation-iteration-count:1!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<section id="intro" aria-label="Intro film">
+  <div class="topbar">
+    <div class="mark">LEMURIA <span>&amp;</span> KUMARI KANDAM</div>
+    <button class="btn-ghost" id="skip">Skip intro
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l8 7-8 7M17 5v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div id="scene"></div>
+  <div class="player">
+    <button class="round" id="play" aria-label="Pause intro">
+      <svg id="i-pause" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M5 3v10M11 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg id="i-play" width="16" height="16" viewBox="0 0 16 16" style="display:none"><path d="M5 3.5v9l7.5-4.5z" fill="currentColor"/></svg>
+    </button>
+    <button class="round" id="replay" aria-label="Replay from the start">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 12a9 9 0 1 0 3-6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 4v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <span class="tc" id="tc">00:00 / 00:24</span>
+    <div class="chapters" id="chapters"></div>
+  </div>
+</section>
+
+<main id="landing">
+  <header class="nav">
+    <div class="mark">LEMURIA <span>&amp;</span> KUMARI KANDAM</div>
+    <nav aria-label="Main">
+      <a href="#interactive-map">Map</a><a href="#kumari-kandam">Kumari Kandam</a><a href="#science">Science vs myth</a><a href="#timeline">Timeline</a><a href="#lost-lands">Lost lands</a><a href="#research">Research notebook</a>
+    </nav>
+    <button class="btn-ghost" id="replay2">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M3 4v5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Replay intro
+    </button>
+  </header>
+
+  <section class="hero">
+    <div>
+      <div class="eyebrow-ta" lang="ta">குமரிக் கண்டம்</div>
+      <h1>Did a continent sink south of Kanyakumari?</h1>
+      <p class="lede">Follow Lemuria from an 1864 zoologist's guess to Tamil revivalist legend, then test it against plate tectonics, bathymetry and the drowned microcontinent of Mauritia.</p>
+      <div class="ctas">
+        <a class="btn btn-primary" href="#interactive-map">Open the map</a>
+        <a class="btn" href="#is-lemuria-real">Is Lemuria real?</a>
+      </div>
+      <p class="note">Runs entirely in your browser. Notes and reading progress save on this device.</p>
+    </div>
+
+    <figure class="chart" id="interactive-map">
+      <div class="chart-head"><b>Indian Ocean, three ways</b><span>Schematic, not to scale</span></div>
+      <div id="map-slot"></div>
+      <div class="layers" role="group" aria-label="Map layers">
+        <button class="layer" data-l="myth" aria-pressed="true">19th-century myth</button>
+        <button class="layer" data-l="tect" aria-pressed="false">Tectonic plates</button>
+        <button class="layer" data-l="maur" aria-pressed="false">Mauritia</button>
+      </div>
+      <figcaption class="readout" id="readout">Layer: the Lemuria land bridge, as drawn before continental drift was accepted.</figcaption>
+    </figure>
+  </section>
+
+  <section class="matrix" id="science">
+    <h2>Science vs myth</h2>
+    <div class="mtable">
+      <div class="h">Question</div><div class="h">19th-century hypothesis</div><div class="h">Modern geology</div>
+      <div class="k">Land bridge</div><div>A sunken landmass spanning India to Madagascar</div><div>Gondwana broke apart and the continents drifted, 180–120 million years ago</div>
+      <div class="k">Lemurs</div><div>Walked across dry land</div><div>Rafted across the early Indian Ocean, island to island</div>
+      <div class="k">Kumari Kandam</div><div>A vast continent south of Kanyakumari</div><div>Sea-level rise after the last ice age drowned coastal settlements</div>
+      <div class="k">Sunken crust</div><div>A whole continent under the ocean floor</div><div>Mauritia: a Precambrian fragment beneath Mauritius's volcanic rock</div>
+    </div>
+  </section>
+
+  <section class="mods">
+    <h2>Inside the explorer</h2>
+    <div class="mgrid">
+      <a href="#interactive-map">Ancient map explorer<small>Myth, tectonic and Mauritia layers</small></a>
+      <a href="#kumari-kandam">Kumari Kandam in Tamil tradition<small>The Sangams, Kapaadapuram, Kadal Kol</small></a>
+      <a href="#science">Science vs myth quiz<small>Test yourself, with explanations</small></a>
+      <a href="#timeline">Timeline, 1864 to today<small>Sclater to Zealandia</small></a>
+      <a href="#lost-lands">Other lost lands<small>Atlantis, Mu, Doggerland and more</small></a>
+      <a href="#research">Research notebook<small>Notes, tasks and progress</small></a>
+      <a href="#sources">Bibliography<small>Historical, geological, literary</small></a>
+      <a href="#is-lemuria-real">Quick verdict<small>Is Lemuria real, in one page</small></a>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <span>Lemuria &amp; Kumari Kandam: Lost Continent Explorer</span>
+    <span>Open source under the MIT License</span>
+  </footer>
+</main>
+
+<script>
+(function(){
+'use strict';
+
+/* ── schematic Indian Ocean map (not to scale) ── */
+function mapSVG(opts){
+  opts=opts||{};
+  return '<svg class="map" viewBox="0 0 600 440" aria-label="Schematic map of the Indian Ocean" role="img">'
+  +'<defs><pattern id="hatch'+(opts.id||'')+'" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V7" stroke="var(--blood)" stroke-width="1.4"/></pattern>'
+  +'<pattern id="waves'+(opts.id||'')+'" width="24" height="10" patternUnits="userSpaceOnUse"><path d="M0 6 Q6 1 12 6 T24 6" fill="none" stroke="var(--sea-l)" stroke-width="1"/></pattern></defs>'
+  +'<rect width="600" height="440" fill="url(#waves'+(opts.id||'')+')" opacity=".7"/>'
+  // Africa coast
+  +'<path class="land" d="M0 0 H86 Q96 40 118 70 Q128 110 112 150 Q100 190 92 230 Q82 290 60 340 Q40 400 30 440 H0 Z"/>'
+  // Arabia hint
+  +'<path class="land" d="M150 0 H236 Q230 26 206 44 Q180 58 160 40 Q150 20 150 0 Z"/>'
+  // India
+  +'<path class="land" d="M268 0 H392 Q404 30 384 60 Q362 92 346 130 Q330 170 316 214 Q310 232 302 238 Q294 230 290 212 Q280 170 270 130 Q258 90 252 56 Q256 22 268 0 Z" style="--len:1100;stroke-dasharray:1100;animation:'+(opts.animate?'draw 1.6s ease .3s both':'none')+'"/>'
+  // Sri Lanka
+  +'<path class="land" d="M328 238 Q340 232 344 250 Q342 268 330 268 Q320 258 328 238 Z"/>'
+  // Madagascar
+  +'<path class="land" d="M146 250 Q160 238 168 262 Q172 300 160 340 Q150 368 138 356 Q128 320 132 290 Q136 262 146 250 Z"/>'
+  // Australia edge
+  +'<path class="land" d="M600 150 Q560 170 548 220 Q540 270 560 320 Q576 356 600 364 Z"/>'
+  // labels
+  +'<text class="lbl-big" x="18" y="200">AFRICA</text><text class="lbl-big" x="296" y="70" text-anchor="middle">INDIA</text>'
+  +'<text class="lbl" x="118" y="388">Madagascar</text><text class="lbl" x="352" y="262">Sri Lanka</text><text class="lbl-big" x="592" y="390" text-anchor="end">AUSTRALIA</text>'
+  // myth layer
+  +'<g class="g-myth'+(opts.myth===false?' hide':'')+'">'
+  +'<path d="M150 250 Q200 214 262 224 Q300 236 330 262 Q380 300 400 350 Q360 400 290 396 Q220 390 170 350 Q150 300 150 250 Z" fill="url(#hatch'+(opts.id||'')+')" stroke="var(--blood)" stroke-width="1.6" stroke-dasharray="6 5" opacity=".85" style="'+(opts.mythAnim||'')+'"/>'
+  +'<text x="276" y="330" text-anchor="middle" style="font:900 22px var(--display);fill:var(--blood);letter-spacing:.14em;'+(opts.mythAnim||'')+'">LEMURIA</text>'
+  +'<text x="300" y="296" text-anchor="middle" style="font:700 13px var(--tamil);fill:var(--blood);'+(opts.mythAnim||'')+'">குமரிக் கண்டம்</text>'
+  +'</g>'
+  // tectonic layer
+  +'<g class="g-tect'+(opts.tect?'':' hide')+'">'
+  +'<path d="M250 440 L262 396 L240 382 L256 340 L236 320 L250 284 L232 262 L246 226 L224 196 L210 150" fill="none" stroke="var(--sea)" stroke-width="2.4" stroke-dasharray="10 4"/>'
+  +'<text class="lbl" x="266" y="410" style="fill:var(--sea)">Central Indian Ridge</text>'
+  +'<path d="M300 300 L300 262" stroke="var(--sea)" stroke-width="2" marker-end="url(#arr)"/>'
+  +'<path d="M296 272 L300 260 L304 272" fill="none" stroke="var(--sea)" stroke-width="2"/>'
+  +'<text class="lbl" x="310" y="296" style="fill:var(--sea)">Indian plate drifts north</text>'
+  +'</g>'
+  // Mauritia layer
+  +'<g class="g-maur'+(opts.maur?'':' hide')+'">'
+  +'<ellipse cx="214" cy="286" rx="26" ry="16" fill="var(--sea)" opacity=".35" style="animation:glow 2.4s ease-in-out infinite"/>'
+  +'<circle cx="214" cy="286" r="4" fill="var(--sea)"/>'
+  +'<text class="lbl" x="214" y="320" text-anchor="middle" style="fill:var(--sea)">Mauritia fragment</text>'
+  +'<circle cx="206" cy="232" r="3" fill="var(--sea)"/><text class="lbl" x="200" y="226" text-anchor="end" style="fill:var(--sea)">Mascarene Plateau</text>'
+  +'</g>'
+  +'</svg>';
+}
+
+/* ── chapters ── */
+var CH=[
+  {name:'The hypothesis',s:0,e:4500},
+  {name:'Kumari Kandam',s:4500,e:9500},
+  {name:'Timeline',s:9500,e:14500},
+  {name:'The evidence',s:14500,e:19500},
+  {name:'The explorer',s:19500,e:24000}
+];
+var TOTAL=24000;
+var EVENTS=[
+  {y:'1864',w:'Philip Sclater proposes Lemuria to explain lemur fossils',k:'Hypothesis'},
+  {y:'1870s',w:'Ernst Haeckel places humanity\'s cradle on Lemuria',k:'Hypothesis'},
+  {y:'1888',w:'Helena Blavatsky folds Lemuria into Theosophy',k:'Myth'},
+  {y:'1900s',w:'Tamil revivalists identify Lemuria with Kumari Kandam',k:'Culture'},
+  {y:'1904',w:'W. Scott-Elliot publishes The Lost Lemuria',k:'Myth'},
+  {y:'1912',w:'Alfred Wegener proposes continental drift',k:'Science'},
+  {y:'1960s',w:'Plate tectonics is accepted',k:'Science'},
+  {y:'2013',w:'Mauritia microcontinent found under Mauritius',k:'Science'},
+  {y:'2017',w:'Zealandia formalised as Earth\'s eighth continent',k:'Science'}
+];
+var sceneEl=document.getElementById('scene');
+var live={};
+
+function build(i){
+  live={};
+  if(i===0){
+    sceneEl.innerHTML='<div class="frame" style="animation:unroll 1.1s cubic-bezier(.6,0,.2,1) both">'
+      +'<div class="year" style="animation:fade .6s ease .2s both">1864</div>'
+      +mapSVG({id:'a',animate:true,mythAnim:'animation:fade 1s ease 1.8s both'})
+      +'</div><p class="caption">A zoologist finds lemur fossils in India and Madagascar, and imagines a land bridge.</p>';
+  }
+  if(i===1){
+    sceneEl.innerHTML='<div class="kk">'
+      +'<div class="tamil" lang="ta">குமரிக் கண்டம்</div>'
+      +'<div class="translit">KUMARI KANDAM</div>'
+      +'<div class="sea" aria-hidden="true"><div class="shore"></div><div class="water">'
+      +'<svg viewBox="0 0 400 24" preserveAspectRatio="none"><path d="M0 14 Q25 2 50 14 T100 14 T150 14 T200 14 T250 14 T300 14 T350 14 T400 14 V24 H0Z" fill="rgba(47,93,98,.55)"/></svg><div></div></div></div>'
+      +'<div class="sangam"><span style="animation-delay:2.4s">First Sangam, <b>Madurai</b></span><span style="animation-delay:2.8s">Second Sangam, <b>Kapaadapuram</b></span><span style="animation-delay:3.2s"><b>Kadal Kol</b>, the sea\'s seizing</span></div>'
+      +'</div><p class="caption">In medieval commentaries on Sangam literature, the sea swallows the old Tamil lands.</p>';
+  }
+  if(i===2){
+    sceneEl.innerHTML='<div class="tl">'
+      +'<div class="tl-now"><span class="year" id="ty">1864</span><span class="tl-who" id="tw"></span><span class="tl-kind" id="tk"></span></div>'
+      +'<div class="rail"><i id="rail"></i>'+EVENTS.map(function(e){return '<span class="tick">'+e.y+'</span>';}).join('')+'</div>'
+      +'</div><p class="caption">A century and a half of guesses, legends and hard evidence.</p>';
+    live.y=document.getElementById('ty');live.w=document.getElementById('tw');live.k=document.getElementById('tk');
+    live.rail=document.getElementById('rail');live.ticks=[].slice.call(sceneEl.querySelectorAll('.tick'));
+  }
+  if(i===3){
+    sceneEl.innerHTML='<div class="frame">'
+      +mapSVG({id:'b',tect:true,maur:true,mythAnim:'animation:sink 2.4s ease .6s both'})
+      +'</div><p class="caption">No sunken continent. Drifting plates, and one small drowned fragment called Mauritia.</p>';
+  }
+  if(i===4){
+    var steps=['Map','Sangam','Science vs myth','Timeline','Lost lands','Notebook'];
+    sceneEl.innerHTML='<div class="title">'
+      +'<div class="t-line"><span style="animation-delay:.2s">LEMURIA</span></div>'
+      +'<div class="t-amp">&amp;</div>'
+      +'<div class="t-line"><span style="animation-delay:.5s;color:var(--blood)">KUMARI KANDAM</span></div>'
+      +'<div class="rule"></div>'
+      +'<div class="sub">Lost Continent Explorer</div>'
+      +'<div class="chain">'+steps.map(function(s,k){return (k?'<i style="animation-delay:'+(1.5+k*.3)+'s">·</i>':'')+'<span style="animation-delay:'+(1.6+k*.3)+'s">'+s+'</span>';}).join('')+'</div>'
+      +'</div>';
+  }
+}
+function drive(i,local){
+  if(i===2&&live.y){
+    var n=Math.min(EVENTS.length-1,Math.floor(Math.max(0,local-200)/500));
+    var e=EVENTS[n];
+    if(live.y.textContent!==e.y||live.w.textContent!==e.w){
+      live.y.textContent=e.y;live.w.textContent=e.w;live.k.textContent=e.k;
+      live.k.style.color=e.k==='Science'?'var(--sea)':e.k==='Culture'?'var(--sepia)':'var(--blood)';
+    }
+    live.rail.style.width=(n/(EVENTS.length-1)*100)+'%';
+    live.ticks.forEach(function(t,k){t.classList.toggle('on',k<=n);});
+  }
+}
+
+/* ── player ── */
+var chWrap=document.getElementById('chapters');
+var chEls=CH.map(function(c){
+  var b=document.createElement('button');b.className='ch';b.style.flexGrow=(c.e-c.s)/1000;
+  b.setAttribute('aria-label','Jump to '+c.name);
+  b.innerHTML='<span class="ch-label">'+c.name+'</span><span class="ch-track"><span class="ch-fill"></span></span>';
+  b.addEventListener('click',function(){jump(c.s);});
+  chWrap.appendChild(b);return b;
+});
+var t=0,playing=true,cur=-1,last=performance.now(),isLanding=false;
+var tc=document.getElementById('tc'),iP=document.getElementById('i-pause'),iPl=document.getElementById('i-play'),playBtn=document.getElementById('play');
+function idxAt(x){for(var i=0;i<CH.length;i++)if(x>=CH[i].s&&x<CH[i].e)return i;return -1;}
+function fmt(ms){var s=Math.floor(ms/1000);return '00:'+(s<10?'0':'')+s;}
+function jump(to){
+  if(to>=TOTAL){toLanding();return;}
+  if(isLanding){isLanding=false;document.body.classList.remove('is-landing');}
+  t=to;cur=-1;playing=true;last=performance.now();
+}
+function frame(now){
+  var dt=Math.min(now-last,100);last=now;
+  if(!isLanding){
+    if(playing){t+=dt;if(t>=TOTAL)toLanding();}
+    if(!isLanding){
+      var i=idxAt(t);
+      if(i!==cur){cur=i;build(i);}
+      drive(i,t-CH[i].s);
+      tc.textContent=fmt(t)+' / '+fmt(TOTAL);
+      chEls.forEach(function(b,k){var c=CH[k];b.querySelector('.ch-fill').style.width=(Math.max(0,Math.min(1,(t-c.s)/(c.e-c.s)))*100)+'%';b.classList.toggle('on',k===i);});
+      document.getElementById('intro').classList.toggle('paused',!playing);
+      iP.style.display=playing?'':'none';iPl.style.display=playing?'none':'';
+      playBtn.setAttribute('aria-label',playing?'Pause intro':'Play intro');
+    }
+  }
+  requestAnimationFrame(frame);
+}
+playBtn.addEventListener('click',function(){playing=!playing;last=performance.now();});
+document.getElementById('replay').addEventListener('click',function(){jump(0);});
+document.getElementById('replay2').addEventListener('click',function(){window.scrollTo(0,0);jump(0);});
+document.getElementById('skip').addEventListener('click',toLanding);
+
+/* ── landing map layers ── */
+var NOTES={
+  myth:'Layer: the Lemuria land bridge, as drawn before continental drift was accepted.',
+  tect:'Layer: the Central Indian Ridge. India drifted north after Gondwana broke apart.',
+  maur:'Layer: Mauritia, a Precambrian crust fragment under Mauritius, reported in 2013.'
+};
+var layers=[].slice.call(document.querySelectorAll('.layer'));
+layers.forEach(function(b){
+  b.addEventListener('click',function(){
+    var l=b.dataset.l;
+    layers.forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});
+    var svg=document.querySelector('#map-slot svg');
+    svg.querySelector('.g-myth').classList.toggle('hide',l!=='myth');
+    svg.querySelector('.g-tect').classList.toggle('hide',l==='myth');
+    svg.querySelector('.g-maur').classList.toggle('hide',l!=='maur');
+    document.getElementById('readout').textContent=NOTES[l];
+  });
+});
+function toLanding(){
+  isLanding=true;playing=false;t=TOTAL;
+  document.body.classList.add('is-landing');
+  document.getElementById('map-slot').innerHTML=mapSVG({id:'c'});
+  layers[0].click();
+}
+
+var reduce=false;try{reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;}catch(e){}
+if(reduce)toLanding();
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect, MouseEvent } from 'react';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { useRef, MouseEvent } from 'react';
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'motion/react';
 import { ArrowDown, Compass, HelpCircle, ShieldAlert } from 'lucide-react';
 
 interface HeroProps {
@@ -8,22 +8,25 @@ interface HeroProps {
 
 export function Hero({ onOpenRealModal }: HeroProps) {
   const containerRef = useRef<HTMLElement>(null);
-  const [mouseOffset, setMouseOffset] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
 
-  // Handle gentle mouse movement for subtle 3-6px physical parallax
+  // Gentle mouse parallax (3-6px). Held in a motion value, not React state, so
+  // mouse movement never re-renders the hero (and its 72-tick compass SVG).
+  const mouseX = useMotionValue(0);
+  const smoothMouseX = useSpring(mouseX, { damping: 25, stiffness: 80 });
+  const compassX = useTransform(smoothMouseX, (v) => v * 0.8);
+  const mapLayerX = useTransform(smoothMouseX, (v) => v * -0.5);
+  const titleX = useTransform(smoothMouseX, (v) => v * 0.5);
+  const cardsX = useTransform(smoothMouseX, (v) => v * -0.3);
+
   const handleMouseMove = (e: MouseEvent<HTMLElement>) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const normalX = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
-    const normalY = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
-    setMouseOffset({
-      x: normalX * 5, // 3-6px subtle range
-      y: normalY * 5,
-    });
+    mouseX.set(normalX * 5);
   };
 
   const handleMouseLeave = () => {
-    setMouseOffset({ x: 0, y: 0 });
+    mouseX.set(0);
   };
 
   // Track scroll position of the hero section relative to the viewport
@@ -85,9 +88,8 @@ export function Hero({ onOpenRealModal }: HeroProps) {
           y: compassY,
           rotate: compassRotate,
           opacity: compassOpacity,
-          x: mouseOffset.x * 0.8,
+          x: compassX,
         }}
-        transition={{ type: 'spring', damping: 25, stiffness: 80 }}
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[520px] h-[520px] sm:w-[720px] sm:h-[720px] pointer-events-none select-none z-0"
       >
         <svg
@@ -166,7 +168,7 @@ export function Hero({ onOpenRealModal }: HeroProps) {
         style={{
           y: mapLayerY,
           opacity: mapLayerOpacity,
-          x: mouseOffset.x * -0.5,
+          x: mapLayerX,
         }}
         className="absolute inset-0 pointer-events-none select-none z-0"
       >
@@ -216,7 +218,7 @@ export function Hero({ onOpenRealModal }: HeroProps) {
           style={{
             y: titleY,
             opacity: titleOpacity,
-            x: mouseOffset.x * 0.5,
+            x: titleX,
           }}
           className="mb-6 space-y-1"
         >
@@ -281,7 +283,7 @@ export function Hero({ onOpenRealModal }: HeroProps) {
           style={{
             y: cardsY,
             opacity: cardsOpacity,
-            x: mouseOffset.x * -0.3,
+            x: cardsX,
           }}
           className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 text-left pt-6 border-t border-[#463429]"
         >

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import { CheckSquare, ChevronDown, Compass, HelpCircle, Menu, X } from 'lucide-react';
+import { CheckSquare, ChevronDown, Compass, Film, HelpCircle, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
+  onReplayIntro: () => void;
   onOpenRealModal: () => void;
   onOpenSearchModal: () => void;
   onOpenQuizModal: () => void;
@@ -9,6 +10,7 @@ interface NavbarProps {
 }
 
 export function Navbar({
+  onReplayIntro,
   onOpenRealModal,
   onOpenSearchModal,
   onOpenQuizModal,
@@ -112,7 +114,7 @@ export function Navbar({
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#1E1914]/95 backdrop-blur-md border-b border-[#463429] shadow-xl">
+    <header className="sticky top-0 z-40 bg-[#1E1914] border-b border-[#463429] shadow-xl">
       {/* Top subtle maritime graduation bar */}
       <div className="h-1 border-nautical-bar opacity-70" />
 
@@ -187,6 +189,17 @@ export function Navbar({
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-2 sm:gap-3 xl:gap-2 2xl:gap-3 shrink-0">
+            {/* Replay Intro Film */}
+            <button
+              onClick={onReplayIntro}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
+              title="Replay intro"
+              aria-label="Replay intro"
+            >
+              <Film className="w-3.5 h-3.5 text-[#9A7B45]" />
+              <span className="hidden 2xl:inline font-carto text-[11px] uppercase tracking-wide">Intro</span>
+            </button>
+
             {/* Global Search Button */}
             <button
               onClick={onOpenSearchModal}
