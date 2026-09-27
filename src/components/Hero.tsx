@@ -201,18 +201,6 @@ export function Hero({ onOpenRealModal }: HeroProps) {
       {/* ============================================================ */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
 
-        {/* 1. Exact Hierarchy Item: FIELD DOSSIER · 1864—PRESENT */}
-        <motion.div
-          style={{ y: titleY, opacity: titleOpacity }}
-          className="mb-4"
-        >
-          <div className="inline-flex items-center gap-2.5 px-3.5 py-1 rounded border border-[#756451]/50 bg-[#2B211A]/80 text-[#CDBB96] text-xs font-carto tracking-[0.25em] uppercase shadow-sm">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#9A7B45]" />
-            <span>FIELD DOSSIER · 1864—PRESENT</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-[#9A7B45]" />
-          </div>
-        </motion.div>
-
         {/* 2. Main Title: LEMURIA / THE LOST CONTINENT / AN HISTORICAL INVESTIGATION */}
         <motion.div
           style={{

@@ -49,7 +49,10 @@ export function SourceRelationGraph() {
                 key={n.id}
                 onClick={() => setActiveId(n.id === activeId ? null : n.id)}
                 style={{ left: `${n.x}%`, top: `${n.y}%` }}
-                className={`absolute -translate-x-1/2 -translate-y-1/2 px-2.5 py-1.5 rounded text-[10px] font-carto uppercase tracking-wider border transition-all whitespace-nowrap ${
+                className={`absolute ${
+                  // Edge nodes anchor inward so their labels stay inside the panel on narrow screens.
+                  n.x < 15 ? 'translate-x-0' : n.x > 85 ? '-translate-x-full' : '-translate-x-1/2'
+                } -translate-y-1/2 px-1.5 sm:px-2.5 py-1 sm:py-1.5 rounded text-[9px] sm:text-[10px] leading-tight text-center font-carto uppercase tracking-wider border transition-all max-w-[26%] sm:max-w-none whitespace-normal sm:whitespace-nowrap ${
                   activeId === n.id
                     ? 'bg-[#9A7B45] text-[#14100D] border-[#9A7B45] font-bold z-10'
                     : 'bg-[#1E1914] text-[#CDBB96] border-[#463429] hover:border-[#9A7B45]'

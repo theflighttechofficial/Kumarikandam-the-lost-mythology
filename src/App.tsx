@@ -63,17 +63,10 @@ import { MapComparisonSlider } from './components/MapComparisonSlider';
 // Lazy-loaded modal
 const RealModal = lazy(() => import('./components/RealModal').then((m) => ({ default: m.RealModal })));
 
-const INTRO_SEEN_KEY = 'lemuria_intro_seen';
-
-// Play the intro film once per session. Deep links (#section) and reduced-motion users go straight to the site.
-function shouldShowIntro() {
-  try {
-    if (window.location.hash) return false;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
-    return sessionStorage.getItem(INTRO_SEEN_KEY) !== '1';
-  } catch {
-    return true;
-  }
+// The intro film plays on every page load, on all devices. Start at the top so a
+// reload doesn't restore a mid-page scroll position behind the film.
+if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
+  window.history.scrollRestoration = 'manual';
 }
 
 // Physical parchment folio reveal. Animates only opacity + transform (compositor-only, no blur filter),
@@ -105,7 +98,7 @@ function Reveal({ children }: { children: ReactNode }) {
 }
 
 export default function App() {
-  const [showIntro, setShowIntro] = useState(shouldShowIntro);
+  const [showIntro, setShowIntro] = useState(true);
 
   // Standout Feature Modals
   const [isRealModalOpen, setIsRealModalOpen] = useState(false);
@@ -238,12 +231,10 @@ export default function App() {
   };
 
   const finishIntro = useCallback(() => {
-    try {
-      sessionStorage.setItem(INTRO_SEEN_KEY, '1');
-    } catch {
-      // Ignore
-    }
     setShowIntro(false);
+    // Deep links (#section) land on their section once the film ends.
+    const target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+    if (target) target.scrollIntoView();
   }, []);
 
   const replayIntro = useCallback(() => {

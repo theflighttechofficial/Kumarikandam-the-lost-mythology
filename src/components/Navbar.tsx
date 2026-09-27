@@ -100,9 +100,6 @@ export function Navbar({
     },
   ];
 
-  // Flat list retained for the mobile menu (shows everything in one scroll).
-  const navLinks = [...primaryLinks, ...exploreGroups.flatMap((g) => g.links)];
-
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (exploreRef.current && !exploreRef.current.contains(event.target as Node)) {
@@ -111,6 +108,24 @@ export function Navbar({
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  // Esc closes either menu; growing past the mobile breakpoint closes the mobile menu.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setExploreOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const onChange = () => mq.matches && setMobileMenuOpen(false);
+    window.addEventListener('keydown', onKey);
+    mq.addEventListener('change', onChange);
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      mq.removeEventListener('change', onChange);
+    };
   }, []);
 
   return (
@@ -123,13 +138,13 @@ export function Navbar({
           {/* Brand / Title - Antique Nautical Atlas Header */}
           <a
             href="#"
-            className="flex items-center gap-2.5 text-[#E6D7B9] hover:text-[#FAF6EE] transition-colors group shrink-0"
+            className="flex items-center gap-2 sm:gap-2.5 text-[#E6D7B9] hover:text-[#FAF6EE] transition-colors group min-w-0"
           >
-            <div className="w-8 h-8 rounded bg-[#2B211A] border border-[#756451]/60 flex items-center justify-center text-[#9A7B45] group-hover:border-[#9A7B45] transition-colors shadow-inner">
+            <div className="shrink-0 w-8 h-8 rounded bg-[#2B211A] border border-[#756451]/60 flex items-center justify-center text-[#9A7B45] group-hover:border-[#9A7B45] transition-colors shadow-inner">
               <Compass className="w-4 h-4 text-[#9A7B45]" />
             </div>
-            <div>
-              <span className="font-heading font-bold text-base sm:text-lg tracking-[0.2em] text-[#E6D7B9]">
+            <div className="min-w-0 truncate">
+              <span className="font-heading font-bold text-sm min-[400px]:text-base sm:text-lg tracking-[0.12em] sm:tracking-[0.2em] text-[#E6D7B9]">
                 KUMARI KANDAM
               </span>
               <span className="hidden 2xl:inline-block text-[9px] font-carto text-[#9A7B45] ml-2 px-1.5 py-0.5 rounded bg-[#2B211A] border border-[#463429] uppercase tracking-widest">
@@ -162,7 +177,7 @@ export function Navbar({
               </button>
 
               {exploreOpen && (
-                <div className="absolute right-0 top-full mt-2 w-[min(90vw,760px)] max-h-[75vh] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 p-5 rounded-lg bg-[#1E1914] border border-[#463429] shadow-2xl z-50 normal-case">
+                <div className="fixed left-1/2 -translate-x-1/2 top-[4.5rem] w-[min(calc(100vw-2rem),760px)] max-h-[calc(100dvh-6rem)] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 p-5 rounded-lg bg-[#1E1914] border border-[#463429] shadow-2xl z-50 normal-case">
                   {exploreGroups.map((group) => (
                     <div key={group.group}>
                       <p className="text-[10px] font-carto uppercase tracking-widest text-[#9A7B45] mb-1.5 pb-1 border-b border-[#463429]">
@@ -188,11 +203,11 @@ export function Navbar({
           </nav>
 
           {/* Right Action Controls */}
-          <div className="flex items-center gap-2 sm:gap-3 xl:gap-2 2xl:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-3 xl:gap-2 2xl:gap-3 shrink-0">
             {/* Replay Intro Film */}
             <button
               onClick={onReplayIntro}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
+              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
               title="Replay intro"
               aria-label="Replay intro"
             >
@@ -205,6 +220,7 @@ export function Navbar({
               onClick={onOpenSearchModal}
               className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
               title="Search portal (Ctrl+K)"
+              aria-label="Search"
             >
               <span className="text-[#D4AF37]">🔍</span>
               <span className="hidden md:inline font-mono text-[11px] text-[#A89F91]">Ctrl+K</span>
@@ -223,7 +239,7 @@ export function Navbar({
             <a
               href="#productivity"
               id="nav-progress-pill"
-              className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-full bg-[#2B211A] text-[#E6D7B9] border border-[#463429] hover:border-[#9A7B45] transition-colors shadow-inner whitespace-nowrap"
+              className="hidden sm:flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-full bg-[#2B211A] text-[#E6D7B9] border border-[#463429] hover:border-[#9A7B45] transition-colors shadow-inner whitespace-nowrap"
               title="View Field Journal & Expedition Tasks"
             >
               <CheckSquare className="w-3.5 h-3.5 text-[#9A7B45] shrink-0" />
@@ -234,11 +250,12 @@ export function Navbar({
             {/* Standout Feature: "Ask the Atlas / Is It Real?" */}
             <button
               id="nav-is-lemuria-real-btn"
+              aria-label="Is Lemuria real?"
               onClick={onOpenRealModal}
               className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-semibold rounded bg-[#9A7B45] hover:bg-[#8B5E4A] text-[#FAF6EE] shadow transition-all active:scale-95 font-heading tracking-wide border border-[#CDBB96]/40 whitespace-nowrap"
             >
               <HelpCircle className="w-3.5 h-3.5 shrink-0" />
-              <span className="hidden min-[400px]:inline">Is It Real?</span>
+              <span className="hidden sm:inline">Is It Real?</span>
             </button>
 
             {/* Mobile Menu Toggle */}
@@ -246,24 +263,55 @@ export function Navbar({
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 text-[#CDBB96] hover:text-[#FAF6EE] rounded hover:bg-[#2B211A]"
               aria-label="Toggle Navigation Menu"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Dropdown Menu: scrolls inside the viewport instead of pushing past it */}
         {mobileMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-[#463429] space-y-2 bg-[#231B15]">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="block px-3 py-2 text-xs font-carto uppercase tracking-wider text-[#CDBB96] hover:text-[#FAF6EE] hover:bg-[#2B211A] rounded transition-colors"
+          <div className="lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 border-t border-[#463429] bg-[#231B15] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain">
+            <div className="grid grid-cols-3 gap-2 pb-3 mb-3 border-b border-[#463429]">
+              <button
+                onClick={() => { setMobileMenuOpen(false); onReplayIntro(); }}
+                className="flex items-center justify-center gap-1.5 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[#2B211A] text-[#E4D5BE] border border-[#7A6038]/60"
               >
-                {link.name}
+                <Film className="w-3.5 h-3.5 text-[#9A7B45]" /> Intro
+              </button>
+              <button
+                onClick={() => { setMobileMenuOpen(false); onOpenQuizModal(); }}
+                className="flex items-center justify-center gap-1.5 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[#2B211A] text-[#D4AF37] border border-[#7A6038]/60"
+              >
+                🏆 Quiz
+              </button>
+              <a
+                href="#productivity"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-center gap-1.5 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[#2B211A] text-[#E6D7B9] border border-[#463429]"
+              >
+                <CheckSquare className="w-3.5 h-3.5 text-[#9A7B45]" /> {progressPercentage}%
               </a>
+            </div>
+            {[{ group: 'Main', links: primaryLinks }, ...exploreGroups].map((group) => (
+              <div key={group.group} className="mb-3">
+                <p className="px-1 pb-1 mb-1 text-[10px] font-carto uppercase tracking-widest text-[#9A7B45] border-b border-[#463429]">
+                  {group.group}
+                </p>
+                <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-2">
+                  {group.links.map((link) => (
+                    <a
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-2 py-2.5 text-xs font-carto uppercase tracking-wider text-[#CDBB96] hover:text-[#FAF6EE] hover:bg-[#2B211A] rounded transition-colors"
+                    >
+                      {link.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         )}
