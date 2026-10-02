@@ -1,4 +1,53 @@
 @import "tailwindcss";
+@import "./theme-tokens.css";
+
+/* Theme-level surfaces. Light (parchment) is the default; dark is opt-in via [data-theme="dark"]. */
+:root,
+:root[data-theme="light"] {
+  --page-bg: #F2E8D2;
+  --map-ink: rgb(92 64 32 / 0.36);
+  --map-opacity: 1;
+  --surface-depths: radial-gradient(circle at 50% 25%, #F6EEDC 0%, #EFE4CB 65%, #E8DBBE 100%);
+  --scroll-thumb: #CDB894;
+  --scroll-thumb-edge: #A08D72;
+}
+:root[data-theme="dark"] {
+  --page-bg: #140F0C;
+  --map-ink: rgb(205 187 150 / 0.2);
+  --map-opacity: 1;
+  --surface-depths: radial-gradient(circle at 50% 25%, #2B211A 0%, #1E1914 65%, #15110E 100%);
+  --scroll-thumb: #463429;
+  --scroll-thumb-edge: #756451;
+}
+
+html {
+  background-color: var(--page-bg);
+}
+html.theme-switching *,
+html.theme-switching *::before,
+html.theme-switching *::after {
+  transition: none !important;
+}
+
+/* Body stays transparent: its own background would paint over the chart layer below. */
+body {
+  background-color: transparent;
+}
+
+/* Retro Kumari Kandam chart behind the whole site. The SVG is a mask, so one file serves both themes. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--map-ink);
+  opacity: var(--map-opacity);
+  -webkit-mask: url("/kumari-map.svg") center / cover no-repeat;
+  mask: url("/kumari-map.svg") center / cover no-repeat;
+}
+
+
 
 @layer base {
   :root {
@@ -50,12 +99,12 @@
 /* Antique Chart Table / Deep Aged Walnut Surface */
 .bg-ocean-depths {
   background: 
-    radial-gradient(circle at 50% 25%, #2B211A 0%, #1E1914 65%, #15110E 100%);
+    var(--surface-depths);
 }
 
 /* Weathered Parchment Card & Paper Texture */
 .bg-parchment-sheet {
-  background-color: #241D17;
+  background-color: var(--bg-241B15);
   background-image: 
     radial-gradient(ellipse at 50% 50%, rgba(230, 215, 185, 0.03) 0%, transparent 80%),
     linear-gradient(to bottom, rgba(43, 33, 26, 0.95), rgba(30, 25, 20, 0.98));
@@ -63,8 +112,8 @@
 
 /* Physical Antique Paper Frame */
 .paper-card {
-  background: #231B15;
-  border: 1px solid #463429;
+  background: var(--bg-231B15);
+  border: 1px solid var(--bd-463429);
   box-shadow: 0 4px 20px -2px rgba(10, 8, 6, 0.5), inset 0 1px 0 rgba(230, 215, 185, 0.06);
 }
 
@@ -72,10 +121,10 @@
 .border-nautical-bar {
   background-image: repeating-linear-gradient(
     90deg,
-    #9A7B45 0px,
-    #9A7B45 10px,
-    #2B211A 10px,
-    #2B211A 20px
+    var(--bg-9A7B45) 0px,
+    var(--bg-9A7B45) 10px,
+    var(--bg-2B211A) 10px,
+    var(--bg-2B211A) 20px
   );
 }
 
@@ -94,7 +143,6 @@
 /* Hand-drawn style dashed nautical route */
 .route-dashed {
   stroke-dasharray: 5 6;
-  animation: dash 50s linear infinite;
 }
 
 @keyframes dash {
@@ -114,7 +162,7 @@
 }
 
 .animate-slow-spin {
-  animation: slow-spin 240s linear infinite;
+  animation: none;
 }
 
 
@@ -122,20 +170,10 @@
 /* REDESIGN: TACTILE INTERACTION LAYER                           */
 /* ============================================================ */
 
-/* Buttons & CTAs get a physical "press" feel instead of flat color swaps */
+/* Interactive elements change colour on hover; nothing moves or glows. */
 button,
 a[href] {
-  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.18s ease, filter 0.18s ease;
-}
-
-button:not(:disabled):hover,
-a[href]:hover {
-  filter: brightness(1.06);
-}
-
-button:not(:disabled):active,
-a[href]:active {
-  transform: scale(0.97);
+  transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 
 /* Consistent, visible keyboard focus ring across the antique palette */
@@ -145,44 +183,23 @@ input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible {
-  outline: 2px solid #9A7B45;
+  outline: 2px solid var(--fg-9A7B45);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
-/* Cards opt into a gentle hover lift explicitly via .hover-lift (scoped,
-   not applied to structural wrappers/toolbars/form fields) */
+/* Cards: hover only sharpens the border, so clickable cards read as clickable without motion. */
 .paper-card,
 .hover-lift {
-  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: border-color 0.15s ease;
 }
 
-.paper-card:hover,
 .hover-lift:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px -8px rgba(0, 0, 0, 0.55);
+  border-color: var(--bd-9A7B45);
 }
 
-/* Sticky navbar gets a slow brass shimmer sweep across its top graduation bar */
 .border-nautical-bar {
   background-size: 20px 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.border-nautical-bar::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, transparent, rgba(230, 215, 185, 0.35), transparent);
-  width: 40%;
-  animation: shimmer-sweep 6s ease-in-out infinite;
-}
-
-@keyframes shimmer-sweep {
-  0% { transform: translateX(-120%); }
-  50% { transform: translateX(320%); }
-  100% { transform: translateX(320%); }
 }
 
 /* Custom scrollbar styled for antique explorer chart desk */
@@ -192,18 +209,18 @@ textarea:focus-visible,
 }
 
 ::-webkit-scrollbar-track {
-  background: #1E1914;
-  border-left: 1px solid #2B211A;
+  background: var(--page-bg);
+  border-left: 1px solid var(--bd-2B211A);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #463429;
-  border: 1px solid #756451;
+  background: var(--scroll-thumb);
+  border: 1px solid var(--scroll-thumb-edge);
   border-radius: 2px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #756451;
+  background: var(--scroll-thumb-edge);
 }
 
 
@@ -219,9 +236,24 @@ textarea:focus-visible,
   contain-intrinsic-size: auto 900px;
 }
 
+/* Section reveal (see Reveal in App.tsx) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1), transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto !important;
+  }
+  .reveal {
+    transform: none;
+    transition: opacity 0.2s linear;
   }
 }
 

@@ -1,66 +1,69 @@
-import { lazy, ReactNode, Suspense, useCallback, useEffect, useMemo, useState } from 'react';
-import { motion } from 'motion/react';
+import { lazy, ReactNode, Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Footer } from './components/Footer';
 import { Hero } from './components/Hero';
 import { IntroFilm } from './components/IntroFilm';
-import { InteractiveMap } from './components/InteractiveMap';
-import { KumariKandamSection } from './components/KumariKandamSection';
 import { Navbar } from './components/Navbar';
-import { ProductivitySuite } from './components/ProductivitySuite';
-import { RelatedLostLands } from './components/RelatedLostLands';
-import { ScienceVsMyth } from './components/ScienceVsMyth';
-import { SourcesSection } from './components/SourcesSection';
-import { TimelineSection } from './components/TimelineSection';
-import { WhatIsLemuria } from './components/WhatIsLemuria';
 import { INITIAL_NOTES, INITIAL_TASKS, RESEARCH_SOURCES } from './data/lemuriaData';
 import { ResearchNote, ResearchSource, ResearchTask } from './types';
+import { lazySection, whenSectionsLoaded } from './lazySection';
+import { SectionBoundary } from './components/SectionBoundary';
+import { SectionSkeleton } from './components/SectionSkeleton';
+import { NetworkStatus } from './components/NetworkStatus';
 
-import { NadusExplorerModal } from './components/NadusExplorerModal';
-import { KumariQuizModal } from './components/KumariQuizModal';
-import { GlobalSearchModal } from './components/GlobalSearchModal';
+// Below-the-fold sections and modals load as separate chunks so the first screen ships less JavaScript.
+const InteractiveMap = lazySection(() => import('./components/InteractiveMap'), 'InteractiveMap');
+const KumariKandamSection = lazySection(() => import('./components/KumariKandamSection'), 'KumariKandamSection');
+const ProductivitySuite = lazySection(() => import('./components/ProductivitySuite'), 'ProductivitySuite');
+const RelatedLostLands = lazySection(() => import('./components/RelatedLostLands'), 'RelatedLostLands');
+const ScienceVsMyth = lazySection(() => import('./components/ScienceVsMyth'), 'ScienceVsMyth');
+const SourcesSection = lazySection(() => import('./components/SourcesSection'), 'SourcesSection');
+const TimelineSection = lazySection(() => import('./components/TimelineSection'), 'TimelineSection');
+const WhatIsLemuria = lazySection(() => import('./components/WhatIsLemuria'), 'WhatIsLemuria');
+const NadusExplorerModal = lazySection(() => import('./components/NadusExplorerModal'), 'NadusExplorerModal');
+const KumariQuizModal = lazySection(() => import('./components/KumariQuizModal'), 'KumariQuizModal');
+const ClaimsExplorer = lazySection(() => import('./components/ClaimsExplorer'), 'ClaimsExplorer');
+const EvidenceExplorer = lazySection(() => import('./components/EvidenceExplorer'), 'EvidenceExplorer');
+const SangamSection = lazySection(() => import('./components/SangamSection'), 'SangamSection');
+const KadalKolSimulator = lazySection(() => import('./components/KadalKolSimulator'), 'KadalKolSimulator');
+const TamilLiteratureLibrary = lazySection(() => import('./components/TamilLiteratureLibrary'), 'TamilLiteratureLibrary');
+const ThinaiExplorer = lazySection(() => import('./components/ThinaiExplorer'), 'ThinaiExplorer');
+const PeopleDirectory = lazySection(() => import('./components/PeopleDirectory'), 'PeopleDirectory');
+const GeologyExplorer = lazySection(() => import('./components/GeologyExplorer'), 'GeologyExplorer');
+const GondwanaReconstruction = lazySection(() => import('./components/GondwanaReconstruction'), 'GondwanaReconstruction');
+const LemuriaHistoryTimeline = lazySection(() => import('./components/LemuriaHistoryTimeline'), 'LemuriaHistoryTimeline');
+const BathymetryExplorer = lazySection(() => import('./components/BathymetryExplorer'), 'BathymetryExplorer');
+const SeaLevelExplorer = lazySection(() => import('./components/SeaLevelExplorer'), 'SeaLevelExplorer');
+const PoompuharModule = lazySection(() => import('./components/PoompuharModule'), 'PoompuharModule');
+const AdamsBridgeModule = lazySection(() => import('./components/AdamsBridgeModule'), 'AdamsBridgeModule');
+const LostLandsExplorer = lazySection(() => import('./components/LostLandsExplorer'), 'LostLandsExplorer');
+const EvidenceMatrix = lazySection(() => import('./components/EvidenceMatrix'), 'EvidenceMatrix');
+const SourceLibrary = lazySection(() => import('./components/SourceLibrary'), 'SourceLibrary');
+const SourceRelationGraph = lazySection(() => import('./components/SourceRelationGraph'), 'SourceRelationGraph');
+const IdeaEvolutionTimeline = lazySection(() => import('./components/IdeaEvolutionTimeline'), 'IdeaEvolutionTimeline');
+const IdentifyEvidenceGame = lazySection(() => import('./components/IdentifyEvidenceGame'), 'IdentifyEvidenceGame');
+const FactOrClaimGame = lazySection(() => import('./components/FactOrClaimGame'), 'FactOrClaimGame');
+const ExpeditionLog = lazySection(() => import('./components/ExpeditionLog'), 'ExpeditionLog');
+const MarineArchaeologyDatabase = lazySection(() => import('./components/MarineArchaeologyDatabase'), 'MarineArchaeologyDatabase');
+const ArchaeologyMethodsExplorer = lazySection(() => import('./components/ArchaeologyMethodsExplorer'), 'ArchaeologyMethodsExplorer');
+const ProofRequirementsPage = lazySection(() => import('./components/ProofRequirementsPage'), 'ProofRequirementsPage');
+const ExpectedEvidenceSimulator = lazySection(() => import('./components/ExpectedEvidenceSimulator'), 'ExpectedEvidenceSimulator');
+const DualTimeline = lazySection(() => import('./components/DualTimeline'), 'DualTimeline');
+const EtymologyExplorer = lazySection(() => import('./components/EtymologyExplorer'), 'EtymologyExplorer');
+const GlossaryExplorer = lazySection(() => import('./components/GlossaryExplorer'), 'GlossaryExplorer');
+const HypothesisBuilder = lazySection(() => import('./components/HypothesisBuilder'), 'HypothesisBuilder');
+const DesignYourContinent = lazySection(() => import('./components/DesignYourContinent'), 'DesignYourContinent');
+const CitationGenerator = lazySection(() => import('./components/CitationGenerator'), 'CitationGenerator');
+const ResearchQuestionGenerator = lazySection(() => import('./components/ResearchQuestionGenerator'), 'ResearchQuestionGenerator');
+const ArgumentBuilder = lazySection(() => import('./components/ArgumentBuilder'), 'ArgumentBuilder');
+const SourceCriticismCard = lazySection(() => import('./components/SourceCriticismCard'), 'SourceCriticismCard');
+const WhoSaidThisGame = lazySection(() => import('./components/WhoSaidThisGame'), 'WhoSaidThisGame');
+const WhenDidThisAppearGame = lazySection(() => import('./components/WhenDidThisAppearGame'), 'WhenDidThisAppearGame');
+const MediaArchive = lazySection(() => import('./components/MediaArchive'), 'MediaArchive');
+const MapComparisonSlider = lazySection(() => import('./components/MapComparisonSlider'), 'MapComparisonSlider');
 
-import { ClaimsExplorer } from './components/ClaimsExplorer';
-import { EvidenceExplorer } from './components/EvidenceExplorer';
-import { SangamSection } from './components/SangamSection';
-import { KadalKolSimulator } from './components/KadalKolSimulator';
-import { TamilLiteratureLibrary } from './components/TamilLiteratureLibrary';
-import { ThinaiExplorer } from './components/ThinaiExplorer';
-import { PeopleDirectory } from './components/PeopleDirectory';
-import { GeologyExplorer } from './components/GeologyExplorer';
-import { GondwanaReconstruction } from './components/GondwanaReconstruction';
-import { LemuriaHistoryTimeline } from './components/LemuriaHistoryTimeline';
-import { BathymetryExplorer } from './components/BathymetryExplorer';
-import { SeaLevelExplorer } from './components/SeaLevelExplorer';
-import { PoompuharModule } from './components/PoompuharModule';
-import { AdamsBridgeModule } from './components/AdamsBridgeModule';
-import { LostLandsExplorer } from './components/LostLandsExplorer';
-import { EvidenceMatrix } from './components/EvidenceMatrix';
-import { SourceLibrary } from './components/SourceLibrary';
-import { SourceRelationGraph } from './components/SourceRelationGraph';
-import { IdeaEvolutionTimeline } from './components/IdeaEvolutionTimeline';
-import { IdentifyEvidenceGame } from './components/IdentifyEvidenceGame';
-import { FactOrClaimGame } from './components/FactOrClaimGame';
-import { ExpeditionLog } from './components/ExpeditionLog';
-
-import { MarineArchaeologyDatabase } from './components/MarineArchaeologyDatabase';
-import { ArchaeologyMethodsExplorer } from './components/ArchaeologyMethodsExplorer';
-import { ProofRequirementsPage } from './components/ProofRequirementsPage';
-import { ExpectedEvidenceSimulator } from './components/ExpectedEvidenceSimulator';
-import { DualTimeline } from './components/DualTimeline';
-import { EtymologyExplorer } from './components/EtymologyExplorer';
-import { GlossaryExplorer } from './components/GlossaryExplorer';
-import { HypothesisBuilder } from './components/HypothesisBuilder';
-import { DesignYourContinent } from './components/DesignYourContinent';
-import { CitationGenerator } from './components/CitationGenerator';
-import { ResearchQuestionGenerator } from './components/ResearchQuestionGenerator';
-import { ArgumentBuilder } from './components/ArgumentBuilder';
-import { SourceCriticismCard } from './components/SourceCriticismCard';
-import { WhoSaidThisGame } from './components/WhoSaidThisGame';
-import { WhenDidThisAppearGame } from './components/WhenDidThisAppearGame';
-import { MediaArchive } from './components/MediaArchive';
-import { MapComparisonSlider } from './components/MapComparisonSlider';
 
 // Lazy-loaded modal
+const GlobalSearchModal = lazySection(() => import('./components/GlobalSearchModal'), 'GlobalSearchModal');
 const RealModal = lazy(() => import('./components/RealModal').then((m) => ({ default: m.RealModal })));
 
 // The intro film plays on every page load, on all devices. Start at the top so a
@@ -69,35 +72,81 @@ if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
   window.history.scrollRestoration = 'manual';
 }
 
-// Physical parchment folio reveal. Animates only opacity + transform (compositor-only, no blur filter),
-// and the wrapper skips layout/paint while off-screen (.section-lazy).
-const folioTransitionVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: [0.25, 1, 0.5, 1], // Natural, physical paper settlement
+// Physical parchment folio reveal: fades each section up once as it enters view.
+// Plain CSS + one shared IntersectionObserver, so the first screen doesn't ship an animation library.
+let revealObserver: IntersectionObserver | null = null;
+function observeReveal(el: Element) {
+  if (!('IntersectionObserver' in window)) {
+    el.classList.add('is-visible');
+    return () => {};
+  }
+  revealObserver ??= new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver?.unobserve(entry.target);
+        }
+      });
     },
-  },
-} as const;
+    { rootMargin: '0px 0px -60px 0px' },
+  );
+  revealObserver.observe(el);
+  return () => revealObserver?.unobserve(el);
+}
 
 function Reveal({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => (ref.current ? observeReveal(ref.current) : undefined), []);
   return (
-    <motion.div
-      className="section-lazy"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: '-60px' }}
-      variants={folioTransitionVariants}
-    >
-      {children}
-    </motion.div>
+    <div ref={ref} className="section-lazy reveal">
+      <SectionBoundary>
+        <Suspense fallback={<SectionSkeleton />}>{children}</Suspense>
+      </SectionBoundary>
+    </div>
   );
 }
 
 export default function App() {
+  // Once the first screen is idle, fetch the remaining section chunks so scrolling never waits on the network.
+  useEffect(() => {
+    const idle = window.requestIdleCallback ?? ((cb: () => void) => window.setTimeout(cb, 1500));
+    idle(() => {
+      whenSectionsLoaded();
+    });
+  }, []);
+
+  // Ctrl+K / Cmd+K toggles search, as advertised on the navbar button.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsSearchModalOpen((open) => !open);
+      }
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
+  // In-page links (#section) may target a section whose chunk hasn't rendered yet. Wait for it, then scroll.
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = decodeURIComponent(window.location.hash.slice(1));
+      if (!id || document.getElementById(id)) return;
+      whenSectionsLoaded().then(() => {
+        let tries = 0;
+        const attempt = () => {
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView();
+          else if (tries++ < 30) requestAnimationFrame(attempt);
+        };
+        attempt();
+      });
+    };
+    window.addEventListener('hashchange', scrollToHash);
+    return () => window.removeEventListener('hashchange', scrollToHash);
+  }, []);
+
   const [showIntro, setShowIntro] = useState(true);
 
   // Standout Feature Modals
@@ -105,8 +154,6 @@ export default function App() {
   const [isNadusModalOpen, setIsNadusModalOpen] = useState(false);
   const [isQuizModalOpen, setIsQuizModalOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
-
-
 
   // Persistent Research Notes State
   const [notes, setNotes] = useState<ResearchNote[]>(() => {
@@ -243,7 +290,15 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#140F0C] text-[#FAF6EE] font-sans selection:bg-[#9A7B45]/30 selection:text-[#FAF6EE]">
+    <div className="min-h-screen text-[color:var(--fg-FAF6EE)] font-sans selection:bg-[color:var(--bg-9A7B45)]/30 selection:text-[color:var(--fg-FAF6EE)]">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[110] focus:px-4 focus:py-3 focus:rounded focus:bg-[color:var(--bg-9A7B45)] focus:text-[color:var(--fg-FAF6EE)] focus:font-heading"
+      >
+        Skip to content
+      </a>
+      <NetworkStatus />
+
       {/* Landing: intro film, shown once per session over the site */}
       {showIntro && <IntroFilm onFinish={finishIntro} />}
 
@@ -256,9 +311,8 @@ export default function App() {
         progressPercentage={progressPercentage}
       />
 
-
       {/* Main Content Sections with Physical Folio Reveal Transitions */}
-      <main className="overflow-x-hidden">
+      <main id="main-content" tabIndex={-1} className="overflow-x-hidden focus:outline-none">
         {/* 1. Hero Section */}
         <Hero onOpenRealModal={() => setIsRealModalOpen(true)} />
 
@@ -519,26 +573,39 @@ export default function App() {
       />
 
       {/* Interactive 49 Nadus Explorer Modal */}
-      <NadusExplorerModal
+      {isNadusModalOpen && (
+<Suspense fallback={null}>
+<NadusExplorerModal
         isOpen={isNadusModalOpen}
         onClose={() => setIsNadusModalOpen(false)}
       />
+</Suspense>
+)}
 
       {/* Interactive Knowledge Quiz Modal */}
-      <KumariQuizModal
+      {isQuizModalOpen && (
+<Suspense fallback={null}>
+<KumariQuizModal
         isOpen={isQuizModalOpen}
         onClose={() => setIsQuizModalOpen(false)}
       />
+</Suspense>
+)}
 
       {/* Global Search Modal (Ctrl+K) */}
-      <GlobalSearchModal
+      {isSearchModalOpen && (
+<Suspense fallback={null}>
+<GlobalSearchModal
         isOpen={isSearchModalOpen}
         onClose={() => setIsSearchModalOpen(false)}
         onNavigateSection={(targetSection) => {
           const el = document.getElementById(targetSection);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
+          else window.location.hash = targetSection;
         }}
       />
+</Suspense>
+)}
 
       {/* Standout Feature: "Is Lemuria Real?" Modal (lazy-mounted on first open) */}
       {isRealModalOpen && (
@@ -549,5 +616,4 @@ export default function App() {
     </div>
   );
 }
-
 

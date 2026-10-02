@@ -15,12 +15,12 @@ export interface LostLandEntry {
   evidenceTags: EvidenceTag[];
 }
 
-export const EVIDENCE_TAG_LEGEND: Record<EvidenceTag, { dot: string; label: string }> = {
-  geological: { dot: '🟢', label: 'Geological' },
-  archaeological: { dot: '🟡', label: 'Archaeological' },
-  literary: { dot: '🔵', label: 'Literary' },
-  cultural: { dot: '🟣', label: 'Cultural tradition' },
-  unsupported: { dot: '🔴', label: 'Unsupported specific claim' },
+export const EVIDENCE_TAG_LEGEND: Record<EvidenceTag, { color: string; label: string }> = {
+  geological: { color: 'var(--fg-53665C)', label: 'Geological' },
+  archaeological: { color: 'var(--fg-9A7B45)', label: 'Archaeological' },
+  literary: { color: 'var(--fg-CDBB96)', label: 'Literary' },
+  cultural: { color: 'var(--fg-A08D72)', label: 'Cultural tradition' },
+  unsupported: { color: 'var(--fg-8B5E4A)', label: 'Unsupported specific claim' },
 };
 
 export const LOST_LANDS: LostLandEntry[] = [

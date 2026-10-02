@@ -72,7 +72,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#0E0C0A]/85 backdrop-blur-md"
+          className="fixed inset-0 bg-[color:var(--bg-0E0C0A)]/85"
         />
 
         {/* Modal Body */}
@@ -80,19 +80,16 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-2xl bg-[#181410] border border-[#7A6038] rounded-xl shadow-2xl overflow-hidden text-[#E4D5BE] z-10 my-8"
+          className="relative w-full max-w-2xl bg-[color:var(--bg-181410)] border border-[color:var(--bd-7A6038)] rounded shadow-2xl overflow-hidden text-[color:var(--fg-E4D5BE)] z-10 my-8"
         >
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-[#463429] bg-[#1E1914]">
+          <div className="flex items-center justify-between p-6 border-b border-[color:var(--bd-463429)] bg-[color:var(--bg-1E1914)]">
             <div className="flex items-center space-x-3">
-              <div className="p-2.5 bg-[#9A7B45]/20 border border-[#9A7B45]/40 rounded-lg text-[#D4AF37]">
-                <Trophy className="w-6 h-6 animate-bounce" />
-              </div>
               <div>
-                <h2 className="text-xl font-serif font-bold text-[#E6C687] flex items-center gap-2">
+                <h2 className="text-xl font-serif font-bold text-[color:var(--fg-E6C687)] flex items-center gap-2">
                   Kumari Kandam & Lemuria Knowledge Quiz
                 </h2>
-                <p className="text-xs text-[#A89F91]">
+                <p className="text-xs text-[color:var(--fg-A89F91)]">
                   Test your mastery of classical Sangam literature, geology, and plate tectonics
                 </p>
               </div>
@@ -100,7 +97,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
 
             <button
               onClick={onClose}
-              className="p-2 rounded-lg text-[#A89F91] hover:text-[#E4D5BE] hover:bg-[#2A231D] transition-colors"
+              className="p-2 rounded text-[color:var(--fg-A89F91)] hover:text-[color:var(--fg-E4D5BE)] hover:bg-[color:var(--bg-2A231D)] transition-colors"
               aria-label="Close modal"
             >
               <X className="w-6 h-6" />
@@ -109,23 +106,23 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
 
           {!quizStarted ? (
             <div className="p-6">
-              <h3 className="text-sm font-serif font-bold text-[#F3E5AB] mb-3">Choose a category to focus your quiz:</h3>
+              <h3 className="text-sm font-serif font-bold text-[color:var(--fg-F3E5AB)] mb-3">Choose a category to focus your quiz:</h3>
               <div className="flex flex-wrap gap-2 mb-6">
                 {QUIZ_CATEGORIES.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setSelectedCategory(cat)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-colors ${
+                    className={`px-3 py-1.5 rounded text-xs font-semibold border transition-colors ${
                       selectedCategory === cat
-                        ? 'bg-[#9A7B45] border-[#9A7B45] text-[#14100D]'
-                        : 'bg-[#1E1914] border-[#3E3025] text-[#CDBB96] hover:border-[#8A6E3B]'
+                        ? 'bg-[color:var(--bg-9A7B45)] border-[color:var(--bd-9A7B45)] text-[color:var(--fg-14100D)]'
+                        : 'bg-[color:var(--bg-1E1914)] border-[color:var(--bd-3E3025)] text-[color:var(--fg-CDBB96)] hover:border-[color:var(--bd-8A6E3B)]'
                     }`}
                   >
                     {cat}
                   </button>
                 ))}
               </div>
-              <p className="text-xs text-[#A89F91] mb-6">
+              <p className="text-xs text-[color:var(--fg-A89F91)] mb-6">
                 {activeQuestions.length} question{activeQuestions.length === 1 ? '' : 's'} selected.
               </p>
               <button
@@ -138,7 +135,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                   setQuizStarted(true);
                 }}
                 disabled={activeQuestions.length === 0}
-                className="px-6 py-2.5 bg-[#9A7B45] hover:bg-[#B59253] disabled:opacity-40 text-[#14100D] rounded-lg text-sm font-bold transition-colors"
+                className="px-6 py-2.5 bg-[color:var(--bg-9A7B45)] hover:bg-[color:var(--bg-B59253)] disabled:opacity-40 text-[color:var(--fg-14100D)] rounded text-sm font-bold transition-colors"
               >
                 Begin Quiz →
               </button>
@@ -147,13 +144,13 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
             <div className="p-6">
               {/* Progress Bar */}
               <div className="mb-6">
-                <div className="flex justify-between items-center text-xs text-[#A89F91] mb-2 font-mono">
+                <div className="flex justify-between items-center text-xs text-[color:var(--fg-A89F91)] mb-2 font-mono">
                   <span>Question {currentIdx + 1} of {activeQuestions.length}</span>
-                  <span className="text-[#D4AF37] font-semibold">{currentQ.category}</span>
+                  <span className="text-[color:var(--fg-D4AF37)] font-semibold">{currentQ.category}</span>
                 </div>
-                <div className="w-full bg-[#2A221A] h-2 rounded-full overflow-hidden border border-[#3E3025]">
+                <div className="w-full bg-[color:var(--bg-2A221A)] h-2 rounded-full overflow-hidden border border-[color:var(--bd-3E3025)]">
                   <motion.div
-                    className="bg-gradient-to-r from-[#8A6E3B] to-[#D4AF37] h-full"
+                    className="bg-[color:var(--bg-9A7B45)] h-full"
                     initial={{ width: 0 }}
                     animate={{ width: `${((currentIdx + 1) / activeQuestions.length) * 100}%` }}
                     transition={{ duration: 0.3 }}
@@ -162,24 +159,24 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
               </div>
 
               {/* Question */}
-              <h3 className="text-lg font-serif font-bold text-[#F3E5AB] mb-6 leading-relaxed">
+              <h3 className="text-lg font-serif font-bold text-[color:var(--fg-F3E5AB)] mb-6 leading-relaxed">
                 {currentQ.question}
               </h3>
 
               {/* Options */}
               <div className="space-y-3 mb-6">
                 {currentQ.options.map((option, idx) => {
-                  let optionClass = 'bg-[#1E1914] border-[#3E3025] hover:border-[#8A6E3B] text-[#E4D5BE]';
+                  let optionClass = 'bg-[color:var(--bg-1E1914)] border-[color:var(--bd-3E3025)] hover:border-[color:var(--bd-8A6E3B)] text-[color:var(--fg-E4D5BE)]';
 
                   if (selectedAnswer === idx) {
-                    optionClass = 'bg-[#2A2016] border-[#D4AF37] text-[#F3E5AB] font-medium';
+                    optionClass = 'bg-[color:var(--bg-2A2016)] border-[color:var(--bd-D4AF37)] text-[color:var(--fg-F3E5AB)] font-medium';
                   }
 
                   if (isAnswerSubmitted) {
                     if (idx === currentQ.correctAnswer) {
-                      optionClass = 'bg-[#153422] border-[#22C55E] text-[#4ADE80] font-semibold';
+                      optionClass = 'bg-[color:var(--bg-153422)] border-[color:var(--bd-22C55E)] text-[color:var(--fg-4ADE80)] font-semibold';
                     } else if (selectedAnswer === idx && idx !== currentQ.correctAnswer) {
-                      optionClass = 'bg-[#3C1A1A] border-[#EF4444] text-[#F87171]';
+                      optionClass = 'bg-[color:var(--bg-3C1A1A)] border-[color:var(--bd-EF4444)] text-[color:var(--fg-F87171)]';
                     }
                   }
 
@@ -189,7 +186,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                       whileTap={{ scale: 0.99 }}
                       onClick={() => handleSelectOption(idx)}
                       disabled={isAnswerSubmitted}
-                      className={`w-full text-left p-4 rounded-xl border transition-all flex items-center justify-between ${optionClass}`}
+                      className={`w-full text-left p-4 rounded border transition-all flex items-center justify-between ${optionClass}`}
                     >
                       <span className="flex items-center gap-3">
                         <span className="w-6 h-6 rounded-full border border-current/30 flex items-center justify-center text-xs font-mono">
@@ -199,10 +196,10 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                       </span>
 
                       {isAnswerSubmitted && idx === currentQ.correctAnswer && (
-                        <CheckCircle2 className="w-5 h-5 text-[#4ADE80]" />
+                        <CheckCircle2 className="w-5 h-5 text-[color:var(--fg-4ADE80)]" />
                       )}
                       {isAnswerSubmitted && selectedAnswer === idx && idx !== currentQ.correctAnswer && (
-                        <XCircle className="w-5 h-5 text-[#F87171]" />
+                        <XCircle className="w-5 h-5 text-[color:var(--fg-F87171)]" />
                       )}
                     </motion.button>
                   );
@@ -216,12 +213,12 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     exit={{ opacity: 0, height: 0 }}
-                    className="p-4 bg-[#14100D] border border-[#463429] rounded-xl mb-6"
+                    className="p-4 bg-[color:var(--bg-14100D)] border border-[color:var(--bd-463429)] rounded mb-6"
                   >
-                    <div className="flex items-center gap-2 text-xs font-semibold text-[#D4AF37] mb-1">
-                      <Sparkles className="w-4 h-4" /> Explanation & Lore Context
+                    <div className="flex items-center gap-2 text-xs font-semibold text-[color:var(--fg-D4AF37)] mb-1">
+Explanation & Lore Context
                     </div>
-                    <p className="text-xs text-[#C8BBAA] leading-relaxed">{currentQ.explanation}</p>
+                    <p className="text-xs text-[color:var(--fg-C8BBAA)] leading-relaxed">{currentQ.explanation}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -232,10 +229,10 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                   <button
                     onClick={handleSubmitAnswer}
                     disabled={selectedAnswer === null}
-                    className={`px-6 py-2.5 rounded-lg text-sm font-bold transition-colors ${
+                    className={`px-6 py-2.5 rounded text-sm font-bold transition-colors ${
                       selectedAnswer !== null
-                        ? 'bg-[#9A7B45] hover:bg-[#B59253] text-[#14100D]'
-                        : 'bg-[#2A231D] text-[#6E6155] cursor-not-allowed'
+                        ? 'bg-[color:var(--bg-9A7B45)] hover:bg-[color:var(--bg-B59253)] text-[color:var(--fg-14100D)]'
+                        : 'bg-[color:var(--bg-2A231D)] text-[color:var(--fg-6E6155)] cursor-not-allowed'
                     }`}
                   >
                     Submit Answer
@@ -243,7 +240,7 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
                 ) : (
                   <button
                     onClick={handleNextQuestion}
-                    className="px-6 py-2.5 bg-[#9A7B45] hover:bg-[#B59253] text-[#14100D] rounded-lg text-sm font-bold transition-colors"
+                    className="px-6 py-2.5 bg-[color:var(--bg-9A7B45)] hover:bg-[color:var(--bg-B59253)] text-[color:var(--fg-14100D)] rounded text-sm font-bold transition-colors"
                   >
                     {currentIdx + 1 < activeQuestions.length ? 'Next Question →' : 'See Results'}
                   </button>
@@ -256,32 +253,32 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="w-20 h-20 mx-auto rounded-full bg-[#9A7B45]/20 border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37]"
+                className="w-20 h-20 mx-auto rounded-full bg-[color:var(--bg-9A7B45)]/20 border-2 border-[color:var(--bd-D4AF37)] flex items-center justify-center text-[color:var(--fg-D4AF37)]"
               >
-                <Award className="w-10 h-10 animate-pulse" />
+                <Award className="w-10 h-10" />
               </motion.div>
 
               <div>
-                <h3 className="text-2xl font-serif font-bold text-[#E6C687] mb-1">Quiz Complete!</h3>
-                <p className="text-sm text-[#A89F91]">
-                  You scored <span className="text-[#D4AF37] font-bold text-lg">{score}</span> out of{' '}
+                <h3 className="text-2xl font-serif font-bold text-[color:var(--fg-E6C687)] mb-1">Quiz Complete!</h3>
+                <p className="text-sm text-[color:var(--fg-A89F91)]">
+                  You scored <span className="text-[color:var(--fg-D4AF37)] font-bold text-lg">{score}</span> out of{' '}
                   <span className="font-bold">{activeQuestions.length}</span>
                 </p>
               </div>
 
               {/* Achievement Badge */}
-              <div className="bg-[#14100D] border border-[#3E3025] p-5 rounded-xl max-w-md mx-auto">
-                <span className="text-xs uppercase font-mono text-[#D4AF37] tracking-wider block mb-1">
+              <div className="bg-[color:var(--bg-14100D)] border border-[color:var(--bd-3E3025)] p-5 rounded max-w-md mx-auto">
+                <span className="text-xs uppercase font-mono text-[color:var(--fg-D4AF37)] tracking-wider block mb-1">
                   Earned Title
                 </span>
-                <p className="text-base font-serif font-bold text-[#F3E5AB]">
+                <p className="text-base font-serif font-bold text-[color:var(--fg-F3E5AB)]">
                   {score >= 9
-                    ? 'Sangam Scholar & Master Cartographer 📜'
+                    ? 'Sangam Scholar & Master Cartographer'
                     : score >= 6
-                    ? 'Kumari Kandam Researcher 🗺️'
-                    : 'Curious Lost Land Explorer ⛵'}
+                    ? 'Kumari Kandam Researcher'
+                    : 'Curious Lost Land Explorer'}
                 </p>
-                <p className="text-xs text-[#A89F91] mt-2">
+                <p className="text-xs text-[color:var(--fg-A89F91)] mt-2">
                   {score >= 9
                     ? 'Outstanding! You have an exceptionally deep understanding of classical Tamil Sangam literature, ancient coastal deluge lore, and plate tectonics.'
                     : 'Great effort! Review the literary sources and science sections to unlock the Master title.'}
@@ -291,13 +288,13 @@ export function KumariQuizModal({ isOpen, onClose }: KumariQuizModalProps) {
               <div className="flex justify-center gap-4 pt-4">
                 <button
                   onClick={handleRestartQuiz}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-[#2A221A] hover:bg-[#382D22] border border-[#7A6038] text-[#E4D5BE] rounded-lg text-sm font-semibold transition-colors"
+                  className="flex items-center gap-2 px-5 py-2.5 bg-[color:var(--bg-2A221A)] hover:bg-[color:var(--bg-382D22)] border border-[color:var(--bd-7A6038)] text-[color:var(--fg-E4D5BE)] rounded text-sm font-semibold transition-colors"
                 >
                   <RotateCcw className="w-4 h-4" /> Retry Quiz
                 </button>
                 <button
                   onClick={onClose}
-                  className="px-6 py-2.5 bg-[#9A7B45] hover:bg-[#B59253] text-[#14100D] rounded-lg text-sm font-bold transition-colors"
+                  className="px-6 py-2.5 bg-[color:var(--bg-9A7B45)] hover:bg-[color:var(--bg-B59253)] text-[color:var(--fg-14100D)] rounded text-sm font-bold transition-colors"
                 >
                   Done Exploring
                 </button>

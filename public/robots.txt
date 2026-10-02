@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://kumarikandam-the-lost-mythology.vercel.app/sitemap.xml

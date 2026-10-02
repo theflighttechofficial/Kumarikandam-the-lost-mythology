@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { CheckSquare, ChevronDown, Compass, Film, HelpCircle, Menu, X } from 'lucide-react';
+import { CheckSquare, ChevronDown, Compass, Film, Search, HelpCircle, Menu, Moon, Sun, X } from 'lucide-react';
+import { useTheme } from '../theme';
 
 interface NavbarProps {
   onReplayIntro: () => void;
@@ -17,6 +18,7 @@ export function Navbar({
   progressPercentage,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggle: toggleTheme } = useTheme();
   const [exploreOpen, setExploreOpen] = useState(false);
   const exploreRef = useRef<HTMLDivElement>(null);
 
@@ -129,7 +131,7 @@ export function Navbar({
   }, []);
 
   return (
-    <header className="sticky top-0 z-40 bg-[#1E1914] border-b border-[#463429] shadow-xl">
+    <header className="sticky top-0 z-40 bg-[color:var(--page-bg)] border-b border-[color:var(--bd-463429)]">
       {/* Top subtle maritime graduation bar */}
       <div className="h-1 border-nautical-bar opacity-70" />
 
@@ -138,28 +140,28 @@ export function Navbar({
           {/* Brand / Title - Antique Nautical Atlas Header */}
           <a
             href="#"
-            className="flex items-center gap-2 sm:gap-2.5 text-[#E6D7B9] hover:text-[#FAF6EE] transition-colors group min-w-0"
+            className="flex min-h-11 items-center gap-2 sm:gap-2.5 text-[color:var(--fg-E6D7B9)] hover:text-[color:var(--fg-FAF6EE)] transition-colors group min-w-0"
           >
-            <div className="shrink-0 w-8 h-8 rounded bg-[#2B211A] border border-[#756451]/60 flex items-center justify-center text-[#9A7B45] group-hover:border-[#9A7B45] transition-colors shadow-inner">
-              <Compass className="w-4 h-4 text-[#9A7B45]" />
+            <div className="shrink-0 w-8 h-8 rounded bg-[color:var(--bg-2B211A)] border border-[color:var(--bd-756451)]/60 flex items-center justify-center text-[color:var(--fg-9A7B45)] group-hover:border-[color:var(--bd-9A7B45)] transition-colors">
+              <Compass className="w-4 h-4 text-[color:var(--fg-9A7B45)]" />
             </div>
             <div className="min-w-0 truncate">
-              <span className="font-heading font-bold text-sm min-[400px]:text-base sm:text-lg tracking-[0.12em] sm:tracking-[0.2em] text-[#E6D7B9]">
+              <span className="font-heading font-bold text-sm min-[400px]:text-base sm:text-lg tracking-[0.12em] sm:tracking-[0.2em] text-[color:var(--fg-E6D7B9)]">
                 KUMARI KANDAM
               </span>
-              <span className="hidden 2xl:inline-block text-[9px] font-carto text-[#9A7B45] ml-2 px-1.5 py-0.5 rounded bg-[#2B211A] border border-[#463429] uppercase tracking-widest">
+              <span className="hidden 2xl:inline-block text-[9px] font-carto text-[color:var(--fg-9A7B45)] ml-2 px-1.5 py-0.5 rounded bg-[color:var(--bg-2B211A)] border border-[color:var(--bd-463429)] uppercase tracking-widest">
                 Cartographic Survey
               </span>
             </div>
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-4 text-[11px] font-carto uppercase tracking-wide text-[#CDBB96]/80 min-w-0">
+          <nav className="hidden lg:flex items-center gap-4 text-[11px] font-carto uppercase tracking-wide text-[color:var(--fg-CDBB96)]/90 min-w-0">
             {primaryLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
-                className="hover:text-[#FAF6EE] transition-colors py-1 hover:border-b border-[#9A7B45]/70 whitespace-nowrap shrink-0"
+                className="hover:text-[color:var(--fg-FAF6EE)] transition-colors py-1 hover:border-b border-[color:var(--bd-9A7B45)]/70 whitespace-nowrap shrink-0"
               >
                 {link.name}
               </a>
@@ -169,7 +171,7 @@ export function Navbar({
             <div className="relative shrink-0" ref={exploreRef}>
               <button
                 onClick={() => setExploreOpen((open) => !open)}
-                className="flex items-center gap-1 hover:text-[#FAF6EE] transition-colors py-1 whitespace-nowrap"
+                className="flex items-center gap-1 hover:text-[color:var(--fg-FAF6EE)] transition-colors py-1 whitespace-nowrap"
                 aria-expanded={exploreOpen}
               >
                 Explore More
@@ -177,10 +179,10 @@ export function Navbar({
               </button>
 
               {exploreOpen && (
-                <div className="fixed left-1/2 -translate-x-1/2 top-[4.5rem] w-[min(calc(100vw-2rem),760px)] max-h-[calc(100dvh-6rem)] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 p-5 rounded-lg bg-[#1E1914] border border-[#463429] shadow-2xl z-50 normal-case">
+                <div className="fixed left-1/2 -translate-x-1/2 top-[4.5rem] w-[min(calc(100vw-2rem),760px)] max-h-[calc(100dvh-6rem)] overflow-y-auto grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 p-5 rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] z-50 normal-case">
                   {exploreGroups.map((group) => (
                     <div key={group.group}>
-                      <p className="text-[10px] font-carto uppercase tracking-widest text-[#9A7B45] mb-1.5 pb-1 border-b border-[#463429]">
+                      <p className="text-[10px] font-carto uppercase tracking-widest text-[color:var(--fg-9A7B45)] mb-1.5 pb-1 border-b border-[color:var(--bd-463429)]">
                         {group.group}
                       </p>
                       <div className="flex flex-col">
@@ -189,7 +191,7 @@ export function Navbar({
                             key={link.name}
                             href={link.href}
                             onClick={() => setExploreOpen(false)}
-                            className="px-1 py-1.5 text-[11px] text-[#CDBB96]/80 hover:text-[#FAF6EE] hover:bg-[#2B211A] rounded transition-colors"
+                            className="px-1 py-1.5 text-[11px] text-[color:var(--fg-CDBB96)]/90 hover:text-[color:var(--fg-FAF6EE)] hover:bg-[color:var(--bg-2B211A)] rounded transition-colors"
                           >
                             {link.name}
                           </a>
@@ -204,47 +206,58 @@ export function Navbar({
 
           {/* Right Action Controls */}
           <div className="flex items-center gap-1.5 sm:gap-3 xl:gap-2 2xl:gap-3 shrink-0">
+            {/* Light / dark theme */}
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              aria-pressed={theme === 'dark'}
+              title={theme === 'dark' ? 'Light theme' : 'Dark theme'}
+              className="flex min-h-11 min-w-11 lg:min-h-0 lg:min-w-0 items-center justify-center px-2.5 py-1.5 rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-3E2F25)] text-[color:var(--fg-9A7B45)] border border-[color:var(--bd-7A6038)]/60 transition-colors"
+            >
+              {theme === 'dark' ? <Sun className="w-3.5 h-3.5" /> : <Moon className="w-3.5 h-3.5" />}
+            </button>
+
             {/* Replay Intro Film */}
             <button
               onClick={onReplayIntro}
-              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
+              className="hidden sm:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-3E2F25)] text-[color:var(--fg-E4D5BE)] border border-[color:var(--bd-7A6038)]/60 transition-colors"
               title="Replay intro"
               aria-label="Replay intro"
             >
-              <Film className="w-3.5 h-3.5 text-[#9A7B45]" />
+              <Film className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)]" />
               <span className="hidden 2xl:inline font-carto text-[11px] uppercase tracking-wide">Intro</span>
             </button>
 
             {/* Global Search Button */}
             <button
               onClick={onOpenSearchModal}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#E4D5BE] border border-[#7A6038]/60 transition-colors shadow-inner"
+              className="flex min-h-11 min-w-11 justify-center lg:min-h-0 lg:min-w-0 items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-3E2F25)] text-[color:var(--fg-E4D5BE)] border border-[color:var(--bd-7A6038)]/60 transition-colors"
               title="Search portal (Ctrl+K)"
               aria-label="Search"
             >
-              <span className="text-[#D4AF37]">🔍</span>
-              <span className="hidden md:inline font-mono text-[11px] text-[#A89F91]">Ctrl+K</span>
+              <Search className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)]" />
+              <span className="hidden md:inline font-mono text-[11px] text-[color:var(--fg-A89F91)]">Ctrl+K</span>
             </button>
 
             {/* Quiz Button */}
             <button
               onClick={onOpenQuizModal}
-              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[#2B211A] hover:bg-[#3E2F25] text-[#D4AF37] border border-[#7A6038]/60 transition-colors"
+              className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-semibold rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-3E2F25)] text-[color:var(--fg-D4AF37)] border border-[color:var(--bd-7A6038)]/60 transition-colors"
               title="Take Kumari Kandam Knowledge Quiz"
             >
-              <span>🏆 Quiz</span>
+              <span>Quiz</span>
             </button>
 
             {/* Field Log Progress Gauge */}
             <a
               href="#productivity"
               id="nav-progress-pill"
-              className="hidden sm:flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-full bg-[#2B211A] text-[#E6D7B9] border border-[#463429] hover:border-[#9A7B45] transition-colors shadow-inner whitespace-nowrap"
+              className="hidden sm:flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-full bg-[color:var(--bg-2B211A)] text-[color:var(--fg-E6D7B9)] border border-[color:var(--bd-463429)] hover:border-[color:var(--bd-9A7B45)] transition-colors whitespace-nowrap"
               title="View Field Journal & Expedition Tasks"
             >
-              <CheckSquare className="w-3.5 h-3.5 text-[#9A7B45] shrink-0" />
-              <span className="hidden sm:inline text-[#CDBB96]/80 font-carto">Log:</span>
-              <span className="text-[#E6D7B9] font-mono font-bold">{progressPercentage}%</span>
+              <CheckSquare className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)] shrink-0" />
+              <span className="hidden sm:inline text-[color:var(--fg-CDBB96)]/90 font-carto">Log:</span>
+              <span className="text-[color:var(--fg-E6D7B9)] font-mono font-bold">{progressPercentage}%</span>
             </a>
 
             {/* Standout Feature: "Ask the Atlas / Is It Real?" */}
@@ -252,7 +265,7 @@ export function Navbar({
               id="nav-is-lemuria-real-btn"
               aria-label="Is Lemuria real?"
               onClick={onOpenRealModal}
-              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-semibold rounded bg-[#9A7B45] hover:bg-[#8B5E4A] text-[#FAF6EE] shadow transition-all active:scale-95 font-heading tracking-wide border border-[#CDBB96]/40 whitespace-nowrap"
+              className="flex min-h-11 min-w-11 justify-center lg:min-h-0 lg:min-w-0 items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs sm:text-sm font-semibold rounded bg-[color:var(--bg-9A7B45)] hover:bg-[color:var(--bg-8B5E4A)] text-[color:var(--fg-14100D)] transition-all active:scale-95 font-heading tracking-wide border border-[color:var(--bd-CDBB96)]/40 whitespace-nowrap"
             >
               <HelpCircle className="w-3.5 h-3.5 shrink-0" />
               <span className="hidden sm:inline">Is It Real?</span>
@@ -261,7 +274,7 @@ export function Navbar({
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-[#CDBB96] hover:text-[#FAF6EE] rounded hover:bg-[#2B211A]"
+              className="lg:hidden min-h-11 min-w-11 flex items-center justify-center text-[color:var(--fg-CDBB96)] hover:text-[color:var(--fg-FAF6EE)] rounded hover:bg-[color:var(--bg-2B211A)]"
               aria-label="Toggle Navigation Menu"
               aria-expanded={mobileMenuOpen}
             >
@@ -272,31 +285,31 @@ export function Navbar({
 
         {/* Mobile Dropdown Menu: scrolls inside the viewport instead of pushing past it */}
         {mobileMenuOpen && (
-          <div className="lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 border-t border-[#463429] bg-[#231B15] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain">
-            <div className="grid grid-cols-3 gap-2 pb-3 mb-3 border-b border-[#463429]">
+          <div className="lg:hidden -mx-4 sm:-mx-6 px-4 sm:px-6 pb-[max(1rem,env(safe-area-inset-bottom))] pt-3 border-t border-[color:var(--bd-463429)] bg-[color:var(--bg-231B15)] max-h-[calc(100dvh-4.25rem)] overflow-y-auto overscroll-contain">
+            <div className="grid grid-cols-3 gap-2 pb-3 mb-3 border-b border-[color:var(--bd-463429)]">
               <button
                 onClick={() => { setMobileMenuOpen(false); onReplayIntro(); }}
-                className="flex items-center justify-center gap-1.5 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[#2B211A] text-[#E4D5BE] border border-[#7A6038]/60"
+                className="flex items-center justify-center gap-1.5 min-h-11 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[color:var(--bg-2B211A)] text-[color:var(--fg-E4D5BE)] border border-[color:var(--bd-7A6038)]/60"
               >
-                <Film className="w-3.5 h-3.5 text-[#9A7B45]" /> Intro
+                <Film className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)]" /> Intro
               </button>
               <button
                 onClick={() => { setMobileMenuOpen(false); onOpenQuizModal(); }}
-                className="flex items-center justify-center gap-1.5 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[#2B211A] text-[#D4AF37] border border-[#7A6038]/60"
+                className="flex items-center justify-center gap-1.5 min-h-11 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[color:var(--bg-2B211A)] text-[color:var(--fg-D4AF37)] border border-[color:var(--bd-7A6038)]/60"
               >
-                🏆 Quiz
+                Quiz
               </button>
               <a
                 href="#productivity"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-center gap-1.5 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[#2B211A] text-[#E6D7B9] border border-[#463429]"
+                className="flex items-center justify-center gap-1.5 min-h-11 px-2 py-2.5 text-[11px] font-carto uppercase tracking-wide rounded bg-[color:var(--bg-2B211A)] text-[color:var(--fg-E6D7B9)] border border-[color:var(--bd-463429)]"
               >
-                <CheckSquare className="w-3.5 h-3.5 text-[#9A7B45]" /> {progressPercentage}%
+                <CheckSquare className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)]" /> {progressPercentage}%
               </a>
             </div>
             {[{ group: 'Main', links: primaryLinks }, ...exploreGroups].map((group) => (
               <div key={group.group} className="mb-3">
-                <p className="px-1 pb-1 mb-1 text-[10px] font-carto uppercase tracking-widest text-[#9A7B45] border-b border-[#463429]">
+                <p className="px-1 pb-1 mb-1 text-[10px] font-carto uppercase tracking-widest text-[color:var(--fg-9A7B45)] border-b border-[color:var(--bd-463429)]">
                   {group.group}
                 </p>
                 <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-x-2">
@@ -305,7 +318,7 @@ export function Navbar({
                       key={link.name}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="block px-2 py-2.5 text-xs font-carto uppercase tracking-wider text-[#CDBB96] hover:text-[#FAF6EE] hover:bg-[#2B211A] rounded transition-colors"
+                      className="block px-2 py-3 text-xs font-carto uppercase tracking-wider text-[color:var(--fg-CDBB96)] hover:text-[color:var(--fg-FAF6EE)] hover:bg-[color:var(--bg-2B211A)] rounded transition-colors"
                     >
                       {link.name}
                     </a>

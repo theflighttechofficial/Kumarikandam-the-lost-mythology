@@ -18,10 +18,10 @@ function deriveLens(claim: Claim): EvidenceLensTag {
 }
 
 const STATUS_STYLES: Record<Claim['status'], string> = {
-  established: 'bg-[#1E1914] text-[#53665C] border-[#53665C]/60',
-  contested: 'bg-[#1E1914] text-[#9A7B45] border-[#9A7B45]/60',
-  unsupported: 'bg-[#1E1914] text-[#8B5E4A] border-[#8B5E4A]/60',
-  legendary_tradition: 'bg-[#1E1914] text-[#CDBB96] border-[#756451]/60',
+  established: 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-53665C)] border-[color:var(--bd-53665C)]/60',
+  contested: 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-9A7B45)] border-[color:var(--bd-9A7B45)]/60',
+  unsupported: 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-8B5E4A)] border-[color:var(--bd-8B5E4A)]/60',
+  legendary_tradition: 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-CDBB96)] border-[color:var(--bd-756451)]/60',
 };
 
 const STATUS_LABEL: Record<Claim['status'], string> = {
@@ -64,24 +64,24 @@ export function ClaimsExplorer() {
   );
 
   return (
-    <section id="claims-explorer" className="py-20 bg-[#1A1511] border-b border-[#463429] relative">
+    <section id="claims-explorer" className="py-20 bg-[color:var(--section-1A1511)] border-b border-[color:var(--bd-463429)] relative">
       <div className="absolute inset-0 bg-carto-grid opacity-15 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-10">
-          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[#9A7B45] mb-2">
+          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[color:var(--fg-9A7B45)] mb-2">
             <Gavel className="w-4 h-4" />
             <span>Register of Claims</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#E6D7B9] tracking-wide">Claims Explorer</h2>
-          <p className="mt-2 text-base text-[#CDBB96] font-serif max-w-2xl leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[color:var(--fg-E6D7B9)] tracking-wide">Claims Explorer</h2>
+          <p className="mt-2 text-base text-[color:var(--fg-CDBB96)] font-serif max-w-2xl leading-relaxed">
             Every assertion made about Kumari Kandam and Lemuria, sorted by how well it holds up — from established
             science to unsupported popular claims.
           </p>
         </div>
 
         <div className="flex flex-wrap gap-4 mb-8">
-          <div className="flex flex-wrap items-center gap-1.5 bg-[#241B15] p-1.5 rounded border border-[#463429] font-carto">
-            <span className="text-[11px] text-[#9A7B45] px-2 flex items-center gap-1 uppercase font-bold tracking-wider">
+          <div className="flex flex-wrap items-center gap-1.5 bg-[color:var(--bg-241B15)] p-1.5 rounded border border-[color:var(--bd-463429)] font-carto">
+            <span className="text-[11px] text-[color:var(--fg-9A7B45)] px-2 flex items-center gap-1 uppercase font-bold tracking-wider">
               <Filter className="w-3 h-3" /> Category:
             </span>
             {CATEGORIES.map((c) => (
@@ -89,15 +89,15 @@ export function ClaimsExplorer() {
                 key={c.id}
                 onClick={() => setCategory(c.id)}
                 className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded transition-colors ${
-                  category === c.id ? 'bg-[#2B211A] text-[#FAF6EE] border border-[#9A7B45]' : 'text-[#CDBB96]/70 hover:text-[#E6D7B9]'
+                  category === c.id ? 'bg-[color:var(--bg-2B211A)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)]' : 'text-[color:var(--fg-CDBB96)]/85 hover:text-[color:var(--fg-E6D7B9)]'
                 }`}
               >
                 {c.label}
               </button>
             ))}
           </div>
-          <div className="flex flex-wrap items-center gap-1.5 bg-[#241B15] p-1.5 rounded border border-[#463429] font-carto">
-            <span className="text-[11px] text-[#9A7B45] px-2 flex items-center gap-1 uppercase font-bold tracking-wider">
+          <div className="flex flex-wrap items-center gap-1.5 bg-[color:var(--bg-241B15)] p-1.5 rounded border border-[color:var(--bd-463429)] font-carto">
+            <span className="text-[11px] text-[color:var(--fg-9A7B45)] px-2 flex items-center gap-1 uppercase font-bold tracking-wider">
               Status:
             </span>
             {(['all', 'established', 'contested', 'unsupported', 'legendary_tradition'] as const).map((s) => (
@@ -105,7 +105,7 @@ export function ClaimsExplorer() {
                 key={s}
                 onClick={() => setStatus(s)}
                 className={`px-3 py-1 text-xs uppercase tracking-wider font-bold rounded transition-colors ${
-                  status === s ? 'bg-[#2B211A] text-[#FAF6EE] border border-[#9A7B45]' : 'text-[#CDBB96]/70 hover:text-[#E6D7B9]'
+                  status === s ? 'bg-[color:var(--bg-2B211A)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)]' : 'text-[color:var(--fg-CDBB96)]/85 hover:text-[color:var(--fg-E6D7B9)]'
                 }`}
               >
                 {s === 'all' ? 'All' : STATUS_LABEL[s]}
@@ -117,18 +117,18 @@ export function ClaimsExplorer() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {filtered.map((c) => (
-            <div key={c.id} className="hover-lift p-5 rounded border border-[#463429] bg-[#241B15]">
+            <div key={c.id} className="hover-lift p-5 rounded border border-[color:var(--bd-463429)] bg-[color:var(--bg-241B15)]">
               <div className="flex items-center justify-between gap-2 mb-3">
                 <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider border font-carto ${STATUS_STYLES[c.status]}`}>
                   {STATUS_LABEL[c.status]}
                 </span>
-                <span className="text-[10px] font-carto uppercase tracking-wider text-[#9A7B45]">{CONFIDENCE_LABEL[c.confidence]}</span>
+                <span className="text-[10px] font-carto uppercase tracking-wider text-[color:var(--fg-9A7B45)]">{CONFIDENCE_LABEL[c.confidence]}</span>
               </div>
-              <h3 className="text-base font-bold text-[#E6D7B9] font-heading mb-2 leading-snug">{c.claim}</h3>
-              {c.description && <p className="text-xs sm:text-sm text-[#CDBB96] font-serif leading-relaxed mb-3">{c.description}</p>}
+              <h3 className="text-base font-bold text-[color:var(--fg-E6D7B9)] font-heading mb-2 leading-snug">{c.claim}</h3>
+              {c.description && <p className="text-xs sm:text-sm text-[color:var(--fg-CDBB96)] font-serif leading-relaxed mb-3">{c.description}</p>}
               <div className="flex flex-wrap gap-1.5">
                 {c.evidenceType.map((e) => (
-                  <span key={e} className="px-2 py-0.5 rounded text-[10px] bg-[#1E1914] border border-[#463429] text-[#CDBB96]/80 font-carto">
+                  <span key={e} className="px-2 py-0.5 rounded text-[10px] bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-CDBB96)]/90 font-carto">
                     {e}
                   </span>
                 ))}

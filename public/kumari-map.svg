@@ -1,0 +1,127 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" font-family="Georgia, 'Times New Roman', serif">
+  <!-- Retro chart of Kumari Kandam as drawn by early-20th-century Tamil revivalist maps.
+       Used as a CSS mask: only alpha matters, colour comes from the theme. -->
+  <defs>
+    <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
+      <path d="M0 0V9" stroke-width="1"/>
+    </pattern>
+    <pattern id="waves" width="46" height="22" patternUnits="userSpaceOnUse">
+      <path d="M4 12 q5 -6 10 0 t10 0" stroke-width="0.9" opacity="0.55"/>
+    </pattern>
+  </defs>
+
+  <!-- Sea texture -->
+  <rect width="1600" height="1000" fill="url(#waves)" stroke="none" opacity="0.5"/>
+
+  <!-- Graticule -->
+  <g stroke-width="0.7" opacity="0.45">
+    <path d="M0 125H1600M0 250H1600M0 375H1600M0 500H1600M0 625H1600M0 750H1600M0 875H1600"/>
+    <path d="M160 0V1000M320 0V1000M480 0V1000M640 0V1000M800 0V1000M960 0V1000M1120 0V1000M1280 0V1000M1440 0V1000"/>
+  </g>
+  <g fill="#000" stroke="none" font-size="13" opacity="0.6" font-style="italic">
+    <text x="8" y="120">10° N</text><text x="8" y="245">8° N</text><text x="8" y="370">6° N</text>
+    <text x="8" y="495">4° N</text><text x="8" y="620">2° N</text><text x="8" y="745">Equator</text>
+    <text x="324" y="992">74° E</text><text x="644" y="992">78° E</text><text x="964" y="992">82° E</text><text x="1284" y="992">86° E</text>
+  </g>
+
+  <!-- Map border -->
+  <rect x="24" y="24" width="1552" height="952" stroke-width="2.2"/>
+  <rect x="34" y="34" width="1532" height="932" stroke-width="0.8"/>
+
+  <!-- Present-day coast: southern India -->
+  <path stroke-width="2.4" d="M520 24 C540 90 556 150 590 210 C612 250 640 300 668 352 C684 380 700 404 716 420 C730 404 748 382 772 352 C808 304 846 250 876 196 C904 146 930 90 950 24"/>
+  <!-- Sri Lanka -->
+  <path stroke-width="2.2" d="M930 300 C956 290 984 318 994 360 C1004 404 990 452 960 468 C934 478 914 452 908 412 C902 368 908 314 930 300 Z"/>
+  <text x="1012" y="392" fill="#000" stroke="none" font-size="20" letter-spacing="3">ILANKAI</text>
+
+  <!-- The imagined continent of Kumari Kandam (hatched) -->
+  <path stroke-width="2" stroke-dasharray="9 6" fill="url(#hatch)" fill-opacity="0.55"
+    d="M716 420 C690 470 610 500 520 520 C420 545 300 580 230 650 C170 712 180 800 250 850 C330 905 470 910 610 930 C760 950 920 940 1060 900 C1190 862 1310 800 1340 720 C1368 640 1300 590 1200 560 C1100 530 1030 500 994 470 C960 468 930 470 908 430 C860 450 780 450 716 420 Z"/>
+
+  <!-- Mountain range: Kumarikkodu -->
+  <g stroke-width="1.5">
+    <path d="M560 640 l14 -26 l14 26 M590 646 l16 -30 l16 30 M624 652 l13 -24 l13 24 M652 646 l15 -28 l15 28 M684 640 l12 -22 l12 22"/>
+    <path d="M565 634 l9 -12 M596 638 l10 -14 M630 644 l7 -10 M658 638 l9 -12" stroke-width="0.8"/>
+  </g>
+  <text x="560" y="680" fill="#000" stroke="none" font-size="15" font-style="italic">Kumarikkōdu</text>
+
+  <!-- Rivers: Pahruli and Kumari -->
+  <path stroke-width="1.6" d="M760 470 C770 520 742 560 760 610 C780 664 830 690 860 742 C884 786 870 840 900 900"/>
+  <text x="884" y="800" fill="#000" stroke="none" font-size="16" font-style="italic" transform="rotate(62 884 800)">Pahṟuḷi</text>
+  <path stroke-width="1.6" d="M630 660 C600 710 560 740 520 790 C490 828 470 860 430 890"/>
+  <text x="470" y="800" fill="#000" stroke="none" font-size="16" font-style="italic" transform="rotate(-48 470 800)">Kumari āṟu</text>
+
+  <!-- Cities of the Sangam legend -->
+  <g fill="#000" stroke="none">
+    <circle cx="800" cy="560" r="7"/><circle cx="800" cy="560" r="12" fill="none" stroke="#000" stroke-width="1.4"/>
+    <text x="820" y="566" font-size="22" letter-spacing="1">Then Madurai</text>
+    <text x="820" y="588" font-size="13" font-style="italic">First Sangam</text>
+    <circle cx="1060" cy="640" r="6"/><circle cx="1060" cy="640" r="11" fill="none" stroke="#000" stroke-width="1.4"/>
+    <text x="1078" y="646" font-size="22" letter-spacing="1">Kapāṭapuram</text>
+    <text x="1078" y="668" font-size="13" font-style="italic">Second Sangam</text>
+    <circle cx="712" cy="236" r="6"/>
+    <text x="728" y="242" font-size="18">Madurai</text>
+    <text x="728" y="262" font-size="12" font-style="italic">Third Sangam</text>
+    <circle cx="716" cy="414" r="4"/>
+    <text x="640" y="398" font-size="14" font-style="italic">Kanniyākumari</text>
+  </g>
+
+  <!-- The seven groups of seven nāḍus (after Aṭiyārkkunallār) -->
+  <g fill="#000" stroke="none" font-size="13" letter-spacing="1.5" opacity="0.8">
+    <text x="330" y="640">EZHU THENGA NĀḌU</text>
+    <text x="300" y="740">EZHU MADURAI NĀḌU</text>
+    <text x="560" y="850">EZHU MUNPĀLAI NĀḌU</text>
+    <text x="900" y="870">EZHU PINPĀLAI NĀḌU</text>
+    <text x="960" y="540">EZHU KUNṞA NĀḌU</text>
+    <text x="1120" y="760">EZHU KUNAKARAI NĀḌU</text>
+    <text x="680" y="740">EZHU KURUMPANAI NĀḌU</text>
+  </g>
+
+  <!-- Title -->
+  <g fill="#000" stroke="none">
+    <text x="660" y="500" font-size="44" letter-spacing="14" font-weight="bold">KUMARI KANDAM</text>
+  </g>
+
+  <!-- Sea names -->
+  <g fill="#000" stroke="none" font-style="italic" letter-spacing="6" opacity="0.75">
+    <text x="120" y="420" font-size="26">MARE ARABICUM</text>
+    <text x="1180" y="220" font-size="26">SINUS GANGETICUS</text>
+    <text x="460" y="960" font-size="22">OCEANUS INDICUS</text>
+  </g>
+
+  <!-- Compass rose -->
+  <g transform="translate(1380 420)" stroke-width="1.3">
+    <circle r="90"/><circle r="72" stroke-dasharray="3 4"/><circle r="14"/>
+    <path d="M0 -110 L12 -12 L0 0 L-12 -12 Z" fill="#000"/>
+    <path d="M0 110 L12 12 L0 0 L-12 12 Z"/>
+    <path d="M110 0 L12 12 L0 0 L12 -12 Z"/>
+    <path d="M-110 0 L-12 12 L0 0 L-12 -12 Z"/>
+    <path d="M62 -62 L8 -4 L0 0 L4 -8 Z M-62 62 L-8 4 L0 0 L-4 8 Z M62 62 L4 8 L0 0 L8 4 Z M-62 -62 L-4 -8 L0 0 L-8 -4 Z" stroke-width="0.9"/>
+    <text y="-122" text-anchor="middle" fill="#000" stroke="none" font-size="18" font-weight="bold">N</text>
+  </g>
+  <!-- Rhumb lines from the rose -->
+  <g stroke-width="0.6" opacity="0.4">
+    <path d="M1380 420 L40 40 M1380 420 L40 760 M1380 420 L600 960 M1380 420 L1560 40 M1380 420 L1560 960 M1380 420 L900 40"/>
+  </g>
+
+  <!-- Scale bar -->
+  <g transform="translate(1180 900)" stroke-width="1.4">
+    <path d="M0 0 H240 M0 -8 V8 M60 -5 V5 M120 -8 V8 M180 -5 V5 M240 -8 V8"/>
+    <path d="M0 0 H60" stroke-width="5"/><path d="M120 0 H180" stroke-width="5"/>
+    <text x="0" y="28" fill="#000" stroke="none" font-size="13" font-style="italic">Kāvatam (leagues), as imagined</text>
+  </g>
+
+  <!-- Cartouche -->
+  <g transform="translate(90 120)">
+    <rect width="360" height="140" stroke-width="1.8"/>
+    <rect x="8" y="8" width="344" height="124" stroke-width="0.8"/>
+    <text x="180" y="52" text-anchor="middle" fill="#000" stroke="none" font-size="22" letter-spacing="4" font-weight="bold">TERRA KUMARI</text>
+    <text x="180" y="82" text-anchor="middle" fill="#000" stroke="none" font-size="14" font-style="italic">the lost southern land of Tamil legend</text>
+    <text x="180" y="110" text-anchor="middle" fill="#000" stroke="none" font-size="12" letter-spacing="1">After revivalist maps, c. 1900–1950. Not to scale.</text>
+  </g>
+
+  <!-- A drowning sea-swell where the land meets the deluge -->
+  <g stroke-width="1" opacity="0.6">
+    <path d="M200 900 q12 -10 24 0 t24 0 t24 0 M1320 860 q12 -10 24 0 t24 0 t24 0 M1380 640 q12 -10 24 0 t24 0 M160 560 q12 -10 24 0 t24 0 t24 0"/>
+  </g>
+</svg>

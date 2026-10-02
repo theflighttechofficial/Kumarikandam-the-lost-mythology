@@ -133,46 +133,45 @@ export function ProductivitySuite({
   };
 
   return (
-    <section id="productivity" className="py-20 bg-[#1E1914] border-b border-[#463429] relative">
+    <section id="productivity" className="py-20 bg-[color:var(--section-1E1914)] border-b border-[color:var(--bd-463429)] relative">
       <div className="absolute inset-0 bg-carto-grid opacity-15 pointer-events-none" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
           <div>
-            <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[#9A7B45] mb-2">
-              <CheckSquare className="w-4 h-4 text-[#9A7B45]" />
+            <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[color:var(--fg-9A7B45)] mb-2">
+              <CheckSquare className="w-4 h-4 text-[color:var(--fg-9A7B45)]" />
               <span>Expedition Field Desk & Research Dossier</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#E6D7B9] tracking-wide">
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[color:var(--fg-E6D7B9)] tracking-wide">
               Field Notes & Expedition Suite
             </h2>
-            <p className="mt-2 text-base text-[#CDBB96] font-serif max-w-2xl leading-relaxed">
+            <p className="mt-2 text-base text-[color:var(--fg-CDBB96)] font-serif max-w-2xl leading-relaxed">
               Log archival discoveries, cross-reference coordinates, catalog geological specimens, and maintain your expedition task manifest.
             </p>
           </div>
 
           {/* Research Progress Metric Box */}
-          <div className="p-4 sm:p-5 rounded bg-[#241B15] border border-[#463429] shadow-xl w-full sm:w-auto sm:min-w-[300px] relative">
-            <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
+          <div className="p-4 sm:p-5 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] w-full sm:w-auto sm:min-w-[300px] relative">
             <div className="flex items-center justify-between text-xs font-carto font-bold mb-2">
-              <span className="text-[#E6D7B9] uppercase tracking-wider flex items-center gap-1.5">
-                <BookmarkCheck className="w-4 h-4 text-[#9A7B45]" />
+              <span className="text-[color:var(--fg-E6D7B9)] uppercase tracking-wider flex items-center gap-1.5">
+                <BookmarkCheck className="w-4 h-4 text-[color:var(--fg-9A7B45)]" />
                 <span>Expedition Progress</span>
               </span>
-              <span className="text-[#9A7B45] font-mono text-base font-bold">
+              <span className="text-[color:var(--fg-9A7B45)] font-mono text-base font-bold">
                 {progressPercentage}%
               </span>
             </div>
 
             {/* Progress bar line */}
-            <div className="w-full h-2.5 bg-[#1E1914] rounded-full overflow-hidden border border-[#463429]">
+            <div className="w-full h-2.5 bg-[color:var(--bg-1E1914)] rounded-full overflow-hidden border border-[color:var(--bd-463429)]">
               <div
-                className="h-full bg-gradient-to-r from-[#8B5E4A] via-[#9A7B45] to-[#CDBB96] transition-all duration-500 rounded-full"
+                className="h-full bg-[color:var(--bg-9A7B45)] transition-all duration-500 rounded-full"
                 style={{ width: `${progressPercentage}%` }}
               />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[11px] text-[#CDBB96]/80 mt-2 font-carto uppercase tracking-wider">
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-[11px] text-[color:var(--fg-CDBB96)]/90 mt-2 font-carto uppercase tracking-wider">
               <span className="whitespace-nowrap">{tasks.filter((t) => t.completed).length}/{tasks.length} Directives Complete</span>
               <span className="whitespace-nowrap">{notes.length} Journal Entries</span>
             </div>
@@ -180,23 +179,23 @@ export function ProductivitySuite({
         </div>
 
         {/* Global Keyword Search & Filter Bar */}
-        <div className="p-4 bg-[#241B15] border border-[#463429] rounded mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="p-4 bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] rounded mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="relative w-full sm:w-80">
-            <Search className="w-4 h-4 text-[#9A7B45] absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-[color:var(--fg-9A7B45)] absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               id="search-research-input"
               value={searchKeyword}
               onChange={(e) => setSearchKeyword(e.target.value)}
               placeholder="Search dossier & keywords (zircon, Wegener)..."
-              className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-[#1E1914] border border-[#463429] rounded text-[#FAF6EE] placeholder-[#CDBB96]/40 focus:outline-none focus:border-[#9A7B45] font-serif transition-colors"
+              className="w-full pl-9 pr-4 py-2 text-xs sm:text-sm bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] rounded text-[color:var(--fg-FAF6EE)] placeholder-[color:var(--fg-CDBB96)]/40 focus:outline-none focus:border-[color:var(--bd-9A7B45)] font-serif transition-colors"
             />
           </div>
 
           {/* Tag Filter Pills */}
           <div className="flex flex-wrap items-center gap-1.5 w-full sm:w-auto font-carto">
-            <span className="text-xs text-[#9A7B45] flex items-center gap-1 mr-1 uppercase font-bold tracking-wider text-[11px]">
-              <Tag className="w-3 h-3 text-[#9A7B45]" /> Folio:
+            <span className="text-xs text-[color:var(--fg-9A7B45)] flex items-center gap-1 mr-1 uppercase font-bold tracking-wider text-[11px]">
+              <Tag className="w-3 h-3 text-[color:var(--fg-9A7B45)]" /> Folio:
             </span>
             {['All', 'Science', 'Mythology', 'Tectonics', 'Biogeography', 'Kumari Kandam', 'General'].map((t) => (
               <button
@@ -204,8 +203,8 @@ export function ProductivitySuite({
                 onClick={() => setSelectedTag(t)}
                 className={`px-2.5 py-1 rounded text-xs font-bold uppercase tracking-wider transition-colors whitespace-nowrap min-h-[32px] ${
                   selectedTag === t
-                    ? 'bg-[#2B211A] text-[#FAF6EE] border border-[#9A7B45] shadow-sm'
-                    : 'bg-[#1E1914] text-[#CDBB96]/70 hover:text-[#E6D7B9] border border-[#463429]'
+                    ? 'bg-[color:var(--bg-2B211A)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)] shadow-sm'
+                    : 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-CDBB96)]/85 hover:text-[color:var(--fg-E6D7B9)] border border-[color:var(--bd-463429)]'
                 }`}
               >
                 {t}
@@ -215,18 +214,18 @@ export function ProductivitySuite({
             <button
               onClick={handleExportNotesMarkdown}
               id="export-dossier-btn"
-              className="w-full sm:w-auto sm:ml-2 flex items-center justify-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#9A7B45] transition-colors min-h-[32px]"
+              className="w-full sm:w-auto sm:ml-2 flex items-center justify-center gap-1.5 px-3 py-1 text-xs font-bold uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)] transition-colors min-h-[32px]"
               title="Copy all notes formatted for export"
             >
-              <Copy className="w-3.5 h-3.5 text-[#9A7B45]" />
+              <Copy className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)]" />
               <span>Export Dossier</span>
             </button>
           </div>
         </div>
 
         {copiedStatus && (
-          <div className="mb-6 p-3 rounded bg-[#241B15] border border-[#53665C] text-[#FAF6EE] text-xs font-semibold flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-[#53665C]" />
+          <div className="mb-6 p-3 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-53665C)] text-[color:var(--fg-FAF6EE)] text-xs font-semibold flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-[color:var(--fg-53665C)]" />
             <span>{copiedStatus}</span>
           </div>
         )}
@@ -236,17 +235,17 @@ export function ProductivitySuite({
           {/* RESEARCH NOTES (7 Cols) */}
           <div className="lg:col-span-7 space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-base sm:text-lg font-bold font-heading text-[#E6D7B9] flex items-center gap-2">
-                <FileText className="w-4 h-4 text-[#9A7B45]" />
+              <h3 className="text-base sm:text-lg font-bold font-heading text-[color:var(--fg-E6D7B9)] flex items-center gap-2">
+                <FileText className="w-4 h-4 text-[color:var(--fg-9A7B45)]" />
                 <span>Field Folio Entries ({filteredNotes.length})</span>
               </h3>
 
               <button
                 id="toggle-add-note-btn"
                 onClick={() => setIsAddingNote(!isAddingNote)}
-                className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#9A7B45] transition-colors"
+                className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)] transition-colors"
               >
-                <Plus className="w-3.5 h-3.5 text-[#9A7B45]" />
+                <Plus className="w-3.5 h-3.5 text-[color:var(--fg-9A7B45)]" />
                 <span>Add Entry</span>
               </button>
             </div>
@@ -255,30 +254,29 @@ export function ProductivitySuite({
             {isAddingNote && (
               <form
                 onSubmit={handleCreateNote}
-                className="p-5 rounded bg-[#241B15] border border-[#9A7B45] space-y-4 shadow-xl relative"
+                className="p-5 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-9A7B45)] space-y-4 relative"
               >
-                <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-[#E6D7B9] uppercase tracking-widest font-carto">
+                  <h4 className="text-xs font-bold text-[color:var(--fg-E6D7B9)] uppercase tracking-widest font-carto">
                     New Field Note Dossier
                   </h4>
                   <button
                     type="button"
                     onClick={() => setIsAddingNote(false)}
-                    className="text-xs text-[#CDBB96] hover:text-[#FAF6EE] font-carto uppercase"
+                    className="text-xs text-[color:var(--fg-CDBB96)] hover:text-[color:var(--fg-FAF6EE)] font-carto uppercase"
                   >
                     Cancel
                   </button>
                 </div>
 
                 <div>
-                  <label className="block text-[10px] text-[#9A7B45] uppercase font-carto font-bold mb-1">
+                  <label className="block text-[10px] text-[color:var(--fg-9A7B45)] uppercase font-carto font-bold mb-1">
                     Start From Template (optional):
                   </label>
                   <select
                     value={selectedTemplateId}
                     onChange={(e) => handleApplyTemplate(e.target.value)}
-                    className="w-full px-3 py-2 text-xs sm:text-sm rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] focus:outline-none focus:border-[#9A7B45] font-carto"
+                    className="w-full px-3 py-2 text-xs sm:text-sm rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] focus:outline-none focus:border-[color:var(--bd-9A7B45)] font-carto"
                   >
                     <option value="">-- Blank Note --</option>
                     {NOTE_TEMPLATES.map((t) => (
@@ -291,18 +289,18 @@ export function ProductivitySuite({
                   <div className="sm:col-span-2">
                     <input
                       type="text"
-                      placeholder="Note Title / Observation..."
+                      placeholder="Note Title / Observation..." aria-label="Note Title / Observation"
                       value={newNoteTitle}
                       onChange={(e) => setNewNoteTitle(e.target.value)}
                       required
-                      className="w-full px-3.5 py-2 text-xs sm:text-sm rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] placeholder-[#CDBB96]/40 focus:outline-none focus:border-[#9A7B45] font-serif"
+                      className="w-full px-3.5 py-2 text-xs sm:text-sm rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] placeholder-[color:var(--fg-CDBB96)]/40 focus:outline-none focus:border-[color:var(--bd-9A7B45)] font-serif"
                     />
                   </div>
                   <div>
                     <select
                       value={newNoteTag}
                       onChange={(e) => setNewNoteTag(e.target.value as ResearchNote['tag'])}
-                      className="w-full px-3 py-2 text-xs sm:text-sm rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] focus:outline-none focus:border-[#9A7B45] font-carto"
+                      className="w-full px-3 py-2 text-xs sm:text-sm rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] focus:outline-none focus:border-[color:var(--bd-9A7B45)] font-carto"
                     >
                       <option value="Science">Science</option>
                       <option value="Mythology">Mythology</option>
@@ -314,25 +312,25 @@ export function ProductivitySuite({
                 </div>
 
                 <textarea
-                  placeholder="Detailed observations, archival citations, or stratigraphy notes..."
+                  placeholder="Detailed observations, archival citations, or stratigraphy notes..." aria-label="Detailed observations, archival citations, or stratigraphy notes"
                   value={newNoteContent}
                   onChange={(e) => setNewNoteContent(e.target.value)}
                   rows={4}
                   required
-                  className="w-full px-3.5 py-2 text-xs sm:text-sm rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] placeholder-[#CDBB96]/40 focus:outline-none focus:border-[#9A7B45] resize-none font-serif"
+                  className="w-full px-3.5 py-2 text-xs sm:text-sm rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] placeholder-[color:var(--fg-CDBB96)]/40 focus:outline-none focus:border-[color:var(--bd-9A7B45)] resize-none font-serif"
                 />
 
                 <div className="flex justify-end gap-2">
                   <button
                     type="button"
                     onClick={() => setIsAddingNote(false)}
-                    className="px-4 py-2 text-xs text-[#CDBB96] hover:text-[#FAF6EE] rounded font-carto uppercase"
+                    className="px-4 py-2 text-xs text-[color:var(--fg-CDBB96)] hover:text-[color:var(--fg-FAF6EE)] rounded font-carto uppercase"
                   >
                     Cancel
                   </button>
                   <button
                     type="submit"
-                    className="px-5 py-2 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#9A7B45] shadow-sm"
+                    className="px-5 py-2 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)]"
                   >
                     Record Note
                   </button>
@@ -343,40 +341,39 @@ export function ProductivitySuite({
             {/* Notes List */}
             <div className="space-y-3">
               {filteredNotes.length === 0 ? (
-                <div className="p-8 text-center rounded bg-[#241B15] border border-[#463429] text-[#CDBB96] text-xs font-serif">
+                <div className="p-8 text-center rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] text-[color:var(--fg-CDBB96)] text-xs font-serif">
                   No notes found matching “{searchKeyword}”. Create a new field entry above!
                 </div>
               ) : (
                 filteredNotes.map((note) => (
                   <div
                     key={note.id}
-                    className="hover-lift p-5 rounded bg-[#241B15] border border-[#463429] hover:border-[#756451] transition-all space-y-2 group relative"
+                    className="hover-lift p-5 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] hover:border-[color:var(--bd-756451)] transition-all space-y-2 group relative"
                   >
-                    <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
-                        <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-[#1E1914] text-[#9A7B45] border border-[#9A7B45]/40 font-carto uppercase tracking-wider">
+                        <span className="px-2 py-0.5 text-[10px] font-bold rounded bg-[color:var(--bg-1E1914)] text-[color:var(--fg-9A7B45)] border border-[color:var(--bd-9A7B45)]/40 font-carto uppercase tracking-wider">
                           {note.tag}
                         </span>
-                        <h4 className="text-sm sm:text-base font-bold text-[#E6D7B9] font-heading">
+                        <h4 className="text-sm sm:text-base font-bold text-[color:var(--fg-E6D7B9)] font-heading">
                           {note.title}
                         </h4>
                       </div>
 
                       <button
                         onClick={() => onDeleteNote(note.id)}
-                        className="text-[#CDBB96]/40 hover:text-[#8B5E4A] p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity"
+                        className="text-[color:var(--fg-CDBB96)]/85 hover:text-[color:var(--fg-8B5E4A)] p-1 rounded opacity-0 group-hover:opacity-100 transition-opacity"
                         title="Delete note"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
 
-                    <p className="text-xs sm:text-sm text-[#CDBB96] leading-relaxed font-serif">
+                    <p className="text-xs sm:text-sm text-[color:var(--fg-CDBB96)] leading-relaxed font-serif">
                       {note.content}
                     </p>
 
-                    <div className="pt-2 text-[11px] text-[#9A7B45] font-mono">
+                    <div className="pt-2 text-[11px] text-[color:var(--fg-9A7B45)] font-mono">
                       {note.timestamp}
                     </div>
                   </div>
@@ -388,8 +385,8 @@ export function ProductivitySuite({
           {/* TO RESEARCH CHECKLIST (5 Cols) */}
           <div className="lg:col-span-5 space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-base sm:text-lg font-bold font-heading text-[#E6D7B9] flex items-center gap-2">
-                <ListTodo className="w-4 h-4 text-[#53665C]" />
+              <h3 className="text-base sm:text-lg font-bold font-heading text-[color:var(--fg-E6D7B9)] flex items-center gap-2">
+                <ListTodo className="w-4 h-4 text-[color:var(--fg-53665C)]" />
                 <span>Expedition Manifest ({tasks.length})</span>
               </h3>
 
@@ -398,16 +395,16 @@ export function ProductivitySuite({
                   onClick={handleExportTasksMarkdown}
                   id="export-manifest-btn"
                   title="Copy expedition manifest formatted for export"
-                  className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#463429] transition-colors"
+                  className="flex items-center gap-1 px-2.5 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-463429)] transition-colors"
                 >
-                  <Download className="w-3.5 h-3.5 text-[#53665C]" />
+                  <Download className="w-3.5 h-3.5 text-[color:var(--fg-53665C)]" />
                 </button>
                 <button
                   id="toggle-add-task-btn"
                   onClick={() => setIsAddingTask(!isAddingTask)}
-                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#53665C] transition-colors"
+                  className="flex items-center gap-1 px-3 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-53665C)] transition-colors"
                 >
-                  <Plus className="w-3.5 h-3.5 text-[#53665C]" />
+                  <Plus className="w-3.5 h-3.5 text-[color:var(--fg-53665C)]" />
                   <span>Add Directive</span>
                 </button>
               </div>
@@ -417,17 +414,16 @@ export function ProductivitySuite({
             {isAddingTask && (
               <form
                 onSubmit={handleCreateTask}
-                className="p-4 rounded bg-[#241B15] border border-[#53665C] space-y-3 shadow-xl relative"
+                className="p-4 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-53665C)] space-y-3 relative"
               >
-                <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full brass-stud" />
                 <div className="flex items-center justify-between">
-                  <h4 className="text-xs font-bold text-[#E6D7B9] uppercase tracking-widest font-carto">
+                  <h4 className="text-xs font-bold text-[color:var(--fg-E6D7B9)] uppercase tracking-widest font-carto">
                     New Expedition Directive
                   </h4>
                   <button
                     type="button"
                     onClick={() => setIsAddingTask(false)}
-                    className="text-xs text-[#CDBB96] hover:text-[#FAF6EE] font-carto uppercase"
+                    className="text-xs text-[color:var(--fg-CDBB96)] hover:text-[color:var(--fg-FAF6EE)] font-carto uppercase"
                   >
                     Cancel
                   </button>
@@ -435,16 +431,16 @@ export function ProductivitySuite({
 
                 <input
                   type="text"
-                  placeholder="Task directive (verify zircon radiometric date)..."
+                  placeholder="Task directive (verify zircon radiometric date)..." aria-label="Task directive"
                   value={newTaskText}
                   onChange={(e) => setNewTaskText(e.target.value)}
                   required
-                  className="w-full px-3 py-2 text-xs rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] placeholder-[#CDBB96]/40 focus:outline-none focus:border-[#53665C] font-serif"
+                  className="w-full px-3 py-2 text-xs rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] placeholder-[color:var(--fg-CDBB96)]/40 focus:outline-none focus:border-[color:var(--bd-53665C)] font-serif"
                 />
 
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[10px] text-[#9A7B45] uppercase font-carto font-bold mb-1">
+                    <label className="block text-[10px] text-[color:var(--fg-9A7B45)] uppercase font-carto font-bold mb-1">
                       Urgency:
                     </label>
                     <select
@@ -452,7 +448,7 @@ export function ProductivitySuite({
                       onChange={(e) =>
                         setNewTaskPriority(e.target.value as 'high' | 'medium' | 'low')
                       }
-                      className="w-full px-2.5 py-1.5 text-xs rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] focus:outline-none font-carto"
+                      className="w-full px-2.5 py-1.5 text-xs rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] focus:outline-none font-carto"
                     >
                       <option value="high">High</option>
                       <option value="medium">Medium</option>
@@ -460,15 +456,15 @@ export function ProductivitySuite({
                     </select>
                   </div>
                   <div>
-                    <label className="block text-[10px] text-[#9A7B45] uppercase font-carto font-bold mb-1">
+                    <label className="block text-[10px] text-[color:var(--fg-9A7B45)] uppercase font-carto font-bold mb-1">
                       Subject:
                     </label>
                     <input
                       type="text"
-                      placeholder="Category..."
+                      placeholder="Category..." aria-label="Category"
                       value={newTaskCategory}
                       onChange={(e) => setNewTaskCategory(e.target.value)}
-                      className="w-full px-2.5 py-1.5 text-xs rounded bg-[#1E1914] border border-[#463429] text-[#FAF6EE] focus:outline-none font-serif"
+                      className="w-full px-2.5 py-1.5 text-xs rounded bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-FAF6EE)] focus:outline-none font-serif"
                     />
                   </div>
                 </div>
@@ -476,7 +472,7 @@ export function ProductivitySuite({
                 <div className="flex justify-end gap-2 pt-1">
                   <button
                     type="submit"
-                    className="px-4 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#53665C]"
+                    className="px-4 py-1.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-53665C)]"
                   >
                     Add to Manifest
                   </button>
@@ -485,14 +481,14 @@ export function ProductivitySuite({
             )}
 
             {/* Task Items List */}
-            <div className="p-4 rounded bg-[#241B15] border border-[#463429] space-y-2.5">
+            <div className="p-4 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] space-y-2.5">
               {tasks.map((task) => (
                 <div
                   key={task.id}
                   className={`p-3 rounded border flex items-start justify-between gap-3 transition-colors ${
                     task.completed
-                      ? 'bg-[#1E1914]/60 border-[#463429] text-[#CDBB96]/40 line-through'
-                      : 'bg-[#1E1914] border-[#463429] text-[#CDBB96] hover:border-[#756451]'
+                      ? 'bg-[color:var(--bg-1E1914)]/60 border-[color:var(--bd-463429)] text-[color:var(--fg-CDBB96)]/85 line-through'
+                      : 'bg-[color:var(--bg-1E1914)] border-[color:var(--bd-463429)] text-[color:var(--fg-CDBB96)] hover:border-[color:var(--bd-756451)]'
                   }`}
                 >
                   <div
@@ -502,8 +498,8 @@ export function ProductivitySuite({
                     <div
                       className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 mt-0.5 transition-colors ${
                         task.completed
-                          ? 'bg-[#53665C] border-[#53665C] text-[#FAF6EE]'
-                          : 'border-[#756451] hover:border-[#9A7B45] bg-[#2B211A]'
+                          ? 'bg-[color:var(--bg-53665C)] border-[color:var(--bd-53665C)] text-[color:var(--fg-FAF6EE)]'
+                          : 'border-[color:var(--bd-756451)] hover:border-[color:var(--bd-9A7B45)] bg-[color:var(--bg-2B211A)]'
                       }`}
                     >
                       {task.completed && <Check className="w-3 h-3 stroke-[3]" />}
@@ -514,15 +510,15 @@ export function ProductivitySuite({
                         <span
                           className={`text-[9px] font-bold uppercase px-1.5 py-0.5 rounded ${
                             task.priority === 'high'
-                              ? 'bg-[#1E1914] text-[#8B5E4A] border border-[#8B5E4A]/50'
+                              ? 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-8B5E4A)] border border-[color:var(--bd-8B5E4A)]/50'
                               : task.priority === 'medium'
-                              ? 'bg-[#1E1914] text-[#9A7B45] border border-[#9A7B45]/50'
-                              : 'bg-[#1E1914] text-[#CDBB96]/60 border border-[#463429]'
+                              ? 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-9A7B45)] border border-[color:var(--bd-9A7B45)]/50'
+                              : 'bg-[color:var(--bg-1E1914)] text-[color:var(--fg-CDBB96)]/85 border border-[color:var(--bd-463429)]'
                           }`}
                         >
                           {task.priority}
                         </span>
-                        <span className="text-[10px] text-[#9A7B45] font-mono">
+                        <span className="text-[10px] text-[color:var(--fg-9A7B45)] font-mono">
                           {task.category}
                         </span>
                       </div>
@@ -531,7 +527,7 @@ export function ProductivitySuite({
 
                   <button
                     onClick={() => onDeleteTask(task.id)}
-                    className="text-[#CDBB96]/40 hover:text-[#8B5E4A] p-1 rounded"
+                    className="text-[color:var(--fg-CDBB96)]/85 hover:text-[color:var(--fg-8B5E4A)] p-1 rounded"
                     title="Remove task"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -540,8 +536,8 @@ export function ProductivitySuite({
               ))}
             </div>
 
-            <div className="p-3.5 rounded bg-[#241B15] border border-[#463429] text-xs text-[#CDBB96] font-serif">
-              <strong className="text-[#9A7B45] block mb-0.5 font-heading">Expedition Note:</strong>
+            <div className="p-3.5 rounded bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] text-xs text-[color:var(--fg-CDBB96)] font-serif">
+              <strong className="text-[color:var(--fg-9A7B45)] block mb-0.5 font-heading">Expedition Note:</strong>
               Checking off tasks and examining primary sources updates your expedition progress manifest in real time.
             </div>
           </div>

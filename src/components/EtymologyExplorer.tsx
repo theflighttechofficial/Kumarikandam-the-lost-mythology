@@ -17,26 +17,26 @@ export function EtymologyExplorer() {
   const selected = LANGUAGE_TERMS.find((t) => t.id === selectedId) ?? filtered[0];
 
   return (
-    <section id="etymology-explorer" className="py-20 bg-[#1E1914] border-b border-[#463429]">
+    <section id="etymology-explorer" className="py-20 bg-[color:var(--section-1E1914)] border-b border-[color:var(--bd-463429)]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[#9A7B45] mb-2">
+          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[color:var(--fg-9A7B45)] mb-2">
             <Languages className="w-4 h-4" />
             <span>Language & Etymology</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#E6D7B9] tracking-wide">Etymology Explorer</h2>
-          <p className="mt-2 text-base text-[#CDBB96] font-serif max-w-2xl leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[color:var(--fg-E6D7B9)] tracking-wide">Etymology Explorer</h2>
+          <p className="mt-2 text-base text-[color:var(--fg-CDBB96)] font-serif max-w-2xl leading-relaxed">
             Search key Tamil and English terms behind the Kumari Kandam / Lemuria tradition to see their spelling, meaning, and usage history.
           </p>
         </div>
 
-        <div className="flex items-center gap-2 bg-[#241B15] border border-[#463429] rounded px-3 py-2 mb-6 max-w-md">
-          <Search className="w-4 h-4 text-[#9A7B45]" />
+        <div className="flex items-center gap-2 bg-[color:var(--bg-241B15)] border border-[color:var(--bd-463429)] rounded px-3 py-2 mb-6 max-w-md">
+          <Search className="w-4 h-4 text-[color:var(--fg-9A7B45)]" />
           <input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search a term..."
-            className="bg-transparent outline-none text-sm text-[#E6D7B9] placeholder:text-[#CDBB96]/40 flex-1"
+            className="bg-transparent outline-none text-sm text-[color:var(--fg-E6D7B9)] placeholder:text-[color:var(--fg-CDBB96)]/85 flex-1"
           />
         </div>
 
@@ -47,7 +47,7 @@ export function EtymologyExplorer() {
                 key={t.id}
                 onClick={() => setSelectedId(t.id)}
                 className={`w-full text-left px-3 py-2 rounded text-sm font-heading border transition-colors ${
-                  selected?.id === t.id ? 'bg-[#2B211A] text-[#FAF6EE] border-[#9A7B45]' : 'bg-[#241B15] text-[#CDBB96] border-[#463429]'
+                  selected?.id === t.id ? 'bg-[color:var(--bg-2B211A)] text-[color:var(--fg-FAF6EE)] border-[color:var(--bd-9A7B45)]' : 'bg-[color:var(--bg-241B15)] text-[color:var(--fg-CDBB96)] border-[color:var(--bd-463429)]'
                 }`}
               >
                 {t.term}
@@ -56,17 +56,17 @@ export function EtymologyExplorer() {
           </div>
 
           {selected && (
-            <div className="lg:col-span-2 p-5 rounded border border-[#463429] bg-[#241B15]">
+            <div className="lg:col-span-2 p-5 rounded border border-[color:var(--bd-463429)] bg-[color:var(--bg-241B15)]">
               <div className="flex items-baseline gap-3 flex-wrap mb-3">
-                <h3 className="text-2xl font-bold font-heading text-[#E6D7B9]">{selected.term}</h3>
-                {selected.tamilSpelling && <span className="text-xl text-[#9A7B45]">{selected.tamilSpelling}</span>}
+                <h3 className="text-2xl font-bold font-heading text-[color:var(--fg-E6D7B9)]">{selected.term}</h3>
+                {selected.tamilSpelling && <span className="text-xl text-[color:var(--fg-9A7B45)]">{selected.tamilSpelling}</span>}
               </div>
-              <p className="text-xs font-mono text-[#CDBB96]/70 mb-4">Transliteration: {selected.transliteration}</p>
-              <div className="space-y-3 text-sm font-serif text-[#CDBB96] leading-relaxed">
-                <div><span className="text-[#9A7B45] font-bold">Literal meaning: </span>{selected.literalMeaning}</div>
-                <div><span className="text-[#9A7B45] font-bold">Historical usage: </span>{selected.historicalUsage}</div>
-                <div><span className="text-[#9A7B45] font-bold">First known usage: </span>{selected.firstKnownUsage}</div>
-                <div><span className="text-[#9A7B45] font-bold">Modern usage: </span>{selected.modernUsage}</div>
+              <p className="text-xs font-mono text-[color:var(--fg-CDBB96)]/85 mb-4">Transliteration: {selected.transliteration}</p>
+              <div className="space-y-3 text-sm font-serif text-[color:var(--fg-CDBB96)] leading-relaxed">
+                <div><span className="text-[color:var(--fg-9A7B45)] font-bold">Literal meaning: </span>{selected.literalMeaning}</div>
+                <div><span className="text-[color:var(--fg-9A7B45)] font-bold">Historical usage: </span>{selected.historicalUsage}</div>
+                <div><span className="text-[color:var(--fg-9A7B45)] font-bold">First known usage: </span>{selected.firstKnownUsage}</div>
+                <div><span className="text-[color:var(--fg-9A7B45)] font-bold">Modern usage: </span>{selected.modernUsage}</div>
               </div>
             </div>
           )}

@@ -1,35 +1,77 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-theme="light">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kumari Kandam: Myth or Lost Continent? | Interactive Historical Atlas</title>
-    <meta name="description" content="An interactive research atlas exploring Lemuria as three historical constructions: Philip Sclater's 1864 zoogeographical hypothesis, Blavatsky's occult transformation, and the Tamil Kumari Kandam tradition — verified against modern plate tectonics." />
-    <meta name="theme-color" content="#1E1914" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Kumari Kandam: Myth or Lost Continent? An Interactive Atlas</title>
+    <meta name="description" content="Was there a lost continent south of India? Follow Lemuria from Sclater's 1864 land bridge to Theosophy and the Tamil Kumari Kandam tradition, then test it against plate tectonics." />
+    <link rel="canonical" href="https://kumarikandam-the-lost-mythology.vercel.app/" />
+    <meta name="theme-color" content="#F2E8D2" />
+    <meta name="color-scheme" content="light dark" />
+    <script src="/theme-init.js"></script>
+    <meta name="author" content="Kumari Kandam: The Lost Mythology" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta property="og:title" content="Lemuria: Myth or Lost Continent?" />
-    <meta property="og:description" content="An interactive research atlas exploring Lemuria's three historical constructions — Victorian zoology, Theosophical myth, and Tamil Kumari Kandam memory — against modern plate tectonics." />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:site_name" content="Kumari Kandam: The Lost Mythology" />
+    <meta property="og:url" content="https://kumarikandam-the-lost-mythology.vercel.app/" />
+    <meta property="og:title" content="Kumari Kandam: Myth or Lost Continent?" />
+    <meta property="og:description" content="Lemuria's three histories (Victorian zoology, Theosophy, Tamil Kumari Kandam) tested against plate tectonics and the sea floor." />
+    <meta property="og:image" content="https://kumarikandam-the-lost-mythology.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The atlas home page: the title Kumari Kandam beside a schematic map of the hypothesised Lemuria land bridge between Madagascar and India." />
+    <meta property="og:locale" content="en_GB" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Kumari Kandam: Myth or Lost Continent?" />
+    <meta name="twitter:description" content="Lemuria's three histories tested against plate tectonics and the sea floor." />
+    <meta name="twitter:image" content="https://kumarikandam-the-lost-mythology.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Kumari Kandam title beside a schematic map of the hypothesised Lemuria land bridge." />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Tamil:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Marcellus&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+Tamil:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Marcellus&display=swap" rel="stylesheet" />
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "EducationalDataCatalog",
-      "name": "Lemuria & Kumari Kandam Historical Atlas",
-      "description": "Comprehensive comparative research portal analyzing the lost continent of Lemuria and Tamil literary memory of Kumari Kandam alongside modern plate tectonics and marine archaeology.",
-      "keywords": ["Kumari Kandam", "Lemuria", "Tamil Sangam", "49 Nadus", "Silappatikaram", "Plate Tectonics", "Marine Archaeology", "Thenmadurai", "Kapatapuram"],
-      "inLanguage": ["en", "ta"]
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://kumarikandam-the-lost-mythology.vercel.app/#website",
+          "url": "https://kumarikandam-the-lost-mythology.vercel.app/",
+          "name": "Kumari Kandam: The Lost Mythology",
+          "inLanguage": ["en", "ta"]
+        },
+        {
+          "@type": "LearningResource",
+          "name": "Kumari Kandam: Myth or Lost Continent?",
+          "url": "https://kumarikandam-the-lost-mythology.vercel.app/",
+          "isPartOf": { "@id": "https://kumarikandam-the-lost-mythology.vercel.app/#website" },
+          "description": "An interactive atlas following the Lemuria hypothesis from 1864 zoology to Theosophy and the Tamil Kumari Kandam tradition, compared with plate tectonics and marine archaeology.",
+          "learningResourceType": "Interactive resource",
+          "educationalLevel": "General public",
+          "about": ["Kumari Kandam", "Lemuria", "Sangam literature", "Plate tectonics", "Marine archaeology", "Mauritia"],
+          "inLanguage": ["en", "ta"],
+          "isAccessibleForFree": true,
+          "license": "https://opensource.org/licenses/MIT"
+        }
+      ]
     }
     </script>
   </head>
-  <body class="bg-[#1E1914] text-[#E6D7B9] antialiased selection:bg-[#9A7B45]/30 selection:text-[#FAF6EE]">
+  <body class="text-[color:var(--fg-E6D7B9)] antialiased selection:bg-[color:var(--bg-9A7B45)]/30 selection:text-[color:var(--fg-FAF6EE)]">
+    <noscript>
+      <div style="max-width:40rem;margin:4rem auto;padding:0 1rem;font-family:Georgia,serif;color:#2B2118;line-height:1.6">
+        <h1 style="font-size:2rem">Kumari Kandam: Myth or Lost Continent?</h1>
+        <p>This atlas is interactive and needs JavaScript. Please enable JavaScript to explore the maps, timelines and sources.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
-

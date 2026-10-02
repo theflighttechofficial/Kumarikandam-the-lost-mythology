@@ -14,33 +14,33 @@ export function KadalKolSimulator() {
   const [seaLevel, setSeaLevel] = useState(0);
 
   return (
-    <section id="kadal-kol" className="py-20 bg-[#140F0C] border-b border-[#463429] relative">
+    <section id="kadal-kol" className="py-20 bg-[color:var(--section-140F0C)] border-b border-[color:var(--bd-463429)] relative">
       <div className="absolute inset-0 bg-ocean-depths opacity-10 pointer-events-none" />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="mb-10">
-          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[#9A7B45] mb-2">
+          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[color:var(--fg-9A7B45)] mb-2">
             <Waves className="w-4 h-4" />
             <span>Kadal Kol — "The Sea's Taking"</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#E6D7B9] tracking-wide">Kadal Kol Simulator</h2>
-          <p className="mt-2 text-base text-[#CDBB96] font-serif max-w-2xl leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[color:var(--fg-E6D7B9)] tracking-wide">Kadal Kol Simulator</h2>
+          <p className="mt-2 text-base text-[color:var(--fg-CDBB96)] font-serif max-w-2xl leading-relaxed">
             A simplified paleogeographic visualization of post-glacial sea-level change near the southern Tamil coast —
             not a reconstruction of Kumari Kandam.
           </p>
         </div>
 
-        <div className="p-6 rounded border border-[#9A7B45]/50 bg-[#241B15] mb-10">
-          <div className="flex items-start gap-2 mb-5 text-xs text-[#CDBB96] font-serif leading-relaxed bg-[#1E1914] p-3 rounded border border-[#463429]">
-            <AlertTriangle className="w-4 h-4 text-[#9A7B45] shrink-0 mt-0.5" />
+        <div className="p-6 rounded border border-[color:var(--bd-9A7B45)]/50 bg-[color:var(--bg-241B15)] mb-10">
+          <div className="flex items-start gap-2 mb-5 text-xs text-[color:var(--fg-CDBB96)] font-serif leading-relaxed bg-[color:var(--bg-1E1914)] p-3 rounded border border-[color:var(--bd-463429)]">
+            <AlertTriangle className="w-4 h-4 text-[color:var(--fg-9A7B45)] shrink-0 mt-0.5" />
             <p>
               This slider illustrates the well-established, gradual global sea-level curve since the Last Glacial
-              Maximum. It is a scale demonstration of real coastal change, <strong className="text-[#E6D7B9]">not</strong> an
+              Maximum. It is a scale demonstration of real coastal change, <strong className="text-[color:var(--fg-E6D7B9)]">not</strong> an
               attempt to depict or verify the popular "sunken continent" version of Kumari Kandam.
             </p>
           </div>
 
-          <label htmlFor="sea-level-slider" className="block text-xs font-carto uppercase tracking-widest font-bold text-[#9A7B45] mb-3">
-            Sea Level: <span className="text-[#E6D7B9] font-mono">{seaLevel}m</span> relative to present
+          <label htmlFor="sea-level-slider" className="block text-xs font-carto uppercase tracking-widest font-bold text-[color:var(--fg-9A7B45)] mb-3">
+            Sea Level: <span className="text-[color:var(--fg-E6D7B9)] font-mono">{seaLevel}m</span> relative to present
           </label>
           <input
             id="sea-level-slider"
@@ -50,31 +50,31 @@ export function KadalKolSimulator() {
             step={5}
             value={seaLevel}
             onChange={(e) => setSeaLevel(Number(e.target.value))}
-            className="w-full accent-[#9A7B45] mb-4"
+            className="w-full accent-[color:var(--fg-9A7B45)] mb-4"
           />
-          <div className="flex justify-between text-[10px] text-[#9A7B45] font-carto uppercase tracking-wider mb-5">
+          <div className="flex justify-between text-[10px] text-[color:var(--fg-9A7B45)] font-carto uppercase tracking-wider mb-5">
             <span>-120m (Last Glacial Max)</span>
             <span>0m (Present Day)</span>
           </div>
-          <p className="text-sm text-[#E6D7B9] font-serif leading-relaxed bg-[#1E1914] p-4 rounded border border-[#463429]">
+          <p className="text-sm text-[color:var(--fg-E6D7B9)] font-serif leading-relaxed bg-[color:var(--bg-1E1914)] p-4 rounded border border-[color:var(--bd-463429)]">
             {SEA_LEVEL_NOTES(seaLevel)}
           </p>
         </div>
 
-        <h3 className="text-sm font-carto uppercase tracking-widest text-[#9A7B45] font-bold mb-4">Kadal Kol Terms &amp; Tradition</h3>
+        <h3 className="text-sm font-carto uppercase tracking-widest text-[color:var(--fg-9A7B45)] font-bold mb-4">Kadal Kol Terms &amp; Tradition</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {KADAL_KOL.map((k) => (
-            <div key={k.id} className="p-4 rounded border border-[#463429] bg-[#241B15] hover-lift">
+            <div key={k.id} className="p-4 rounded border border-[color:var(--bd-463429)] bg-[color:var(--bg-241B15)] hover-lift">
               <div className="flex items-baseline gap-2 mb-1.5 flex-wrap">
-                <h4 className="text-sm font-bold text-[#E6D7B9] font-heading">{k.term}</h4>
-                <span className="text-xs text-[#9A7B45] font-serif">{k.tamil}</span>
+                <h4 className="text-sm font-bold text-[color:var(--fg-E6D7B9)] font-heading">{k.term}</h4>
+                <span className="text-xs text-[color:var(--fg-9A7B45)] font-serif">{k.tamil}</span>
               </div>
-              <p className="text-xs text-[#CDBB96]/80 font-serif italic mb-2">{k.meaning}</p>
-              <p className="text-xs sm:text-sm text-[#CDBB96] font-serif leading-relaxed mb-2">{k.context}</p>
+              <p className="text-xs text-[color:var(--fg-CDBB96)]/90 font-serif italic mb-2">{k.meaning}</p>
+              <p className="text-xs sm:text-sm text-[color:var(--fg-CDBB96)] font-serif leading-relaxed mb-2">{k.context}</p>
               {k.possibleCauses && (
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {k.possibleCauses.map((c) => (
-                    <span key={c} className="px-2 py-0.5 rounded text-[10px] bg-[#1E1914] border border-[#463429] text-[#CDBB96]/80 font-carto">
+                    <span key={c} className="px-2 py-0.5 rounded text-[10px] bg-[color:var(--bg-1E1914)] border border-[color:var(--bd-463429)] text-[color:var(--fg-CDBB96)]/90 font-carto">
                       {c}
                     </span>
                   ))}

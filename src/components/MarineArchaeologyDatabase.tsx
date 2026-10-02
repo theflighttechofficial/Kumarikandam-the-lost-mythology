@@ -14,15 +14,15 @@ export function MarineArchaeologyDatabase() {
   const [tab, setTab] = useState<'sites' | 'methods'>('sites');
 
   return (
-    <section id="marine-archaeology" className="py-20 bg-[#1A1511] border-b border-[#463429]">
+    <section id="marine-archaeology" className="py-20 bg-[color:var(--section-1A1511)] border-b border-[color:var(--bd-463429)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[#9A7B45] mb-2">
+          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[color:var(--fg-9A7B45)] mb-2">
             <Anchor className="w-4 h-4" />
             <span>Marine Archaeology Database</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#E6D7B9] tracking-wide">Submerged Sites & Survey Methods</h2>
-          <p className="mt-2 text-base text-[#CDBB96] font-serif max-w-2xl leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[color:var(--fg-E6D7B9)] tracking-wide">Submerged Sites & Survey Methods</h2>
+          <p className="mt-2 text-base text-[color:var(--fg-CDBB96)] font-serif max-w-2xl leading-relaxed">
             Documented submerged settlements, harbours, and paleo-shorelines, alongside the scientific methods used to study them.
           </p>
         </div>
@@ -33,7 +33,7 @@ export function MarineArchaeologyDatabase() {
               key={t}
               onClick={() => setTab(t)}
               className={`px-4 py-2 text-xs font-carto uppercase tracking-wider rounded border transition-colors ${
-                tab === t ? 'bg-[#2B211A] text-[#FAF6EE] border-[#9A7B45]' : 'bg-[#241B15] text-[#CDBB96]/70 border-[#463429]'
+                tab === t ? 'bg-[color:var(--bg-2B211A)] text-[color:var(--fg-FAF6EE)] border-[color:var(--bd-9A7B45)]' : 'bg-[color:var(--bg-241B15)] text-[color:var(--fg-CDBB96)]/85 border-[color:var(--bd-463429)]'
               }`}
             >
               {t === 'sites' ? 'Sites' : 'Methods'}
@@ -44,15 +44,15 @@ export function MarineArchaeologyDatabase() {
         {tab === 'sites' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {MARINE_ARCH_ENTRIES.map((e) => (
-              <div key={e.id} className="p-4 rounded border border-[#463429] bg-[#241B15]">
+              <div key={e.id} className="p-4 rounded border border-[color:var(--bd-463429)] bg-[color:var(--bg-241B15)]">
                 <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] font-carto uppercase tracking-wider text-[#9A7B45]">{TYPE_LABELS[e.type]}</span>
-                  <span className="text-[10px] font-mono text-[#CDBB96]/60">{e.depth}</span>
+                  <span className="text-[10px] font-carto uppercase tracking-wider text-[color:var(--fg-9A7B45)]">{TYPE_LABELS[e.type]}</span>
+                  <span className="text-[10px] font-mono text-[color:var(--fg-CDBB96)]/85">{e.depth}</span>
                 </div>
-                <h3 className="text-sm font-bold font-heading text-[#E6D7B9] mb-1">{e.name}</h3>
-                <p className="text-[11px] text-[#CDBB96]/70 font-mono mb-2">{e.location}</p>
-                <p className="text-xs font-serif text-[#CDBB96] leading-relaxed mb-2">{e.description}</p>
-                <p className="text-[11px] font-serif text-[#9A7B45] leading-relaxed border-t border-[#463429] pt-2">
+                <h3 className="text-sm font-bold font-heading text-[color:var(--fg-E6D7B9)] mb-1">{e.name}</h3>
+                <p className="text-[11px] text-[color:var(--fg-CDBB96)]/85 font-mono mb-2">{e.location}</p>
+                <p className="text-xs font-serif text-[color:var(--fg-CDBB96)] leading-relaxed mb-2">{e.description}</p>
+                <p className="text-[11px] font-serif text-[color:var(--fg-9A7B45)] leading-relaxed border-t border-[color:var(--bd-463429)] pt-2">
                   Evidentiary status: {e.evidentiaryStatus}
                 </p>
               </div>
@@ -61,11 +61,11 @@ export function MarineArchaeologyDatabase() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {MARINE_ARCH_METHODS.map((m) => (
-              <div key={m.id} className="p-4 rounded border border-[#463429] bg-[#241B15] flex gap-3">
-                <Waves className="w-4 h-4 text-[#53665C] shrink-0 mt-1" />
+              <div key={m.id} className="p-4 rounded border border-[color:var(--bd-463429)] bg-[color:var(--bg-241B15)] flex gap-3">
+                <Waves className="w-4 h-4 text-[color:var(--fg-53665C)] shrink-0 mt-1" />
                 <div>
-                  <h3 className="text-sm font-bold font-heading text-[#E6D7B9] mb-1">{m.name}</h3>
-                  <p className="text-xs font-serif text-[#CDBB96] leading-relaxed">{m.description}</p>
+                  <h3 className="text-sm font-bold font-heading text-[color:var(--fg-E6D7B9)] mb-1">{m.name}</h3>
+                  <p className="text-xs font-serif text-[color:var(--fg-CDBB96)] leading-relaxed">{m.description}</p>
                 </div>
               </div>
             ))}

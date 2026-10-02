@@ -21,21 +21,6 @@ interface GlobalSearchModalProps {
 export function GlobalSearchModal({ isOpen, onClose, onNavigateSection }: GlobalSearchModalProps) {
   const [query, setQuery] = useState<string>('');
 
-  // Listen for Cmd+K or Ctrl+K globally
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        if (isOpen) onClose();
-        else {
-          // Open search modal (trigger via navbar or parent state)
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, onClose]);
-
   // Build aggregated searchable index
   const searchIndex: SearchItem[] = useMemo(() => {
     const items: SearchItem[] = [];
@@ -155,7 +140,7 @@ export function GlobalSearchModal({ isOpen, onClose, onNavigateSection }: Global
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={onClose}
-          className="fixed inset-0 bg-[#0E0C0A]/85 backdrop-blur-md"
+          className="fixed inset-0 bg-[color:var(--bg-0E0C0A)]/85"
         />
 
         {/* Search Modal Container */}
@@ -163,63 +148,63 @@ export function GlobalSearchModal({ isOpen, onClose, onNavigateSection }: Global
           initial={{ opacity: 0, scale: 0.95, y: -10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: -10 }}
-          className="relative w-full max-w-2xl bg-[#181410] border border-[#7A6038] rounded-xl shadow-2xl overflow-hidden text-[#E4D5BE] z-10"
+          className="relative w-full max-w-2xl bg-[color:var(--bg-181410)] border border-[color:var(--bd-7A6038)] rounded shadow-2xl overflow-hidden text-[color:var(--fg-E4D5BE)] z-10"
         >
           {/* Input Bar */}
-          <div className="flex items-center p-4 border-b border-[#362920] bg-[#1E1914]">
-            <Search className="w-5 h-5 text-[#D4AF37] mr-3" />
+          <div className="flex items-center p-4 border-b border-[color:var(--bd-362920)] bg-[color:var(--bg-1E1914)]">
+            <Search className="w-5 h-5 text-[color:var(--fg-D4AF37)] mr-3" />
             <input
               type="text"
               autoFocus
-              placeholder="Search lost lands, Nadus, Sangams, books (e.g., Pahruli, Sclater, Kapatapuram)..."
+              placeholder="Search lost lands, Nadus, Sangams, books (e.g., Pahruli, Sclater, Kapatapuram)..." aria-label="Search lost lands, Nadus, Sangams, books"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full bg-transparent text-base text-[#E4D5BE] placeholder-[#7A6C60] focus:outline-none"
+              className="w-full bg-transparent text-base text-[color:var(--fg-E4D5BE)] placeholder-[color:var(--fg-7A6C60)] focus:outline-none"
             />
             {query && (
-              <button onClick={() => setQuery('')} className="p-1 text-[#8C7A6B] hover:text-[#E4D5BE] mr-2">
+              <button onClick={() => setQuery('')} className="p-1 text-[color:var(--fg-8C7A6B)] hover:text-[color:var(--fg-E4D5BE)] mr-2">
                 <X className="w-4 h-4" />
               </button>
             )}
-            <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono bg-[#14100D] border border-[#3E3025] rounded text-[#8C7A6B]">
+            <kbd className="hidden sm:inline-block px-2 py-0.5 text-[10px] font-mono bg-[color:var(--bg-14100D)] border border-[color:var(--bd-3E3025)] rounded text-[color:var(--fg-8C7A6B)]">
               ESC
             </kbd>
           </div>
 
           {/* Results List */}
-          <div className="max-h-96 overflow-y-auto p-3 space-y-2 divide-y divide-[#2A2016]">
+          <div className="max-h-96 overflow-y-auto p-3 space-y-2 divide-y divide-[color:var(--bd-2A2016)]">
             {results.length === 0 ? (
-              <div className="p-8 text-center text-[#8C7A6B]">
-                No results found for "<span className="text-[#D4AF37]">{query}</span>".
+              <div className="p-8 text-center text-[color:var(--fg-8C7A6B)]">
+                No results found for "<span className="text-[color:var(--fg-D4AF37)]">{query}</span>".
               </div>
             ) : (
               results.map((item) => (
                 <div
                   key={item.id}
                   onClick={() => handleSelectResult(item.sectionTarget)}
-                  className="p-3 rounded-lg hover:bg-[#261E17] cursor-pointer transition-colors flex items-start justify-between group pt-3"
+                  className="p-3 rounded hover:bg-[color:var(--bg-261E17)] cursor-pointer transition-colors flex items-start justify-between group pt-3"
                 >
                   <div className="space-y-1 pr-4">
                     <div className="flex items-center gap-2">
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#9A7B45]/20 text-[#D4AF37] border border-[#9A7B45]/30">
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[color:var(--bg-9A7B45)]/20 text-[color:var(--fg-D4AF37)] border border-[color:var(--bd-9A7B45)]/30">
                         {item.category}
                       </span>
-                      <span className="text-xs text-[#8C7A6B] font-medium">{item.subtitle}</span>
+                      <span className="text-xs text-[color:var(--fg-8C7A6B)] font-medium">{item.subtitle}</span>
                     </div>
-                    <h4 className="text-sm font-serif font-bold text-[#F3E5AB] group-hover:text-[#D4AF37] transition-colors">
+                    <h4 className="text-sm font-serif font-bold text-[color:var(--fg-F3E5AB)] group-hover:text-[color:var(--fg-D4AF37)] transition-colors">
                       {item.title}
                     </h4>
-                    <p className="text-xs text-[#A89F91] line-clamp-1">{item.content}</p>
+                    <p className="text-xs text-[color:var(--fg-A89F91)] line-clamp-1">{item.content}</p>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-[#7A6C60] group-hover:text-[#D4AF37] group-hover:translate-x-1 transition-all mt-1" />
+                  <ArrowRight className="w-4 h-4 text-[color:var(--fg-7A6C60)] group-hover:text-[color:var(--fg-D4AF37)] transition-all mt-1" />
                 </div>
               ))
             )}
           </div>
 
           {/* Footer Info */}
-          <div className="px-4 py-2.5 bg-[#14100D] border-t border-[#362920] flex items-center justify-between text-[11px] text-[#8C7A6B]">
-            <span>Tip: Press <kbd className="font-mono text-[#D4AF37]">Ctrl+K</kbd> anywhere to open search</span>
+          <div className="px-4 py-2.5 bg-[color:var(--bg-14100D)] border-t border-[color:var(--bd-362920)] flex items-center justify-between text-[11px] text-[color:var(--fg-8C7A6B)]">
+            <span>Tip: Press <kbd className="font-mono text-[color:var(--fg-D4AF37)]">Ctrl+K</kbd> anywhere to open search</span>
             <span>{searchIndex.length} items indexed</span>
           </div>
         </motion.div>

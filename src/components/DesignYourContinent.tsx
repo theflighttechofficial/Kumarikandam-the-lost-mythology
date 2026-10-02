@@ -4,13 +4,13 @@ import { Map as MapIcon } from 'lucide-react';
 type TileType = 'ocean' | 'land' | 'mountain' | 'volcano' | 'settlement' | 'agriculture' | 'port';
 
 const TILE_OPTIONS: { type: TileType; label: string; color: string }[] = [
-  { type: 'ocean', label: 'Ocean', color: 'bg-[#2A4A5A]' },
-  { type: 'land', label: 'Land', color: 'bg-[#5A4A32]' },
-  { type: 'mountain', label: 'Mountain', color: 'bg-[#6B6259]' },
-  { type: 'volcano', label: 'Volcano', color: 'bg-[#8B5E4A]' },
-  { type: 'settlement', label: 'Settlement', color: 'bg-[#CDBB96]' },
-  { type: 'agriculture', label: 'Agriculture', color: 'bg-[#53665C]' },
-  { type: 'port', label: 'Port', color: 'bg-[#9A7B45]' },
+  { type: 'ocean', label: 'Ocean', color: 'bg-[color:var(--bg-2A4A5A)]' },
+  { type: 'land', label: 'Land', color: 'bg-[color:var(--bg-5A4A32)]' },
+  { type: 'mountain', label: 'Mountain', color: 'bg-[color:var(--bg-6B6259)]' },
+  { type: 'volcano', label: 'Volcano', color: 'bg-[color:var(--bg-8B5E4A)]' },
+  { type: 'settlement', label: 'Settlement', color: 'bg-[color:var(--bg-CDBB96)]' },
+  { type: 'agriculture', label: 'Agriculture', color: 'bg-[color:var(--bg-53665C)]' },
+  { type: 'port', label: 'Port', color: 'bg-[color:var(--bg-9A7B45)]' },
 ];
 
 const COLS = 12;
@@ -84,15 +84,15 @@ export function DesignYourContinent() {
   };
 
   return (
-    <section id="design-your-continent" className="py-20 bg-[#1E1914] border-b border-[#463429]">
+    <section id="design-your-continent" className="py-20 bg-[color:var(--section-1E1914)] border-b border-[color:var(--bd-463429)]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
-          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[#9A7B45] mb-2">
+          <div className="flex items-center gap-2 text-xs font-carto font-bold tracking-widest uppercase text-[color:var(--fg-9A7B45)] mb-2">
             <MapIcon className="w-4 h-4" />
             <span>Design Your Own Lost Continent</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[#E6D7B9] tracking-wide">Continent Designer</h2>
-          <p className="mt-2 text-base text-[#CDBB96] font-serif max-w-2xl leading-relaxed">
+          <h2 className="text-3xl sm:text-4xl font-bold font-heading text-[color:var(--fg-E6D7B9)] tracking-wide">Continent Designer</h2>
+          <p className="mt-2 text-base text-[color:var(--fg-CDBB96)] font-serif max-w-2xl leading-relaxed">
             Paint your own continent, then check it against simple settlement/agriculture/port placement rules. A playful way to think about what a plausible landmass needs.
           </p>
         </div>
@@ -103,7 +103,7 @@ export function DesignYourContinent() {
               key={o.type}
               onClick={() => setBrush(o.type)}
               className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-carto uppercase tracking-wider rounded border ${
-                brush === o.type ? 'border-[#9A7B45] text-[#FAF6EE]' : 'border-[#463429] text-[#CDBB96]/70'
+                brush === o.type ? 'border-[color:var(--bd-9A7B45)] text-[color:var(--fg-FAF6EE)]' : 'border-[color:var(--bd-463429)] text-[color:var(--fg-CDBB96)]/85'
               }`}
             >
               <span className={`w-3 h-3 rounded-sm ${o.color}`} />
@@ -113,7 +113,7 @@ export function DesignYourContinent() {
         </div>
 
         <div
-          className="grid gap-0.5 border border-[#463429] bg-[#0F0C09] p-1 rounded max-w-fit"
+          className="grid gap-0.5 border border-[color:var(--bd-463429)] bg-[color:var(--bg-0F0C09)] p-1 rounded max-w-fit"
           style={{ gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))` }}
         >
           {grid.map((t, i) => {
@@ -132,22 +132,22 @@ export function DesignYourContinent() {
         <div className="flex items-center gap-3 mt-4">
           <button
             onClick={checkConstraints}
-            className="px-5 py-2.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#2B211A] hover:bg-[#342820] text-[#FAF6EE] border border-[#9A7B45]"
+            className="px-5 py-2.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-2B211A)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-FAF6EE)] border border-[color:var(--bd-9A7B45)]"
           >
             Check Constraints
           </button>
           <button
             onClick={() => { setGrid(makeEmptyGrid()); setFeedback(null); }}
-            className="px-5 py-2.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[#241B15] hover:bg-[#342820] text-[#CDBB96] border border-[#463429]"
+            className="px-5 py-2.5 text-xs font-bold font-carto uppercase tracking-wider rounded bg-[color:var(--bg-241B15)] hover:bg-[color:var(--bg-342820)] text-[color:var(--fg-CDBB96)] border border-[color:var(--bd-463429)]"
           >
             Reset
           </button>
         </div>
 
         {feedback && (
-          <div className="mt-5 p-4 rounded border border-[#463429] bg-[#241B15] space-y-1.5">
+          <div className="mt-5 p-4 rounded border border-[color:var(--bd-463429)] bg-[color:var(--bg-241B15)] space-y-1.5">
             {feedback.map((f, i) => (
-              <div key={i} className={`text-xs font-mono ${f.includes('PASS') ? 'text-[#53665C]' : 'text-[#8B5E4A]'}`}>{f}</div>
+              <div key={i} className={`text-xs font-mono ${f.includes('PASS') ? 'text-[color:var(--fg-53665C)]' : 'text-[color:var(--fg-8B5E4A)]'}`}>{f}</div>
             ))}
           </div>
         )}
