@@ -2,7 +2,7 @@
 
 # 📜 Lemuria & Kumari Kandam: Lost Continent Explorer
 
-**An Interactive Research Platform, Map Exploration Toolkit, & Educational Suite Dissecting Ancient Myth and Modern Plate Tectonics**
+### *An Interactive Research Platform, Map Exploration Toolkit, & Educational Suite Dissecting Ancient Myth and Modern Oceanography*
 
 [![React 19](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
@@ -11,96 +11,98 @@
 [![Motion](https://img.shields.io/badge/Motion-12.23-FF4081?style=for-the-badge&logo=framer&logoColor=white)](https://motion.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4CAF50.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
----
+[Live Demo](https://github.com/theflighttechofficial/Kumarikandam-the-lost-mythology) • [Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Quickstart](#-quickstart--installation) • [Science vs. Myth](#-science-vs-myth-matrix) • [Architecture](#-project-structure)
 
-[Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Quickstart](#-quickstart--installation) • [Project Structure](#-project-structure) • [Science vs. Myth](#-science-vs-myth-matrix) • [Contributing](#-contributing)
+---
 
 </div>
 
----
-
 ## 📖 Overview
 
-Before the theory of plate tectonics was accepted in the 1960s, 19th-century zoologists hypothesized **Lemuria**—a lost landmass bridging India and Madagascar—to explain shared fossilized lemur fauna across distant shores of the Indian Ocean. Decades later, Tamil cultural revivalists identified Lemuria with **Kumari Kandam** (குமரிக் கண்டம்), the legendary sunken continent described in medieval commentaries on Tamil Sangam literature (*Silappatikaram*, *Kapaadapuram*).
+Before the theory of plate tectonics was verified in the 1960s, 19th-century zoologists hypothesized **Lemuria**—a lost landmass bridging India and Madagascar—to explain shared fossilized lemur fauna across distant shores of the Indian Ocean. Decades later, Tamil cultural revivalists identified Lemuria with **Kumari Kandam** (குமரிக் கண்டம்), the legendary sunken continent described in classical Tamil Sangam literature (*Silappatikaram*, *Kapaadapuram*).
 
-**Lemuria & Kumari Kandam Explorer** is an ultra-modern web application wrapped in an **ancient parchment visual aesthetic**. It provides interactive historical map exploration, comparative scientific matrices, educational quizzes, chronological timelines, and a local research productivity suite to study the confluence of folklore, Tamil literature, and marine geology.
+**Lemuria & Kumari Kandam Explorer** is an ultra-modern web application wrapped in an **ancient parchment visual aesthetic**. It provides interactive historical map exploration, comparative scientific matrices, educational quizzes, chronological timelines, and a local research productivity suite to analyze the confluence of folklore, Tamil literature, and marine geology.
+
+> [!NOTE]
+> **Scientific Verdict**: Modern oceanography proves that while large land bridges never sank overnight, microcontinents such as **Mauritia** *did* submerge during the breakup of Gondwana, and sea-level rise post-LGM inundated historical coastal settlements like Poompuhar.
 
 ---
 
 ## 📑 Table of Contents
 
-- [ Overview](#-overview)
-- [ Key Features](#-key-features)
-  - [1. Interactive Ancient Map Explorer](#1--interactive-ancient-map-explorer-uncharted-style)
-  - [2. Tamil Sangam & Kumari Kandam Deep Dive](#2--deep-dive-kumari-kandam-in-tamil-tradition)
-  - [3. Science vs. Myth Matrix & Quiz](#3--science-vs-myth-matrix--interactive-quiz)
-  - [4. Chronological Timeline (1860s–Present)](#4--chronological-timeline-1860s---present-day)
-  - [4b. Other "Lost Lands": Real vs. Mythical](#4b--other-lost-lands-real-vs-mythical)
-  - [5. Integrated Research Productivity Suite](#5--integrated-research-productivity-suite)
-  - [6. Bibliography & Sources Checklist](#6--academic-bibliography--sources-section)
-  - [7. Code Exporter & Fact Modals](#7--standout-features--vs-code-exporter)
-- [ Tech Stack](#-tech-stack)
-- [ Quickstart & Installation](#-quickstart--installation)
-- [ Available NPM Scripts](#-available-npm-scripts)
-- [ Deployment](#-deployment)
-- [ Project Structure](#-project-structure)
-- [ Science vs. Myth Matrix](#-science-vs-myth-matrix)
-- [ Contributing](#-contributing)
-- [ License](#-license)
+- [📖 Overview](#-overview)
+- [✨ Key Features](#-key-features)
+  - [1. 🗺️ Interactive Ancient Map Explorer](#1-️-interactive-ancient-map-explorer-uncharted-style)
+  - [2. 🏛️ Deep Dive: Kumari Kandam in Tamil Tradition](#2-️-deep-dive-kumari-kandam-in-tamil-tradition)
+  - [3. 🔬 Science vs. Myth Matrix & Interactive Quiz](#3-️-science-vs-myth-matrix--interactive-quiz)
+  - [4. ⏳ Chronological Timeline (1860s–Present Day)](#4-️-chronological-timeline-1860s--present-day)
+  - [5. 🌍 Comparative Gallery: Sunken & Submerged Lands](#5-️-comparative-gallery-sunken--submerged-lands)
+  - [6. 📝 Integrated Research Productivity Suite](#6-️-integrated-research-productivity-suite)
+  - [7. 📚 Categorized Bibliography & Sources Checklist](#7-️-categorized-bibliography--sources-checklist)
+  - [8. 💻 Quick Verdict & Standout Export Modals](#8-️-quick-verdict--standout-export-modals)
+- [🛠️ Tech Stack](#-tech-stack)
+- [🚀 Quickstart & Installation](#-quickstart--installation)
+- [📜 Available Scripts](#-available-scripts)
+- [🌐 Deployment Guide](#-deployment-guide)
+- [📂 Project Architecture](#-project-architecture)
+- [🧪 Science vs. Myth Matrix](#-science-vs-myth-matrix)
+- [🤝 Contributing](#-contributing)
+- [📄 License](#-license)
 
 ---
 
 ## ✨ Key Features
 
-### 🗺️ 1. Interactive Ancient Map Explorer (Uncharted Style)
-* **Layer Toggles**: Seamlessly switch between **19th-Century Mythological Maps**, **Modern Tectonic Plate Boundaries**, and **Submerged Microcontinents (Mauritia)**.
-* **Interactive Hotspots**: Inspect annotated research locations including the **Mascarene Plateau**, **South Kanyakumari**, **Madagascar Lemur Biogeography**, and **Kerguelen Microcontinent**.
-* **Cartographic Telemetry**: Real-time readout of geographical coordinates, depth soundings, and expedition notes.
+### 1. 🗺️ Interactive Ancient Map Explorer (Uncharted Style)
+* **Dynamic Layer Switching**: Seamlessly toggle between **19th-Century Mythological Maps**, **Modern Tectonic Plate Boundaries**, and **Submerged Microcontinents (Mauritia)**.
+* **Annotated Interactive Hotspots**: Inspect geographic coordinates and research notes for key sites including the **Mascarene Plateau**, **South Kanyakumari**, **Madagascar Lemur Biogeography**, and the **Kerguelen Microcontinent**.
+* **Real-Time Ocean Soundings**: Dynamic telemetry panel rendering coordinates, depth profiles, and bathymetric data upon hotspot selection.
 
-### 🏛️ 2. Deep Dive: Kumari Kandam in Tamil Tradition
-* **Sangam Literature Analysis**: Detailed coverage of the **First (Madurai)** and **Second (Kapaadapuram)** Tamil Sangams.
-* **Cataclysmic Inundation Timeline**: Exploration of historical coastal floods (*Kadal Kol*) recorded in classical Tamil texts like *Silappatikaram*.
-* **Revivalist Movement**: Insights into key figures such as V.G. Suryanarayana Sastri (Parithimar Kalaignar) and the cultural framing of sunken ancestral lands.
+### 2. 🏛️ Deep Dive: Kumari Kandam in Tamil Tradition
+* **Sangam Literature Analysis**: In-depth exploration of the **First (Madurai)** and **Second (Kapaadapuram)** Tamil Sangams.
+* **Cataclysmic Inundation Chronology**: Examination of historical coastal deluges (*Kadal Kol*) documented in classical texts such as *Silappatikaram*.
+* **Revivalist Movement**: Insights into key historical figures including V.G. Suryanarayana Sastri (Parithimar Kalaignar) and the cultural framing of sunken ancestral homelands.
 
-### 🔬 3. Science vs. Myth Matrix & Interactive Quiz
-* **Side-by-Side Analysis**: Direct empirical comparisons evaluating pre-plate-tectonic hypotheses against modern bathymetry, ocean floor spreading, and continental drift.
-* **Knowledge Challenge Quiz**: Self-assessment module with instant feedback, scoring, and academic explanations.
+### 3. 🔬 Science vs. Myth Matrix & Interactive Quiz
+* **Side-by-Side Empirical Comparison**: Direct comparative grid contrasting 19th-century land-bridge theories with modern bathymetry, sea-floor spreading, and continental drift.
+* **Knowledge Challenge Quiz**: Self-assessment module with instant feedback, score calculation, and detailed academic rationales.
 
-### ⏳ 4. Chronological Timeline (1860s - Present Day)
-* **Historical Trajectory**: Chronological journey tracking Philip Sclater (1864), Ernst Haeckel (1870s), W. Scott-Elliot's "The Lost Lemuria" (1904), Helena Blavatsky & Theosophy (1888), Tamil revivalists (1900s), Alfred Wegener's continental drift (1912), plate tectonics (1960s), down to the 2013 discovery of the **Mauritia microcontinent** and the 2017 formalization of **Zealandia** as Earth's eighth continent.
+### 4. ⏳ Chronological Timeline (1860s – Present Day)
+* **Historical Development Arc**: Trace the evolution from Philip Sclater (1864) and Ernst Haeckel (1870s) to W. Scott-Elliot (1904), Tamil revivalists (1900s), Alfred Wegener (1912), plate tectonics (1960s), down to the 2013 discovery of the **Mauritia microcontinent** and the 2017 formalization of **Zealandia**.
 
-### 🌍 4b. Other "Lost Lands": Real vs. Mythical
-* **Comparative Gallery**: Six other "sunken land" narratives — Atlantis, Mu, Zealandia, Doggerland, Sundaland, and Beringia — filterable by whether they're geologically verified or unfalsifiable myth.
-* **Calibrates the Lemuria Verdict**: Seeing Lemuria and Kumari Kandam alongside real, well-documented submerged landmasses (and alongside admitted fabrications like Mu) clarifies exactly where each claim sits on the evidence spectrum.
+### 5. 🌍 Comparative Gallery: Sunken & Submerged Lands
+* **Evidence Spectrum Grid**: Compare 6 prominent sunken land narratives—**Atlantis**, **Mu**, **Zealandia**, **Doggerland**, **Sundaland**, and **Beringia**—filtered by whether they are geologically verified landmasses or mythological fabrications.
 
-### 📝 5. Integrated Research Productivity Suite
-* **Interactive Research Notebook**: Create, edit, tag, search, and export research notes.
-* **Task Manager**: Organize reading lists, prioritize research objectives, and mark milestones complete.
-* **Dynamic Progress Tracker**: Real-time progress bar computing overall completion based on notes written, tasks done, and sources reviewed.
-* **Session Persistence**: Automatic saving to browser `localStorage`.
+### 6. 📝 Integrated Research Productivity Suite
+* **Interactive Notebook**: Create, tag, search, filter, and export research notes.
+* **Task Manager**: Organize literature reading lists, prioritize goals, and check off milestones.
+* **Progress Dashboard**: Dynamic progress bar calculating completion rates based on written notes, finished tasks, and reviewed citations.
+* **Persistent Storage**: Automatic client-side synchronization using browser `localStorage`.
 
-### 📚 6. Academic Bibliography & Sources Section
-* **Categorized Reading List**: Primary and secondary literature classified under **Historical**, **Geological**, and **Literary & Cultural** domain tags.
-* **Reading Progress Toggles**: Check off papers and books as you read them.
+### 7. 📚 Categorized Bibliography & Sources Checklist
+* **Curated Academic Reading List**: Categorized literature tagged under **Historical**, **Geological**, and **Literary & Cultural** domains.
+* **Reading Checklists**: Track your study progress by marking papers and monographs as read.
 
-### 💻 7. Standout Features & VS Code Exporter
-* **"Is Lemuria Real?" Quick Verdict Modal**: Concise executive summary distilling geological realities (Gondwana breakup, Mauritia crustal fragments) from mythological claims.
-* **VS Code Code Exporter Modal**: One-click modal to inspect and copy standalone, production-ready code structures.
+### 8. 💻 Quick Verdict & Standout Export Modals
+* **"Is Lemuria Real?" Scientific Verdict Modal**: Instant executive summary distilling geological facts from mythological claims.
+* **VS Code Exporter Modal**: One-click modal to inspect and copy production-ready code snippets.
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology | Purpose |
-| :--- | :--- | :--- |
-| **Framework** | [React 19](https://react.dev/) | Component architecture & dynamic UI |
-| **Language** | [TypeScript 5.8](https://www.typescriptlang.org/) | Strict type safety & data schemas |
-| **Bundler & Server** | [Vite 6](https://vitejs.dev/) | Lightning-fast HMR dev server & production builds |
-| **Styling** | [Tailwind CSS v4](https://tailwindcss.com/) | Parchment design system & utility layout |
-| **Animations** | [Motion 12](https://motion.dev/) | Smooth page transitions & micro-interactions |
-| **Icons** | [Lucide React](https://lucide.dev/) | UI icon library |
+| Layer | Technology | Version | Purpose |
+| :--- | :--- | :--- | :--- |
+| **UI Framework** | [React](https://react.dev/) | `^19.0.1` | Component architecture & dynamic client-side rendering |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) | `~5.8.2` | Strict type safety and data models |
+| **Build Tool & Server** | [Vite](https://vitejs.dev/) | `^6.2.3` | Ultra-fast HMR development server & optimized production bundling |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) | `^4.1.14` | Custom parchment theme tokens and responsive layouts |
+| **Animations** | [Motion](https://motion.dev/) | `^12.23.24` | Smooth transitions, micro-interactions, and modal effects |
+| **Iconography** | [Lucide React](https://lucide.dev/) | `^0.546.0` | Accessible and sleek SVG icons |
+| **Analytics** | [@vercel/analytics](https://vercel.com/analytics) | `^2.0.1` | Performance & visitor Insights |
 
-This is a **fully static site** — no backend, no API keys, no server process. Everything runs client-side and persists only to the browser's `localStorage`.
+> [!TIP]
+> **Zero Backend Required**: This application is entirely static and client-side. No external APIs or database setups are required to run or deploy.
 
 ---
 
@@ -111,113 +113,119 @@ This is a **fully static site** — no backend, no API keys, no server process. 
 * **Node.js**: `v18.0.0` or higher
 * **Package Manager**: `npm`, `pnpm`, or `yarn`
 
-### 1. Clone Repository
+### Installation Steps
 
-```bash
-git clone https://github.com/theflighttechofficial/Kumarikandam-the-lost-mythology.git
-cd Kumarikandam-the-lost-mythology
-```
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/theflighttechofficial/Kumarikandam-the-lost-mythology.git
+   cd Kumarikandam-the-lost-mythology
+   ```
 
-### 2. Install Dependencies
+2. **Install Dependencies**
+   ```bash
+   npm install
+   ```
 
-```bash
-npm install
-```
-
-### 3. Launch Development Server
-
-```bash
-npm run dev
-```
-
-Visit [`http://localhost:3000`](http://localhost:3000) in your browser. No environment variables or `.env` file are required.
+3. **Launch Development Server**
+   ```bash
+   npm run dev
+   ```
+   Open [`http://localhost:3000`](http://localhost:3000) in your browser to view the application.
 
 ---
 
-## 📜 Available NPM Scripts
+## 📜 Available Scripts
+
+In the project directory, you can run:
 
 | Command | Description |
 | :--- | :--- |
-| `npm run dev` | Starts local Vite development server on port `3000` |
-| `npm run build` | Type-checks and builds the production bundle into `/dist` |
-| `npm run preview` | Serves the compiled `/dist` build locally to sanity-check before deploying |
-| `npm run lint` | Runs TypeScript type checking without emitting files |
-| `npm run clean` | Removes the `/dist` directory |
+| `npm run dev` | Starts the local Vite development server on port `3000` with host listening enabled. |
+| `npm run build` | Runs TypeScript compilation and generates the optimized static bundle in `/dist`. |
+| `npm run preview` | Serves the compiled production build locally for verification. |
+| `npm run lint` | Runs `tsc --noEmit` to verify type safety across all files. |
+| `npm run clean` | Removes the build artifact directory (`/dist`). |
 
 ---
 
-## 🌐 Deployment
+## 🌐 Deployment Guide
 
-The build output (`npm run build` → `/dist`) is a plain static site — HTML, CSS, and a few JS chunks — so it can be hosted anywhere that serves static files. No server runtime, database, or environment variables are needed.
+The application compiles into static HTML, CSS, and JS assets inside the `dist/` directory via `npm run build`.
 
-**Netlify** — `netlify.toml` is included at the repo root (build command `npm run build`, publish directory `dist`, with long-term caching on hashed assets). Connect the repo and deploy as-is.
+### Deploying to Netlify
+A pre-configured `netlify.toml` is included in the project root:
+- **Build Command**: `npm run build`
+- **Publish Directory**: `dist`
+- Connect your GitHub repository to Netlify for automatic CI/CD deployments.
 
-**Vercel** — `vercel.json` is included with the equivalent build/output settings and cache headers. Import the repo and deploy as-is.
+### Deploying to Vercel
+A pre-configured `vercel.json` is included in the project root:
+- **Build Command**: `npm run build`
+- **Output Directory**: `dist`
+- Import the project directly in the Vercel dashboard.
 
-**GitHub Pages / any static host / S3 / Cloudflare Pages** —
+### Deploying to GitHub Pages / Static Hosting
 ```bash
 npm run build
-# upload the contents of dist/ to your host
 ```
-
-Because this is a single-page site that scrolls to in-page anchors (`#interactive-map`, `#timeline`, etc.) rather than using client-side routing, there is no need for SPA fallback/rewrite rules — every host serves `index.html` at `/` and the rest is anchor navigation.
-
-Before pointing a custom domain at a deployment, consider adding an `og:image` and a `<link rel="canonical">` in `index.html` for richer social-media link previews and SEO.
+Upload the generated content inside `dist/` to any static web host, S3 bucket, or Cloudflare Pages instance.
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Architecture
 
 ```text
 Kumarikandam-the-lost-mythology/
-├── index.html                   # Entry HTML with custom typography (Cinzel, MedievalSharp, Inter)
-├── package.json                 # Project manifest & dependency declarations
-├── tsconfig.json                # TypeScript compiler config
+├── index.html                   # HTML entry point with custom font imports (Cinzel, MedievalSharp, Inter)
+├── package.json                 # Dependency manifests & NPM scripts
+├── tsconfig.json                # TypeScript compiler configuration
 ├── vite.config.ts               # Vite configuration & server options
+├── netlify.toml                 # Netlify deployment configuration
+├── vercel.json                  # Vercel deployment configuration
 ├── src/
 │   ├── main.tsx                 # React application mounting point
-│   ├── App.tsx                  # Root layout, active view navigation, & state hub
-│   ├── index.css                # Global Parchment styling tokens, animations, & scrollbars
-│   ├── types.ts                 # TypeScript type interfaces (Notes, Tasks, Sources, Map Markers)
+│   ├── App.tsx                  # Root layout component & main state management
+│   ├── index.css                # Parchment theme CSS tokens, scrollbar styling, & animations
+│   ├── types.ts                 # TypeScript types (Notes, Tasks, Sources, Map Hotspots)
 │   ├── data/
-│   │   └── lemuriaData.ts       # Curated datasets (Quizzes, Timeline events, Sources, Hotspots)
+│   │   └── lemuriaData.ts       # Datasets for Quizzes, Timeline, Bibliography, & Map Hotspots
 │   └── components/
-│       ├── Navbar.tsx           # Navigation header with progress bar & modal triggers
-│       ├── Hero.tsx             # Interactive parchment landing hero section
-│       ├── WhatIsLemuria.tsx    # Historical background & origins of Sclater's hypothesis
-│       ├── InteractiveMap.tsx   # Uncharted-themed interactive cartography explorer
+│       ├── Navbar.tsx           # Top navigation bar with research progress meter
+│       ├── Hero.tsx             # Interactive parchment hero section
+│       ├── WhatIsLemuria.tsx    # Historical background & origins of Philip Sclater's hypothesis
+│       ├── InteractiveMap.tsx   # Uncharted-style cartography explorer with interactive hotspots
 │       ├── KumariKandamSection.tsx # Tamil Sangam literature & cultural research module
-│       ├── ScienceVsMyth.tsx    # Side-by-side scientific evaluation & interactive quiz
-│       ├── TimelineSection.tsx  # Interactive chronology from 1864 to modern oceanography
-│       ├── RelatedLostLands.tsx # Comparative gallery: Atlantis, Mu, Zealandia, Doggerland, Sundaland, Beringia
-│       ├── ProductivitySuite.tsx# Research notes workspace, task checklist, & progress stats
-│       ├── SourcesSection.tsx   # Categorized academic bibliography & reading checklist
-│       ├── Footer.tsx           # Academic footer, credits, & external links
-│       ├── RealModal.tsx        # "Is Lemuria Real?" fast scientific verdict modal
-│       └── VsCodeExportModal.tsx# Code exporter modal for standalone HTML/CSS/JS export
+│       ├── ScienceVsMyth.tsx    # Empirical comparison matrix & interactive quiz module
+│       ├── TimelineSection.tsx  # Chronological timeline from 1864 to modern oceanography
+│       ├── RelatedLostLands.tsx # Comparative gallery of 6 real and mythical sunken lands
+│       ├── ProductivitySuite.tsx# Research notebook, task checklist, & progress stats tracker
+│       ├── SourcesSection.tsx   # Academic bibliography & reading status toggles
+│       ├── Footer.tsx           # Academic footer with links & credits
+│       ├── RealModal.tsx        # "Is Lemuria Real?" quick verdict popup modal
+│       └── VsCodeExportModal.tsx# VS Code code exporter modal
 └── README.md                    # Project documentation
 ```
 
 ---
 
-## 📖 Science vs. Myth Matrix
+## 🧪 Science vs. Myth Matrix
 
-| Comparative Domain | 19th Century Hypothesis / Myth | Modern Geological Science |
+| Domain | 19th Century Hypothesis / Myth | Modern Oceanographic & Geological Science |
 | :--- | :--- | :--- |
-| **Land Bridge Origin** | Sunken landmass spanning India to Madagascar | Continental drift via **Gondwana fragmentation** (180–120 Mya) |
-| **Faunal Migration** | Lemurs walked across a dry land bridge | Oceanic rafting / island hopping across early Indian Ocean |
-| **Kumari Kandam** | Massive sunken continent south of Kanyakumari | Sea-level rise post-LGM inundated coastal settlements like Poompuhar |
-| **Submerged Crust** | Intact continent drowned beneath ocean floor | **Mauritia**: Precambrian continental fragment beneath Mauritius volcano deposits |
+| **Land Bridge Origin** | Drowned continent bridging India & Madagascar | Continental drift via **Gondwana fragmentation** (180–120 Mya) |
+| **Faunal Migration** | Lemurs crossed via a continuous land bridge | Oceanic rafting / island hopping across early Indian Ocean channels |
+| **Kumari Kandam** | Drowned ancient landmass south of Kanyakumari | Sea-level rise post-LGM inundated coastal cities like Poompuhar |
+| **Submerged Crust** | Drowned continent beneath ocean floor | **Mauritia**: Precambrian continental fragment beneath Mauritius volcanoes |
 
 ---
 
 ## 🤝 Contributing
 
-Contributions, bug reports, and feature requests are very welcome!
+Contributions, issues, and feature requests are welcome!
 
 1. **Fork** the repository
-2. **Create** a topic branch (`git checkout -b feature/AmazingFeature`)
-3. **Commit** your changes (`git commit -m 'Add some AmazingFeature'`)
+2. **Create** a feature branch (`git checkout -b feature/AmazingFeature`)
+3. **Commit** your changes (`git commit -m 'Add AmazingFeature'`)
 4. **Push** to the branch (`git push origin feature/AmazingFeature`)
 5. **Open** a Pull Request
 
@@ -225,12 +233,13 @@ Contributions, bug reports, and feature requests are very welcome!
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+Distributed under the **MIT License**. See `LICENSE` for details.
 
 ---
 
 <div align="center">
 
-<sub>Designed & Built with ❤️ for history, Tamil literature, marine geology, and web exploration.</sub>
+<sub>Designed & Built with ❤️ for history, Tamil literature, marine geology, and interactive web exploration.</sub>
 
 </div>
+
