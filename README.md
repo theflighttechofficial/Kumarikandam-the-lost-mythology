@@ -11,9 +11,11 @@
 [![Motion](https://img.shields.io/badge/Motion-12.23-FF4081?style=for-the-badge&logo=framer&logoColor=white)](https://motion.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-4CAF50.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-[Live Demo](https://github.com/theflighttechofficial/Kumarikandam-the-lost-mythology) • [Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Quickstart](#-quickstart--installation) • [Science vs. Myth](#-science-vs-myth-matrix) • [Architecture](#-project-structure)
+[Live Demo](https://kumarikandam-the-lost-mythology.vercel.app/) • [Visual Tour](#-visual-tour--screenshots) • [Key Features](#-key-features) • [Tech Stack](#-tech-stack) • [Quickstart](#-quickstart--installation) • [Science vs. Myth](#-science-vs-myth-matrix) • [Architecture](#-project-architecture)
 
 ---
+
+![Kumari Kandam & Lemuria Explorer Hero Banner](docs/screenshots/01-hero-atlas.png)
 
 </div>
 
@@ -28,9 +30,27 @@ Before the theory of plate tectonics was verified in the 1960s, 19th-century zoo
 
 ---
 
+## 📸 Visual Tour & Screenshots
+
+Explore the key interfaces and interactive modules included in the platform:
+
+| Module | Preview | Description |
+| :--- | :--- | :--- |
+| **Hero & Navigation** | ![Hero Interface](docs/screenshots/01-hero-atlas.png) | Parchment-styled hero landing with 3-strand historical synopsis and real-time research progress tracking. |
+| **Interactive Map Explorer** | ![Interactive Map](docs/screenshots/02-interactive-map.png) | Multi-layered Indian Ocean cartographic explorer with tectonic plates, soundings, and geological hotspots. |
+| **Kumari Kandam Deep Dive** | ![Kumari Kandam](docs/screenshots/03-kumari-kandam.png) | Sangam literature analysis, deluges (*Kadal Kol*), and Pandyan dynasty historical context. |
+| **Science vs. Myth Matrix** | ![Science vs Myth](docs/screenshots/04-science-vs-myth.png) | Side-by-side empirical comparison table contrasting 19th-century land bridges with plate tectonics. |
+| **Chronological Timeline** | ![Timeline](docs/screenshots/05-timeline.png) | Historical arc tracing ideas from 1864 zoology to the modern discovery of Mauritia and Zealandia. |
+| **Comparative Lost Lands** | ![Lost Lands](docs/screenshots/06-comparative-lost-lands.png) | Evidence spectrum analyzing Atlantis, Mu, Zealandia, Doggerland, Sundaland, and Beringia. |
+| **Research Productivity Suite** | ![Research Suite](docs/screenshots/07-research-suite.png) | Client-side note taking, task checklists, reading progress tracker, and export tools. |
+| **Scientific Verdict Modal** | ![Verdict Modal](docs/screenshots/08-scientific-verdict-modal.png) | Concise executive summary distilling geological facts from mythological claims. |
+
+---
+
 ## 📑 Table of Contents
 
 - [📖 Overview](#-overview)
+- [📸 Visual Tour & Screenshots](#-visual-tour--screenshots)
 - [✨ Key Features](#-key-features)
   - [1. 🗺️ Interactive Ancient Map Explorer](#1-️-interactive-ancient-map-explorer-uncharted-style)
   - [2. 🏛️ Deep Dive: Kumari Kandam in Tamil Tradition](#2-️-deep-dive-kumari-kandam-in-tamil-tradition)
@@ -85,7 +105,7 @@ Before the theory of plate tectonics was verified in the 1960s, 19th-century zoo
 
 ### 8. 💻 Quick Verdict & Standout Export Modals
 * **"Is Lemuria Real?" Scientific Verdict Modal**: Instant executive summary distilling geological facts from mythological claims.
-* **VS Code Exporter Modal**: One-click modal to inspect and copy production-ready code snippets.
+* **Interactive Search (Ctrl+K / Cmd+K)**: Quick modal lookup across all concepts, texts, and timeline milestones.
 
 ---
 
@@ -176,34 +196,35 @@ Upload the generated content inside `dist/` to any static web host, S3 bucket, o
 
 ```text
 Kumarikandam-the-lost-mythology/
-├── index.html                   # HTML entry point with custom font imports (Cinzel, MedievalSharp, Inter)
+├── index.html                   # HTML entry point with custom font imports
 ├── package.json                 # Dependency manifests & NPM scripts
 ├── tsconfig.json                # TypeScript compiler configuration
 ├── vite.config.ts               # Vite configuration & server options
 ├── netlify.toml                 # Netlify deployment configuration
 ├── vercel.json                  # Vercel deployment configuration
-├── src/
-│   ├── main.tsx                 # React application mounting point
-│   ├── App.tsx                  # Root layout component & main state management
-│   ├── index.css                # Parchment theme CSS tokens, scrollbar styling, & animations
-│   ├── types.ts                 # TypeScript types (Notes, Tasks, Sources, Map Hotspots)
-│   ├── data/
-│   │   └── lemuriaData.ts       # Datasets for Quizzes, Timeline, Bibliography, & Map Hotspots
-│   └── components/
-│       ├── Navbar.tsx           # Top navigation bar with research progress meter
-│       ├── Hero.tsx             # Interactive parchment hero section
-│       ├── WhatIsLemuria.tsx    # Historical background & origins of Philip Sclater's hypothesis
-│       ├── InteractiveMap.tsx   # Uncharted-style cartography explorer with interactive hotspots
-│       ├── KumariKandamSection.tsx # Tamil Sangam literature & cultural research module
-│       ├── ScienceVsMyth.tsx    # Empirical comparison matrix & interactive quiz module
-│       ├── TimelineSection.tsx  # Chronological timeline from 1864 to modern oceanography
-│       ├── RelatedLostLands.tsx # Comparative gallery of 6 real and mythical sunken lands
-│       ├── ProductivitySuite.tsx# Research notebook, task checklist, & progress stats tracker
-│       ├── SourcesSection.tsx   # Academic bibliography & reading status toggles
-│       ├── Footer.tsx           # Academic footer with links & credits
-│       ├── RealModal.tsx        # "Is Lemuria Real?" quick verdict popup modal
-│       └── VsCodeExportModal.tsx# VS Code code exporter modal
-└── README.md                    # Project documentation
+├── docs/
+│   └── screenshots/             # High-resolution screenshots of the atlas UI
+├── public/                      # Static assets, SVG icons, and sitemaps
+└── src/
+    ├── main.tsx                 # React application mounting point
+    ├── App.tsx                  # Root layout component & main state management
+    ├── index.css                # Parchment theme CSS tokens, scrollbar styling, & animations
+    ├── types.ts                 # TypeScript types (Notes, Tasks, Sources, Map Hotspots)
+    ├── data/
+    │   └── lemuriaData.ts       # Datasets for Quizzes, Timeline, Bibliography, & Map Hotspots
+    └── components/
+        ├── Navbar.tsx           # Top navigation bar with research progress meter
+        ├── Hero.tsx             # Interactive parchment hero section
+        ├── WhatIsLemuria.tsx    # Historical background & origins of Philip Sclater's hypothesis
+        ├── InteractiveMap.tsx   # Cartography explorer with interactive hotspots & soundings
+        ├── KumariKandamSection.tsx # Tamil Sangam literature & cultural research module
+        ├── ScienceVsMyth.tsx    # Empirical comparison matrix & interactive quiz module
+        ├── TimelineSection.tsx  # Chronological timeline from 1864 to modern oceanography
+        ├── RelatedLostLands.tsx # Comparative gallery of 6 real and mythical sunken lands
+        ├── ProductivitySuite.tsx# Research notebook, task checklist, & progress stats tracker
+        ├── SourcesSection.tsx   # Academic bibliography & reading status toggles
+        ├── Footer.tsx           # Academic footer with links & credits
+        └── RealModal.tsx        # "Is Lemuria Real?" quick verdict popup modal
 ```
 
 ---
@@ -242,4 +263,3 @@ Distributed under the **MIT License**. See `LICENSE` for details.
 <sub>Designed & Built with ❤️ for history, Tamil literature, marine geology, and interactive web exploration.</sub>
 
 </div>
-
